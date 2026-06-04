@@ -7,7 +7,8 @@ import { useAuth } from "@/context/AuthContext";
 import { useTheme } from "@/context/ThemeContext";
 import { toast } from "sonner";
 
-const items = [
+type NavItem = { to: string; label: string; icon: React.ComponentType<any>; exact?: boolean };
+const items: NavItem[] = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { to: "/admin/achievements", label: "Achievements", icon: Award },
   { to: "/admin/experiences", label: "Experiences", icon: Briefcase },
@@ -20,7 +21,7 @@ const items = [
   { to: "/admin/media", label: "Media Library", icon: Image },
   { to: "/admin/profile", label: "Profile", icon: User },
   { to: "/admin/settings", label: "Settings", icon: Settings },
-] as const;
+];
 
 export function AdminShell({ children }: { children: React.ReactNode }) {
   const { logout, user } = useAuth();
