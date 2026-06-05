@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as OtpRouteImport } from './routes/otp'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as PublicRouteImport } from './routes/_public'
@@ -43,6 +44,11 @@ import { Route as AdminAdminAchievementsRouteImport } from './routes/_admin.admi
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OtpRoute = OtpRouteImport.update({
+  id: '/otp',
+  path: '/otp',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -193,6 +199,7 @@ export interface FileRoutesByFullPath {
   '/': typeof PublicIndexRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
+  '/otp': typeof OtpRoute
   '/reset-password': typeof ResetPasswordRoute
   '/about': typeof PublicAboutRoute
   '/contact': typeof PublicContactRoute
@@ -223,6 +230,7 @@ export interface FileRoutesByTo {
   '/': typeof PublicIndexRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
+  '/otp': typeof OtpRoute
   '/reset-password': typeof ResetPasswordRoute
   '/about': typeof PublicAboutRoute
   '/contact': typeof PublicContactRoute
@@ -255,6 +263,7 @@ export interface FileRoutesById {
   '/_public': typeof PublicRouteWithChildren
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
+  '/otp': typeof OtpRoute
   '/reset-password': typeof ResetPasswordRoute
   '/_public/about': typeof PublicAboutRoute
   '/_public/contact': typeof PublicContactRoute
@@ -288,6 +297,7 @@ export interface FileRouteTypes {
     | '/'
     | '/forgot-password'
     | '/login'
+    | '/otp'
     | '/reset-password'
     | '/about'
     | '/contact'
@@ -318,6 +328,7 @@ export interface FileRouteTypes {
     | '/'
     | '/forgot-password'
     | '/login'
+    | '/otp'
     | '/reset-password'
     | '/about'
     | '/contact'
@@ -349,6 +360,7 @@ export interface FileRouteTypes {
     | '/_public'
     | '/forgot-password'
     | '/login'
+    | '/otp'
     | '/reset-password'
     | '/_public/about'
     | '/_public/contact'
@@ -382,6 +394,7 @@ export interface RootRouteChildren {
   PublicRoute: typeof PublicRouteWithChildren
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   LoginRoute: typeof LoginRoute
+  OtpRoute: typeof OtpRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
 }
 
@@ -392,6 +405,13 @@ declare module '@tanstack/react-router' {
       path: '/reset-password'
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/otp': {
+      id: '/otp'
+      path: '/otp'
+      fullPath: '/otp'
+      preLoaderRoute: typeof OtpRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -672,6 +692,7 @@ const rootRouteChildren: RootRouteChildren = {
   PublicRoute: PublicRouteWithChildren,
   ForgotPasswordRoute: ForgotPasswordRoute,
   LoginRoute: LoginRoute,
+  OtpRoute: OtpRoute,
   ResetPasswordRoute: ResetPasswordRoute,
 }
 export const routeTree = rootRouteImport
