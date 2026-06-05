@@ -13,9 +13,11 @@ import {
   messages as seedMessages,
   media as seedMedia,
   professor as seedProfessor,
+  education as seedEducation,
   dashboardCharts,
   stats,
 } from "@/data/mockData";
+import seedSettings from "./mockData/settings.json";
 
 const LATENCY = 350;
 const delay = <T,>(data: T, ms = LATENCY): Promise<T> =>
@@ -23,6 +25,8 @@ const delay = <T,>(data: T, ms = LATENCY): Promise<T> =>
 
 type Store = {
   professor: typeof seedProfessor;
+  settings: typeof seedSettings;
+  education: typeof seedEducation;
   achievements: typeof seedAchievements;
   experiences: typeof seedExperiences;
   researches: typeof seedResearches;
