@@ -140,6 +140,7 @@ export const api = {
       store.professor = { ...store.professor, ...payload };
       return delay(store.professor);
     },
+  },
   settings: {
     get: () => delay(store.settings),
     update: async (payload: Partial<typeof store.settings>) => {
