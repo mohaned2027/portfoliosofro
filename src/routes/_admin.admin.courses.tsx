@@ -17,7 +17,7 @@ export const Route = createFileRoute("/_admin/admin/courses")({
       fields={[
         { name: "title", label: "Title" },
         { name: "description", label: "Description", type: "textarea" },
-        { name: "cover", label: "Cover image URL", type: "url" },
+        { name: "cover", label: "Cover image", type: "image" },
       ]}
       defaults={{ title: "", description: "", lectures: [] }}
     />

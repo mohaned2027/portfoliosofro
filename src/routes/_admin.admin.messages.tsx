@@ -5,6 +5,7 @@ import { api } from "@/api/client";
 import { SearchInput, Spinner, Empty } from "@/components/common/Primitives";
 import { Mail, MailOpen, Trash2 } from "lucide-react";
 import { toast } from "sonner";
+import { confirmDelete } from "@/lib/confirm";
 
 export const Route = createFileRoute("/_admin/admin/messages")({
   component: MessagesPage,
@@ -61,7 +62,7 @@ function MessagesPage() {
                     <button onClick={() => toggle.mutate({ id: selected.id, read: !selected.read })} className="grid size-8 place-items-center rounded-md border border-border hover:border-electric/60" title={selected.read ? "Mark unread" : "Mark read"}>
                       {selected.read ? <Mail className="size-3.5" /> : <MailOpen className="size-3.5" />}
                     </button>
-                    <button onClick={() => { if (confirm("Delete?")) remove.mutate(selected.id); }} className="grid size-8 place-items-center rounded-md border border-border hover:border-destructive/60 hover:text-destructive"><Trash2 className="size-3.5" /></button>
+                    <button onClick={async () => { if (await confirmDelete()) remove.mutate(selected.id); }} className="grid size-8 place-items-center rounded-md border border-border hover:border-destructive/60 hover:text-destructive"><Trash2 className="size-3.5" /></button>
                   </div>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{selected.body}</p>

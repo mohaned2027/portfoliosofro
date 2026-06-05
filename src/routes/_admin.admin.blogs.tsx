@@ -20,7 +20,7 @@ export const Route = createFileRoute("/_admin/admin/blogs")({
         { name: "slug", label: "Slug" },
         { name: "excerpt", label: "Excerpt", type: "textarea" },
         { name: "content", label: "Content (Markdown)", type: "textarea" },
-        { name: "cover", label: "Cover image URL", type: "url" },
+        { name: "cover", label: "Cover image", type: "image" },
         { name: "date", label: "Publish date", type: "date" },
       ]}
       defaults={{ title: "", slug: "", excerpt: "", content: "", date: new Date().toISOString().slice(0, 10) }}

@@ -19,7 +19,7 @@ export const Route = createFileRoute("/_admin/admin/achievements")({
         { name: "title", label: "Title" },
         { name: "description", label: "Short description", type: "textarea" },
         { name: "fullDescription", label: "Full description", type: "textarea" },
-        { name: "cover", label: "Cover image URL", type: "url" },
+        { name: "cover", label: "Cover image", type: "image" },
         { name: "date", label: "Date", type: "date" },
         { name: "category", label: "Category" },
         { name: "liveLink", label: "Live link (optional)", type: "url" },

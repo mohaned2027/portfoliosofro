@@ -22,7 +22,7 @@ export const Route = createFileRoute("/_admin/admin/researches")({
         { name: "journal", label: "Journal" },
         { name: "doi", label: "DOI" },
         { name: "link", label: "Publication link", type: "url" },
-        { name: "cover", label: "Cover image URL", type: "url" },
+        { name: "cover", label: "Cover image", type: "image" },
       ]}
       defaults={{ title: "", year: new Date().getFullYear(), abstract: "" }}
     />
