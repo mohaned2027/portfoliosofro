@@ -184,6 +184,3 @@
 .animate-pulse-ring { animation: pulse-ring 2.4s ease-out infinite; }
 .animate-signal { stroke-dasharray: 200; animation: signal-flow 3s linear infinite; }
 .animate-float { animation: float-y 6s ease-in-out infinite; }
-
-/* Webfonts */
-@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
