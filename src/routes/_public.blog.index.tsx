@@ -31,4 +31,4 @@ function BlogPage() {
   );
 }
 
-export default BlogList;
+export default BlogPage;

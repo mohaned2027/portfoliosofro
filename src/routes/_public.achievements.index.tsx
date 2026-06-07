@@ -40,4 +40,4 @@ function AchievementsPage() {
   );
 }
 
-export default AchievementsList;
+export default AchievementsPage;

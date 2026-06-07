@@ -43,4 +43,4 @@ function ResearchesPage() {
   );
 }
 
-export default ResearchesList;
+export default ResearchesPage;

@@ -30,4 +30,4 @@ function CoursesPage() {
   );
 }
 
-export default CoursesList;
+export default CoursesPage;
