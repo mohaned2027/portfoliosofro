@@ -16,7 +16,7 @@ import {
   education as educationData,
   stats as statsData,
   dashboardCharts,
-} from "@/data/mockData";
+} from "../data/mockData";
 import siteSettings from "./mockData/settings.json";
 
 // ============================================================
