@@ -3,20 +3,18 @@
  * starts hitting the real backend defined in endpoints.js.
  */
 import { BASE_URL } from "./endpoints";
-import {
-  professor as profileData,
-  achievements as achievementsData,
-  researches as researchesData,
-  experiences as experiencesData,
-  positions as positionsData,
-  courses as coursesData,
-  blogs as blogsData,
-  messages as messagesData,
-  media as mediaData,
-  education as educationData,
-  stats as statsData,
-  dashboardCharts,
-} from "../data/mockData";
+import professorData from "./mockData/professor.json";
+import educationData from "./mockData/education.json";
+import experiencesData from "./mockData/experiences.json";
+import coursesData from "./mockData/courses.json";
+import researchesData from "./mockData/researches.json";
+import achievementsData from "./mockData/achievements.json";
+import blogsData from "./mockData/blogs.json";
+import mediaData from "./mockData/media.json";
+import messagesData from "./mockData/messages.json";
+import statsData from "./mockData/stats.json";
+import positionsData from "./mockData/positions.json";
+import dashboardCharts from "./mockData/dashboardCharts.json";
 import siteSettings from "./mockData/settings.json";
 
 // ============================================================
@@ -28,28 +26,30 @@ export const MOCK_MODE = true; // ← switch to false to use real backend
 // MOCK DATA MAP — endpoint substring → in-memory dataset
 // ============================================================
 const mockDataMap = {
-  "/user/data": profileData,
-  "/admin/user": profileData,
-  "/setting": siteSettings,
-  "/admin/setting": siteSettings,
-  "/achievement": achievementsData,
-  "/admin/achievement": achievementsData,
-  "/research": researchesData,
-  "/admin/research": researchesData,
-  "/experience": experiencesData,
-  "/admin/experience": experiencesData,
-  "/position": positionsData,
-  "/admin/position": positionsData,
-  "/course": coursesData,
-  "/admin/course": coursesData,
-  "/blog": blogsData,
-  "/admin/blog": blogsData,
+  "/professor": professorData,
+  "/admin/professor": professorData,
   "/education": educationData,
   "/admin/education": educationData,
+  "/experience": experiencesData,
+  "/admin/experience": experiencesData,
+  "/courses": coursesData,
+  "/admin/courses": coursesData,
+  "/researches": researchesData,
+  "/admin/researches": researchesData,
+  "/achievements": achievementsData,
+  "/admin/achievements": achievementsData,
+  "/blogs": blogsData,
+  "/admin/blogs": blogsData,
+  "/media": mediaData,
   "/admin/media": mediaData,
-  "/admin/contact-us": messagesData,
-  "/admin/dashboard/stats": statsData,
-  "/admin/dashboard/charts": dashboardCharts,
+  "/messages": messagesData,
+  "/admin/messages": messagesData,
+  "/settings": siteSettings,
+  "/admin/settings": siteSettings,
+  "/stats": statsData,
+  "/positions": positionsData,
+  "/admin/positions": positionsData,
+  "/dashboard/charts": dashboardCharts,
 };
 
 const simulateDelay = () =>

@@ -1,36 +1,45 @@
-import { Routes, Route, Link } from "react-router-dom";
-import PublicLayout from "./routes/_public";
-import HomePage from "./routes/_public.index";
-import AboutPage from "./routes/_public.about";
-import AchievementsPage from "./routes/_public.achievements.index";
-import AchievementDetail from "./routes/_public.achievements.$id";
-import BlogPage from "./routes/_public.blog.index";
-import BlogDetail from "./routes/_public.blog.$id";
-import ContactPage from "./routes/_public.contact";
-import CoursesPage from "./routes/_public.courses.index";
-import CourseDetail from "./routes/_public.courses.$id";
-import ExperiencesPage from "./routes/_public.experiences";
-import PositionsPage from "./routes/_public.positions";
-import ResearchesPage from "./routes/_public.researches.index";
-import ResearchDetail from "./routes/_public.researches.$id";
-import AdminLayout from "./routes/_admin";
-import DashboardHome from "./routes/_admin.admin.index";
-import AdminAchievements from "./routes/_admin.admin.achievements";
-import AdminBlogs from "./routes/_admin.admin.blogs";
-import AdminCourses from "./routes/_admin.admin.courses";
-import AdminEducation from "./routes/_admin.admin.education";
-import AdminExperiences from "./routes/_admin.admin.experiences";
-import LecturesPage from "./routes/_admin.admin.lectures";
-import MediaPage from "./routes/_admin.admin.media";
-import MessagesPage from "./routes/_admin.admin.messages";
-import AdminPositions from "./routes/_admin.admin.positions";
-import ProfilePage from "./routes/_admin.admin.profile";
-import AdminResearches from "./routes/_admin.admin.researches";
-import SettingsPage from "./routes/_admin.admin.settings";
-import LoginPage from "./routes/login";
-import ForgotPage from "./routes/forgot-password";
-import OtpPage from "./routes/otp";
-import ResetPage from "./routes/reset-password";
+import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import { DataProvider } from "./context/DataContext";
+import { ThemeProvider } from "./context/ThemeContext";
+
+// Public Pages
+import PublicLayout from "./pages/_public";
+import HomePage from "./pages/_public.index";
+import AboutPage from "./pages/_public.about";
+import AchievementsPage from "./pages/_public.achievements.index";
+import AchievementDetail from "./pages/_public.achievements.$id";
+import BlogPage from "./pages/_public.blog.index";
+import BlogDetail from "./pages/_public.blog.$id";
+import ContactPage from "./pages/_public.contact";
+import CoursesPage from "./pages/_public.courses.index";
+import CourseDetail from "./pages/_public.courses.$id";
+import ExperiencesPage from "./pages/_public.experiences";
+import PositionsPage from "./pages/_public.positions";
+import ResearchesPage from "./pages/_public.researches.index";
+import ResearchDetail from "./pages/_public.researches.$id";
+
+// Admin Pages
+import AdminLayout from "./pages/admin/Layout";
+import DashboardHome from "./pages/admin/_admin.admin.index";
+import AdminAchievements from "./pages/admin/_admin.admin.achievements";
+import AdminBlogs from "./pages/admin/_admin.admin.blogs";
+import AdminCourses from "./pages/admin/_admin.admin.courses";
+import AdminEducation from "./pages/admin/_admin.admin.education";
+import AdminExperiences from "./pages/admin/_admin.admin.experiences";
+import LecturesPage from "./pages/admin/_admin.admin.lectures";
+import MediaPage from "./pages/admin/_admin.admin.media";
+import MessagesPage from "./pages/admin/_admin.admin.messages";
+import AdminPositions from "./pages/admin/_admin.admin.positions";
+import ProfilePage from "./pages/admin/_admin.admin.profile";
+import AdminResearches from "./pages/admin/_admin.admin.researches";
+import SettingsPage from "./pages/admin/_admin.admin.settings";
+
+// Auth Pages
+import LoginPage from "./pages/login";
+import ForgotPage from "./pages/forgot-password";
+import OtpPage from "./pages/otp";
+import ResetPage from "./pages/reset-password";
 function NotFound() {
   return <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
@@ -46,44 +55,54 @@ function NotFound() {
     </div>;
 }
 export default function App() {
-  return <Routes>
-      <Route element={<PublicLayout />}>
-        <Route index element={<HomePage />} />
-        <Route path="about" element={<AboutPage />} />
-        <Route path="achievements" element={<AchievementsPage />} />
-        <Route path="achievements/:id" element={<AchievementDetail />} />
-        <Route path="blog" element={<BlogPage />} />
-        <Route path="blog/:id" element={<BlogDetail />} />
-        <Route path="contact" element={<ContactPage />} />
-        <Route path="courses" element={<CoursesPage />} />
-        <Route path="courses/:id" element={<CourseDetail />} />
-        <Route path="experiences" element={<ExperiencesPage />} />
-        <Route path="positions" element={<PositionsPage />} />
-        <Route path="researches" element={<ResearchesPage />} />
-        <Route path="researches/:id" element={<ResearchDetail />} />
-      </Route>
+  return (
+    <BrowserRouter>
+      <DataProvider>
+        <AuthProvider>
+          <ThemeProvider>
+            <Routes>
+              <Route element={<PublicLayout />}>
+                <Route index element={<HomePage />} />
+                <Route path="about" element={<AboutPage />} />
+                <Route path="achievements" element={<AchievementsPage />} />
+                <Route path="achievements/:id" element={<AchievementDetail />} />
+                <Route path="blog" element={<BlogPage />} />
+                <Route path="blog/:id" element={<BlogDetail />} />
+                <Route path="contact" element={<ContactPage />} />
+                <Route path="courses" element={<CoursesPage />} />
+                <Route path="courses/:id" element={<CourseDetail />} />
+                <Route path="experiences" element={<ExperiencesPage />} />
+                <Route path="positions" element={<PositionsPage />} />
+                <Route path="researches" element={<ResearchesPage />} />
+                <Route path="researches/:id" element={<ResearchDetail />} />
+              </Route>
 
-      <Route element={<AdminLayout />}>
-        <Route path="admin" element={<DashboardHome />} />
-        <Route path="admin/achievements" element={<AdminAchievements />} />
-        <Route path="admin/blogs" element={<AdminBlogs />} />
-        <Route path="admin/courses" element={<AdminCourses />} />
-        <Route path="admin/education" element={<AdminEducation />} />
-        <Route path="admin/experiences" element={<AdminExperiences />} />
-        <Route path="admin/lectures" element={<LecturesPage />} />
-        <Route path="admin/media" element={<MediaPage />} />
-        <Route path="admin/messages" element={<MessagesPage />} />
-        <Route path="admin/positions" element={<AdminPositions />} />
-        <Route path="admin/profile" element={<ProfilePage />} />
-        <Route path="admin/researches" element={<AdminResearches />} />
-        <Route path="admin/settings" element={<SettingsPage />} />
-      </Route>
+              <Route element={<AdminLayout />}>
+                <Route path="admin" element={<DashboardHome />} />
+                <Route path="admin/achievements" element={<AdminAchievements />} />
+                <Route path="admin/blogs" element={<AdminBlogs />} />
+                <Route path="admin/courses" element={<AdminCourses />} />
+                <Route path="admin/education" element={<AdminEducation />} />
+                <Route path="admin/experiences" element={<AdminExperiences />} />
+                <Route path="admin/lectures" element={<LecturesPage />} />
+                <Route path="admin/media" element={<MediaPage />} />
+                <Route path="admin/messages" element={<MessagesPage />} />
+                <Route path="admin/positions" element={<AdminPositions />} />
+                <Route path="admin/profile" element={<ProfilePage />} />
+                <Route path="admin/researches" element={<AdminResearches />} />
+                <Route path="admin/settings" element={<SettingsPage />} />
+              </Route>
 
-      <Route path="login" element={<LoginPage />} />
-      <Route path="forgot-password" element={<ForgotPage />} />
-      <Route path="otp" element={<OtpPage />} />
-      <Route path="reset-password" element={<ResetPage />} />
+              <Route path="login" element={<LoginPage />} />
+              <Route path="forgot-password" element={<ForgotPage />} />
+              <Route path="otp" element={<OtpPage />} />
+              <Route path="reset-password" element={<ResetPage />} />
 
-      <Route path="*" element={<NotFound />} />
-    </Routes>;
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </ThemeProvider>
+        </AuthProvider>
+      </DataProvider>
+    </BrowserRouter>
+  );
 }
