@@ -9,7 +9,7 @@ const __PageComponent = () => <CrudPage title="Blogs" subtitle="Articles, essays
   label: "Title",
   render: r => <span className="font-medium text-foreground">{r.title}</span>
 }, {
-  key: "slug",
+  key: "slug", 
   label: "Slug",
   render: r => <code className="text-xs">{r.slug}</code>
 }, {
