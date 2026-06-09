@@ -1,4 +1,4 @@
-import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { DataProvider } from "./context/DataContext";
 import { ThemeProvider } from "./context/ThemeContext";
@@ -56,11 +56,10 @@ function NotFound() {
 }
 export default function App() {
   return (
-    <BrowserRouter>
-      <DataProvider>
-        <AuthProvider>
-          <ThemeProvider>
-            <Routes>
+    <DataProvider>
+      <AuthProvider>
+        <ThemeProvider>
+          <Routes>
               <Route element={<PublicLayout />}>
                 <Route index element={<HomePage />} />
                 <Route path="about" element={<AboutPage />} />
@@ -99,10 +98,9 @@ export default function App() {
               <Route path="reset-password" element={<ResetPage />} />
 
               <Route path="*" element={<NotFound />} />
-            </Routes>
-          </ThemeProvider>
-        </AuthProvider>
-      </DataProvider>
-    </BrowserRouter>
+          </Routes>
+        </ThemeProvider>
+      </AuthProvider>
+    </DataProvider>
   );
 }
