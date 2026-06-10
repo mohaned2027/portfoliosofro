@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useResearches } from '../../context/DataContext';
 import { useCrudOperations } from '../../hooks/useCrudOperations';
 import CrudTable from '../../components/admin/CrudTable';
-import DashboardLayout from '../../components/admin/DashboardLayout';
 import { DASHBOARD_ENDPOINTS } from '../../api/endpoints';
 
 export default function AdminResearches() {
@@ -52,7 +51,7 @@ export default function AdminResearches() {
   };
 
   return (
-    <DashboardLayout>
+    <div>
       <div className="space-y-6">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold">Researches Management</h1>
@@ -113,6 +112,6 @@ export default function AdminResearches() {
           loading={loading}
         />
       </div>
-    </DashboardLayout>
+    </div>
   );
 }

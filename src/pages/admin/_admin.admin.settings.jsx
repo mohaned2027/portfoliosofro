@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSettings } from '../../context/DataContext';
 import { useCrudOperations } from '../../hooks/useCrudOperations';
-import DashboardLayout from '../../components/admin/DashboardLayout';
 import { DASHBOARD_ENDPOINTS } from '../../api/endpoints';
 
 export default function AdminSettings() {
@@ -25,7 +24,7 @@ export default function AdminSettings() {
   };
 
   return (
-    <DashboardLayout>
+    <div>
       <div className="space-y-6 max-w-2xl">
         <h1 className="text-3xl font-bold">Site Settings</h1>
 
@@ -66,6 +65,6 @@ export default function AdminSettings() {
           </button>
         </form>
       </div>
-    </DashboardLayout>
+    </div>
   );
 }

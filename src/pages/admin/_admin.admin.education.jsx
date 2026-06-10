@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useEducation } from '../../context/DataContext';
 import { useCrudOperations } from '../../hooks/useCrudOperations';
 import CrudTable from '../../components/admin/CrudTable';
-import DashboardLayout from '../../components/admin/DashboardLayout';
 import { DASHBOARD_ENDPOINTS } from '../../api/endpoints';
 
 export default function AdminEducation() {
@@ -52,7 +51,7 @@ export default function AdminEducation() {
   };
 
   return (
-    <DashboardLayout>
+    <div>
       <div className="space-y-6">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold">Education Management</h1>
@@ -85,6 +84,6 @@ export default function AdminEducation() {
 
         <CrudTable data={education || []} columns={columns} onEdit={handleEdit} onDelete={handleDelete} loading={loading} />
       </div>
-    </DashboardLayout>
+    </div>
   );
 }

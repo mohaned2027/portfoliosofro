@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useAchievements } from '../../context/DataContext';
 import { useCrudOperations } from '../../hooks/useCrudOperations';
 import CrudTable from '../../components/admin/CrudTable';
-import DashboardLayout from '../../components/admin/DashboardLayout';
 import { DASHBOARD_ENDPOINTS } from '../../api/endpoints';
 
 export default function AdminAchievements() {
@@ -52,7 +51,7 @@ export default function AdminAchievements() {
   };
 
   return (
-    <DashboardLayout>
+    <div>
       <div className="space-y-6">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold">Achievements Management</h1>
@@ -119,6 +118,6 @@ export default function AdminAchievements() {
           loading={loading}
         />
       </div>
-    </DashboardLayout>
+    </div>
   );
 }

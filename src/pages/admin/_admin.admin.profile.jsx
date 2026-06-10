@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useProfessor } from '../../context/DataContext';
 import { useCrudOperations } from '../../hooks/useCrudOperations';
-import DashboardLayout from '../../components/admin/DashboardLayout';
 import { DASHBOARD_ENDPOINTS } from '../../api/endpoints';
 
 export default function AdminProfile() {
@@ -25,7 +24,7 @@ export default function AdminProfile() {
   };
 
   return (
-    <DashboardLayout>
+    <div>
       <div className="space-y-6 max-w-2xl">
         <h1 className="text-3xl font-bold">Profile Management</h1>
 
@@ -81,6 +80,6 @@ export default function AdminProfile() {
           </button>
         </form>
       </div>
-    </DashboardLayout>
+    </div>
   );
 }

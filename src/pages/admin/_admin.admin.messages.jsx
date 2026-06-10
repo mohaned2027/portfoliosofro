@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useMessages } from '../../context/DataContext';
 import { useCrudOperations } from '../../hooks/useCrudOperations';
 import CrudTable from '../../components/admin/CrudTable';
-import DashboardLayout from '../../components/admin/DashboardLayout';
 import { DASHBOARD_ENDPOINTS } from '../../api/endpoints';
 
 export default function AdminMessages() {
@@ -28,7 +27,7 @@ export default function AdminMessages() {
   };
 
   return (
-    <DashboardLayout>
+    <div>
       <div className="space-y-6">
         <h1 className="text-3xl font-bold">Messages Management</h1>
 
@@ -55,6 +54,6 @@ export default function AdminMessages() {
           )}
         </div>
       </div>
-    </DashboardLayout>
+    </div>
   );
 }

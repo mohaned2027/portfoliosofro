@@ -8,8 +8,10 @@ import { CircuitBackground } from "@/components/effects/CircuitBackground";
 import { SectionHeader } from "@/components/common/Headers";
 import { CoverCard } from "@/components/common/Cards";
 import { Stat } from "@/components/common/Primitives";
-import { professor, achievements, researches, courses, blogs, stats } from "@/data/mockData";
+import { useProfessor, useCourses, useResearches, useAchievements, useBlogs, useStats } from "@/context/DataContext";
+
 const TITLES = ["Professor of Wireless Communications", "Head of ECE Department", "Researcher in 6G & Intelligent Surfaces", "IEEE Distinguished Lecturer"];
+
 function Typewriter() {
   const [i, setI] = useState(0);
   const [text, setText] = useState("");
@@ -34,7 +36,21 @@ function Typewriter() {
       {text}<span className="ml-0.5 inline-block w-1.5 h-4 bg-electric animate-pulse align-middle" />
     </span>;
 }
+
 function HomePage() {
+  // Use DataContext for all data
+  const professor = useProfessor();
+  const courses = useCourses();
+  const researches = useResearches();
+  const achievements = useAchievements();
+  const blogs = useBlogs();
+  const stats = useStats();
+
+  // Fallback values if data is not loaded
+  if (!professor || !stats) {
+    return <div className="flex min-h-screen items-center justify-center">Loading...</div>;
+  }
+
   return <>
       {/* HERO */}
       <section className="relative overflow-hidden">
@@ -135,7 +151,7 @@ function HomePage() {
             <SectionHeader eyebrow="About the professor" title={<>A career spent at the <span className="text-gradient-electric">edge of wireless</span></>} subtitle={null} align="left" />
             <p className="text-muted-foreground">{professor.bio}</p>
             <div className="grid grid-cols-2 gap-3">
-              {professor.interests.slice(0, 4).map(i => <div key={i} className="flex items-center gap-2 rounded-md border border-border bg-card px-3 py-2 text-sm">
+              {professor.interests?.slice(0, 4).map(i => <div key={i} className="flex items-center gap-2 rounded-md border border-border bg-card px-3 py-2 text-sm">
                   <span className="size-1.5 rounded-full bg-electric" /> {i}
                 </div>)}
             </div>
@@ -150,7 +166,7 @@ function HomePage() {
       <section className="container-academic py-16">
         <SectionHeader eyebrow="Featured Research" title="Recent publications" subtitle="A selection of recent peer-reviewed work in wireless and signal processing." />
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {researches.slice(0, 3).map(r => <CoverCard key={r.id} to={`/researches/${r.id}`} cover={r.cover} eyebrow={String(r.year)} title={r.title} meta={r.abstract} footer={r.journal} />)}
+          {researches?.slice(0, 3).map(r => <CoverCard key={r.id} to={`/researches/${r.id}`} cover={r.cover} eyebrow={String(r.year)} title={r.title} meta={r.abstract} footer={r.journal} />)}
         </div>
         <div className="mt-8 text-center">
           <Link to="/researches" className="inline-flex h-10 items-center gap-2 rounded-md border border-border px-4 text-sm font-medium hover:border-electric/60">
@@ -163,7 +179,7 @@ function HomePage() {
       <section className="container-academic py-16">
         <SectionHeader eyebrow="Recognition" title="Featured achievements" subtitle="Awards, grants, and honors received across two decades of service." />
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {achievements.slice(0, 4).map(a => <CoverCard key={a.id} to={`/achievements/${a.id}`} cover={a.cover} eyebrow={a.category} title={a.title} footer={new Date(a.date).toLocaleDateString()} />)}
+          {achievements?.slice(0, 4).map(a => <CoverCard key={a.id} to={`/achievements/${a.id}`} cover={a.cover} eyebrow={a.category} title={a.title} footer={new Date(a.date).toLocaleDateString()} />)}
         </div>
       </section>
 
@@ -171,7 +187,7 @@ function HomePage() {
       <section className="container-academic py-16">
         <SectionHeader eyebrow="Teaching" title="Featured courses" subtitle="Graduate and undergraduate offerings on wireless communications and signal processing." />
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {courses.slice(0, 3).map(c => <CoverCard key={c.id} to={`/courses/${c.id}`} cover={c.cover} eyebrow={`${c.lectures.length} Lectures`} title={c.title} meta={c.description} />)}
+          {courses?.slice(0, 3).map(c => <CoverCard key={c.id} to={`/courses/${c.id}`} cover={c.cover} eyebrow={`${c.lectures?.length || 0} Lectures`} title={c.title} meta={c.description} />)}
         </div>
       </section>
 
@@ -179,7 +195,7 @@ function HomePage() {
       <section className="container-academic py-16">
         <SectionHeader eyebrow="Latest Blog" title="Notes & essays" subtitle="Short writing on research, teaching, and the future of communications." />
         <div className="grid gap-5 md:grid-cols-3">
-          {blogs.slice(0, 3).map(b => <CoverCard key={b.id} to={`/blog/${b.id}`} cover={b.cover} eyebrow="Article" title={b.title} meta={b.excerpt} footer={new Date(b.date).toLocaleDateString()} />)}
+          {blogs?.slice(0, 3).map(b => <CoverCard key={b.id} to={`/blog/${b.id}`} cover={b.cover} eyebrow="Article" title={b.title} meta={b.excerpt} footer={new Date(b.date).toLocaleDateString()} />)}
         </div>
       </section>
 
@@ -203,4 +219,5 @@ function HomePage() {
       </section>
     </>;
 }
+
 export default HomePage;

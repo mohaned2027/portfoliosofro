@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useCourses } from '../../context/DataContext';
 import { useCrudOperations } from '../../hooks/useCrudOperations';
 import CrudTable from '../../components/admin/CrudTable';
-import DashboardLayout from '../../components/admin/DashboardLayout';
 import { DASHBOARD_ENDPOINTS } from '../../api/endpoints';
 
 export default function AdminCourses() {
@@ -51,7 +50,7 @@ export default function AdminCourses() {
   };
 
   return (
-    <DashboardLayout>
+    <div>
       <div className="space-y-6">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold">Courses Management</h1>
@@ -105,6 +104,6 @@ export default function AdminCourses() {
           loading={loading}
         />
       </div>
-    </DashboardLayout>
+    </div>
   );
 }

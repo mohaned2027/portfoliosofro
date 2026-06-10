@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useBlogs } from '../../context/DataContext';
 import { useCrudOperations } from '../../hooks/useCrudOperations';
 import CrudTable from '../../components/admin/CrudTable';
-import DashboardLayout from '../../components/admin/DashboardLayout';
 import { DASHBOARD_ENDPOINTS } from '../../api/endpoints';
 
 export default function AdminBlogs() {
@@ -52,7 +51,7 @@ export default function AdminBlogs() {
   };
 
   return (
-    <DashboardLayout>
+    <div>
       <div className="space-y-6">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold">Blogs Management</h1>
@@ -78,6 +77,6 @@ export default function AdminBlogs() {
 
         <CrudTable data={blogs || []} columns={columns} onEdit={handleEdit} onDelete={handleDelete} loading={loading} />
       </div>
-    </DashboardLayout>
+    </div>
   );
 }
