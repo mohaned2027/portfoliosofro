@@ -1,7 +1,7 @@
 [
   {
     "id": "course-1",
-    "title": "Wireless Communications (ECE-501)",
+    "title": "Wirel Communications (ECE-501)",
     "description": "A graduate-level treatment combining rigorous mathematical foundations with hands-on labs on software-defined-radio platforms. Students complete a capstone project on a real research problem.",
     "objectives": [
       "Master the mathematical foundations of the topic",
