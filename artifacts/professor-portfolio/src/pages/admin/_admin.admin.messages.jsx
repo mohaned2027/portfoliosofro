@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Search, Trash2, X, Mail, MailOpen } from "lucide-react";
-import { useMessages } from "@/context/DataContext";
+import { useAdminMessages } from "@/context/AdminDataContext";
 import { api } from "@/api/client";
 import { confirmDelete } from "@/lib/confirm";
 import { Pagination, usePagination } from "@/components/admin/Pagination";
@@ -31,10 +31,12 @@ function MessagePanel({ msg, onClose }) {
 }
 
 export default function AdminMessages() {
-  const raw = useMessages() ?? [];
-  const [items, setItems] = useState(raw);
+  const raw = useAdminMessages() ?? [];
+  const [items, setItems] = useState([]);
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState(null);
+
+  useEffect(() => { setItems(raw); }, [raw]);
 
   const filtered = items.filter(m => !search ||
     m.name?.toLowerCase().includes(search.toLowerCase()) ||

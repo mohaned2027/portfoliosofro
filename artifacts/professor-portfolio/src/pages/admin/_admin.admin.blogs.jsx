@@ -1,6 +1,6 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Plus, Search, Pencil, Trash2, X, UploadCloud, ImageIcon } from "lucide-react";
-import { useBlogs } from "@/context/DataContext";
+import { useAdminBlogs } from "@/context/AdminDataContext";
 import { api } from "@/api/client";
 import { confirmDelete } from "@/lib/confirm";
 import { Pagination, usePagination } from "@/components/admin/Pagination";
@@ -50,32 +50,14 @@ function BlogModal({ initial, onClose, onSaved }) {
           <button onClick={onClose} className="grid size-7 place-items-center rounded hover:bg-muted text-muted-foreground"><X className="size-4" /></button>
         </div>
         <form onSubmit={submit} className="flex-1 overflow-y-auto px-6 py-5 space-y-4">
-          <div className="space-y-1.5">
-            <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">Title</label>
-            <input required value={form.title} onChange={e => set("title", e.target.value)} className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 focus:ring-1 focus:ring-electric/30" />
-          </div>
-          <div className="space-y-1.5">
-            <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">Excerpt</label>
-            <textarea rows={2} value={form.excerpt} onChange={e => set("excerpt", e.target.value)} className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 resize-none" />
-          </div>
-          <div className="space-y-1.5">
-            <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">Content (Markdown)</label>
-            <textarea rows={6} value={form.content} onChange={e => set("content", e.target.value)} className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 resize-none font-mono" />
-          </div>
+          <div className="space-y-1.5"><label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">Title</label><input required value={form.title} onChange={e => set("title", e.target.value)} className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 focus:ring-1 focus:ring-electric/30" /></div>
+          <div className="space-y-1.5"><label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">Excerpt</label><textarea rows={2} value={form.excerpt} onChange={e => set("excerpt", e.target.value)} className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 resize-none" /></div>
+          <div className="space-y-1.5"><label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">Content (Markdown)</label><textarea rows={6} value={form.content} onChange={e => set("content", e.target.value)} className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 resize-none font-mono" /></div>
           <div className="grid grid-cols-2 gap-3">
-            <div className="space-y-1.5">
-              <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">Category</label>
-              <input value={form.category} onChange={e => set("category", e.target.value)} placeholder="e.g. Research, Opinion…" className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60" />
-            </div>
-            <div className="space-y-1.5">
-              <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">Date</label>
-              <input type="date" value={form.date} onChange={e => set("date", e.target.value)} className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60" />
-            </div>
+            <div className="space-y-1.5"><label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">Category</label><input value={form.category} onChange={e => set("category", e.target.value)} className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60" /></div>
+            <div className="space-y-1.5"><label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">Date</label><input type="date" value={form.date} onChange={e => set("date", e.target.value)} className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60" /></div>
           </div>
-          <div className="space-y-1.5">
-            <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">Cover Image</label>
-            <Dropzone value={form.cover} onChange={v => set("cover", v ?? "")} />
-          </div>
+          <div className="space-y-1.5"><label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">Cover Image</label><Dropzone value={form.cover} onChange={v => set("cover", v ?? "")} /></div>
         </form>
         <div className="flex justify-end gap-3 px-6 py-4 border-t border-border shrink-0">
           <button type="button" onClick={onClose} className="px-4 py-2 rounded-lg border border-border text-sm hover:bg-muted transition">Cancel</button>
@@ -87,10 +69,12 @@ function BlogModal({ initial, onClose, onSaved }) {
 }
 
 export default function AdminBlogs() {
-  const raw = useBlogs() ?? [];
-  const [items, setItems] = useState(raw);
+  const raw = useAdminBlogs() ?? [];
+  const [items, setItems] = useState([]);
   const [search, setSearch] = useState("");
   const [modal, setModal] = useState(null);
+
+  useEffect(() => { setItems(raw); }, [raw]);
 
   const filtered = items.filter(b => !search || b.title?.toLowerCase().includes(search.toLowerCase()));
   const { page, setPage, totalPages, paginated } = usePagination(filtered, search);

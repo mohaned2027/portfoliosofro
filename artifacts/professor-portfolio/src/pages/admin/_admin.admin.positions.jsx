@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Plus, Search, Pencil, Trash2, X } from "lucide-react";
-import { usePositions } from "@/context/DataContext";
+import { useAdminPositions } from "@/context/AdminDataContext";
 import { api } from "@/api/client";
 import { confirmDelete } from "@/lib/confirm";
 import { Pagination, usePagination } from "@/components/admin/Pagination";
@@ -39,10 +39,12 @@ function PositionModal({ initial, onClose, onSaved }) {
 }
 
 export default function AdminPositions() {
-  const raw = usePositions() ?? [];
-  const [items, setItems] = useState(raw);
+  const raw = useAdminPositions() ?? [];
+  const [items, setItems] = useState([]);
   const [search, setSearch] = useState("");
   const [modal, setModal] = useState(null);
+
+  useEffect(() => { setItems(raw); }, [raw]);
 
   const filtered = items.filter(p => !search || p.title?.toLowerCase().includes(search.toLowerCase()) || p.organization?.toLowerCase().includes(search.toLowerCase()));
   const { page, setPage, totalPages, paginated } = usePagination(filtered, search);

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, UploadCloud, X, ImageIcon, GripVertical } from "lucide-react";
-import { useAchievements } from "@/context/DataContext";
+import { useAdminAchievements } from "@/context/AdminDataContext";
 import { api } from "@/api/client";
 
 const INPUT = "w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 focus:ring-1 focus:ring-electric/30";
@@ -84,7 +84,7 @@ const EMPTY = {
 export default function AchievementForm() {
   const { id } = useParams();
   const nav = useNavigate();
-  const allItems = useAchievements() ?? [];
+  const allItems = useAdminAchievements() ?? [];
   const isEdit = Boolean(id);
 
   const [form, setForm] = useState(EMPTY);

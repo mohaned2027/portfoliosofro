@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Save, Camera, User, Plus, Trash2 } from "lucide-react";
-import { useProfessor } from "@/context/DataContext";
+import { useAdminProfessor } from "@/context/AdminDataContext";
 import { api } from "@/api/client";
 
 function Section({ title, children }) {
@@ -29,7 +29,7 @@ const TEXTAREA = `${INPUT} resize-none`;
 const SOCIAL_KEYS = ["linkedin", "github", "scholar", "orcid", "researchgate", "twitter"];
 
 export default function AdminProfile() {
-  const professor = useProfessor();
+  const professor = useAdminProfessor();
   const [form, setForm] = useState({});
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);

@@ -1,6 +1,6 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Plus, Search, Pencil, Trash2, X, UploadCloud, ImageIcon } from "lucide-react";
-import { useCourses } from "@/context/DataContext";
+import { useAdminCourses } from "@/context/AdminDataContext";
 import { api } from "@/api/client";
 import { confirmDelete } from "@/lib/confirm";
 import { Pagination, usePagination } from "@/components/admin/Pagination";
@@ -68,10 +68,12 @@ function CourseModal({ initial, onClose, onSaved }) {
 }
 
 export default function AdminCourses() {
-  const raw = useCourses() ?? [];
-  const [items, setItems] = useState(raw);
+  const raw = useAdminCourses() ?? [];
+  const [items, setItems] = useState([]);
   const [search, setSearch] = useState("");
   const [modal, setModal] = useState(null);
+
+  useEffect(() => { setItems(raw); }, [raw]);
 
   const filtered = items.filter(c => !search || c.title?.toLowerCase().includes(search.toLowerCase()));
   const { page, setPage, totalPages, paginated } = usePagination(filtered, search);

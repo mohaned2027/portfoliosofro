@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Plus, Search, Pencil, Trash2, X, GraduationCap } from "lucide-react";
-import { useEducation } from "@/context/DataContext";
+import { useAdminEducation } from "@/context/AdminDataContext";
 import { api } from "@/api/client";
 import { confirmDelete } from "@/lib/confirm";
 import { Pagination, usePagination } from "@/components/admin/Pagination";
@@ -41,10 +41,12 @@ function EduModal({ initial, onClose, onSaved }) {
 }
 
 export default function AdminEducation() {
-  const raw = useEducation() ?? [];
-  const [items, setItems] = useState(raw);
+  const raw = useAdminEducation() ?? [];
+  const [items, setItems] = useState([]);
   const [search, setSearch] = useState("");
   const [modal, setModal] = useState(null);
+
+  useEffect(() => { setItems(raw); }, [raw]);
 
   const filtered = items.filter(e => !search || e.degree?.toLowerCase().includes(search.toLowerCase()) || (e.school ?? e.institution)?.toLowerCase().includes(search.toLowerCase()));
   const { page, setPage, totalPages, paginated } = usePagination(filtered, search);

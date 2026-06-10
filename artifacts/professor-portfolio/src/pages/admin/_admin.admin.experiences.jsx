@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Plus, Search, Pencil, Trash2, X, Briefcase } from "lucide-react";
-import { useExperience } from "@/context/DataContext";
+import { useAdminExperiences } from "@/context/AdminDataContext";
 import { api } from "@/api/client";
 import { confirmDelete } from "@/lib/confirm";
 import { Pagination, usePagination } from "@/components/admin/Pagination";
@@ -10,11 +10,11 @@ const EMPTY = { position: "", organization: "", from: "", to: "", description: "
 function ExpModal({ initial, onClose, onSaved }) {
   const [form, setForm] = useState({
     ...EMPTY,
-    position: initial?.position ?? initial?.title ?? "",
-    organization: initial?.organization ?? initial?.company ?? "",
-    from: initial?.from ?? initial?.startDate ?? "",
-    to: initial?.to ?? initial?.endDate ?? "",
-    description: initial?.description ?? "",
+    position:     initial?.position     ?? initial?.title    ?? "",
+    organization: initial?.organization ?? initial?.company  ?? "",
+    from:         initial?.from         ?? initial?.startDate ?? "",
+    to:           initial?.to           ?? initial?.endDate  ?? "",
+    description:  initial?.description  ?? "",
     ...(initial?.id ? { id: initial.id } : {}),
   });
   const [saving, setSaving] = useState(false);
@@ -50,10 +50,12 @@ function ExpModal({ initial, onClose, onSaved }) {
 }
 
 export default function AdminExperiences() {
-  const raw = useExperience() ?? [];
-  const [items, setItems] = useState(raw);
+  const raw = useAdminExperiences() ?? [];
+  const [items, setItems] = useState([]);
   const [search, setSearch] = useState("");
   const [modal, setModal] = useState(null);
+
+  useEffect(() => { setItems(raw); }, [raw]);
 
   const filtered = items.filter(e => !search ||
     (e.position ?? e.title)?.toLowerCase().includes(search.toLowerCase()) ||

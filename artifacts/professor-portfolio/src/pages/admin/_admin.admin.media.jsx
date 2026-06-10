@@ -1,6 +1,6 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Plus, Search, Pencil, Trash2, X, UploadCloud, FileImage, FileText, Film } from "lucide-react";
-import { useMedia } from "@/context/DataContext";
+import { useAdminMedia } from "@/context/AdminDataContext";
 import { api } from "@/api/client";
 import { confirmDelete } from "@/lib/confirm";
 
@@ -61,8 +61,9 @@ function MediaModal({ initial, onClose, onSaved }) {
 }
 
 export default function AdminMedia() {
-  const raw = useMedia() ?? [];
-  const [items, setItems] = useState(raw);
+  const raw = useAdminMedia() ?? [];
+  const [items, setItems] = useState([]);
+  useEffect(() => { setItems(raw); }, [raw]);
   const [search, setSearch] = useState("");
   const [modal, setModal] = useState(null);
   const filtered = items.filter(m => !search || m.name?.toLowerCase().includes(search.toLowerCase()) || m.type?.toLowerCase().includes(search.toLowerCase()));

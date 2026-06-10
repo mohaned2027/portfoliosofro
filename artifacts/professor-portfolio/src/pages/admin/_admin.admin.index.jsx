@@ -1,7 +1,8 @@
 import { Award, BookOpen, Edit3, MessageSquare, Video, FileText, Activity } from "lucide-react";
 import {
-  useAchievements, useResearches, useCourses, useBlogs, useMessages, useDashboardCharts, useProfessor
-} from "@/context/DataContext";
+  useAdminAchievements, useAdminResearches, useAdminCourses,
+  useAdminBlogs, useAdminMessages, useAdminDashboardCharts, useAdminProfessor,
+} from "@/context/AdminDataContext";
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell,
@@ -36,23 +37,23 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export default function DashboardHome() {
-  const professor = useProfessor();
-  const achievements = useAchievements();
-  const researches = useResearches();
-  const courses = useCourses();
-  const blogs = useBlogs();
-  const messages = useMessages();
-  const charts = useDashboardCharts();
+  const professor    = useAdminProfessor();
+  const achievements = useAdminAchievements();
+  const researches   = useAdminResearches();
+  const courses      = useAdminCourses();
+  const blogs        = useAdminBlogs();
+  const messages     = useAdminMessages();
+  const charts       = useAdminDashboardCharts();
 
   const lecturesCount = (courses || []).reduce((s, c) => s + (c.lectures?.length || 0), 0);
   const unread = (messages || []).filter(m => !m.read).length;
 
   const stats = [
-    { label: "Achievements", value: achievements?.length ?? 0,  icon: Award },
-    { label: "Researches",   value: researches?.length  ?? 0,   icon: FileText },
-    { label: "Courses",      value: courses?.length     ?? 0,   icon: BookOpen },
-    { label: "Lectures",     value: lecturesCount,               icon: Video },
-    { label: "Blogs",        value: blogs?.length       ?? 0,   icon: Edit3 },
+    { label: "Achievements", value: achievements?.length ?? 0, icon: Award },
+    { label: "Researches",   value: researches?.length  ?? 0, icon: FileText },
+    { label: "Courses",      value: courses?.length     ?? 0, icon: BookOpen },
+    { label: "Lectures",     value: lecturesCount,            icon: Video },
+    { label: "Blogs",        value: blogs?.length       ?? 0, icon: Edit3 },
     {
       label: "Messages",
       value: unread > 0 ? `${messages?.length ?? 0} (${unread})` : String(messages?.length ?? 0),
@@ -66,7 +67,6 @@ export default function DashboardHome() {
 
   return (
     <div className="space-y-7">
-      {/* Page header */}
       <div>
         <h1 className="text-3xl font-bold font-display">Dashboard</h1>
         <p className="text-sm text-muted-foreground mt-1">
@@ -74,36 +74,24 @@ export default function DashboardHome() {
         </p>
       </div>
 
-      {/* Stats row */}
       <div className="flex flex-wrap gap-3">
         {stats.map(s => <StatCard key={s.label} {...s} />)}
       </div>
 
-      {/* Charts row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-        {/* Site Traffic – 2/3 width */}
         <div className="lg:col-span-2 bg-card border border-border rounded-lg p-5">
           <div className="flex items-start justify-between mb-4">
             <div>
               <p className="font-semibold">Site Traffic</p>
               <p className="text-xs text-muted-foreground">Monthly visits &amp; content downloads</p>
             </div>
-            <span className="text-[11px] font-mono text-electric bg-electric/10 px-2 py-0.5 rounded">
-              Last 12 months
-            </span>
+            <span className="text-[11px] font-mono text-electric bg-electric/10 px-2 py-0.5 rounded">Last 12 months</span>
           </div>
           <ResponsiveContainer width="100%" height={220}>
             <LineChart data={traffic} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-              <XAxis
-                dataKey="month"
-                tick={{ fontSize: 11, fill: "var(--color-muted-foreground)" }}
-                axisLine={false} tickLine={false}
-              />
-              <YAxis
-                tick={{ fontSize: 11, fill: "var(--color-muted-foreground)" }}
-                axisLine={false} tickLine={false}
-              />
+              <XAxis dataKey="month" tick={{ fontSize: 11, fill: "var(--color-muted-foreground)" }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fontSize: 11, fill: "var(--color-muted-foreground)" }} axisLine={false} tickLine={false} />
               <Tooltip content={<CustomTooltip />} />
               <Line type="monotone" dataKey="visits"    stroke="#3b82f6" strokeWidth={2} dot={false} name="Visits" />
               <Line type="monotone" dataKey="downloads" stroke="#22c55e" strokeWidth={2} dot={false} name="Downloads" />
@@ -111,21 +99,13 @@ export default function DashboardHome() {
           </ResponsiveContainer>
         </div>
 
-        {/* Content Breakdown – 1/3 width */}
         <div className="bg-card border border-border rounded-lg p-5">
           <p className="font-semibold mb-0.5">Content Breakdown</p>
           <p className="text-xs text-muted-foreground mb-3">By category</p>
           <ResponsiveContainer width="100%" height={170}>
             <PieChart>
-              <Pie
-                data={breakdown}
-                cx="50%" cy="50%"
-                innerRadius={48} outerRadius={72}
-                dataKey="value" paddingAngle={3}
-              >
-                {breakdown.map((_, i) => (
-                  <Cell key={i} fill={DONUT_COLORS[i % DONUT_COLORS.length]} />
-                ))}
+              <Pie data={breakdown} cx="50%" cy="50%" innerRadius={48} outerRadius={72} dataKey="value" paddingAngle={3}>
+                {breakdown.map((_, i) => <Cell key={i} fill={DONUT_COLORS[i % DONUT_COLORS.length]} />)}
               </Pie>
               <Tooltip content={<CustomTooltip />} />
             </PieChart>
@@ -133,10 +113,7 @@ export default function DashboardHome() {
           <div className="flex flex-wrap gap-x-3 gap-y-1 mt-1 justify-center">
             {breakdown.map((item, i) => (
               <span key={item.name} className="flex items-center gap-1 text-[11px] text-muted-foreground">
-                <span
-                  className="size-2 rounded-full inline-block"
-                  style={{ background: DONUT_COLORS[i % DONUT_COLORS.length] }}
-                />
+                <span className="size-2 rounded-full inline-block" style={{ background: DONUT_COLORS[i % DONUT_COLORS.length] }} />
                 {item.name}
               </span>
             ))}
@@ -144,11 +121,9 @@ export default function DashboardHome() {
         </div>
       </div>
 
-      {/* Recent Activity */}
       <div className="bg-card border border-border rounded-lg p-5">
         <p className="flex items-center gap-2 font-semibold mb-4">
-          <Activity className="size-4 text-electric" />
-          Recent Activity
+          <Activity className="size-4 text-electric" /> Recent Activity
         </p>
         <div className="space-y-3">
           {activities.map(act => (
