@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Prof. Dr. Mohammed — Academic Portfolio"
+version = "1.0.0"
+id = "artifacts/professor-portfolio"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23135
+
+[services.development]
+run = "pnpm --filter @workspace/professor-portfolio run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/professor-portfolio", "run", "build" ]
+publicDir = "artifacts/professor-portfolio/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23135"
+BASE_PATH = "/"

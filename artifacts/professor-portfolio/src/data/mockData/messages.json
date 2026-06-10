@@ -1,0 +1,272 @@
+[
+  {
+    "id": "msg-1",
+    "name": "Ahmed Selim",
+    "email": "student1@university.edu",
+    "subject": "Request to join lab",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-01-01",
+    "read": true
+  },
+  {
+    "id": "msg-2",
+    "name": "Mariam Khaled",
+    "email": "student2@university.edu",
+    "subject": "Question about ECE-501",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-02-02",
+    "read": false
+  },
+  {
+    "id": "msg-3",
+    "name": "Omar Hassan",
+    "email": "student3@university.edu",
+    "subject": "Recommendation letter",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-03-03",
+    "read": false
+  },
+  {
+    "id": "msg-4",
+    "name": "Layla Naguib",
+    "email": "student4@university.edu",
+    "subject": "Collaboration inquiry",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-04-04",
+    "read": true
+  },
+  {
+    "id": "msg-5",
+    "name": "Yousef Tarek",
+    "email": "student5@university.edu",
+    "subject": "Speaking invitation",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-05-05",
+    "read": false
+  },
+  {
+    "id": "msg-6",
+    "name": "Sara Ibrahim",
+    "email": "student6@university.edu",
+    "subject": "Request to join lab",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-06-06",
+    "read": false
+  },
+  {
+    "id": "msg-7",
+    "name": "Hassan Abdo",
+    "email": "student7@university.edu",
+    "subject": "Question about ECE-501",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-01-07",
+    "read": true
+  },
+  {
+    "id": "msg-8",
+    "name": "Ahmed Selim",
+    "email": "student8@university.edu",
+    "subject": "Recommendation letter",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-02-08",
+    "read": false
+  },
+  {
+    "id": "msg-9",
+    "name": "Mariam Khaled",
+    "email": "student9@university.edu",
+    "subject": "Collaboration inquiry",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-03-09",
+    "read": false
+  },
+  {
+    "id": "msg-10",
+    "name": "Omar Hassan",
+    "email": "student10@university.edu",
+    "subject": "Speaking invitation",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-04-10",
+    "read": true
+  },
+  {
+    "id": "msg-11",
+    "name": "Layla Naguib",
+    "email": "student11@university.edu",
+    "subject": "Request to join lab",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-05-11",
+    "read": false
+  },
+  {
+    "id": "msg-12",
+    "name": "Yousef Tarek",
+    "email": "student12@university.edu",
+    "subject": "Question about ECE-501",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-06-12",
+    "read": false
+  },
+  {
+    "id": "msg-13",
+    "name": "Sara Ibrahim",
+    "email": "student13@university.edu",
+    "subject": "Recommendation letter",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-01-13",
+    "read": true
+  },
+  {
+    "id": "msg-14",
+    "name": "Hassan Abdo",
+    "email": "student14@university.edu",
+    "subject": "Collaboration inquiry",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-02-14",
+    "read": false
+  },
+  {
+    "id": "msg-15",
+    "name": "Ahmed Selim",
+    "email": "student15@university.edu",
+    "subject": "Speaking invitation",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-03-15",
+    "read": false
+  },
+  {
+    "id": "msg-16",
+    "name": "Mariam Khaled",
+    "email": "student16@university.edu",
+    "subject": "Request to join lab",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-04-16",
+    "read": true
+  },
+  {
+    "id": "msg-17",
+    "name": "Omar Hassan",
+    "email": "student17@university.edu",
+    "subject": "Question about ECE-501",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-05-17",
+    "read": false
+  },
+  {
+    "id": "msg-18",
+    "name": "Layla Naguib",
+    "email": "student18@university.edu",
+    "subject": "Recommendation letter",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-06-18",
+    "read": false
+  },
+  {
+    "id": "msg-19",
+    "name": "Yousef Tarek",
+    "email": "student19@university.edu",
+    "subject": "Collaboration inquiry",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-01-19",
+    "read": true
+  },
+  {
+    "id": "msg-20",
+    "name": "Sara Ibrahim",
+    "email": "student20@university.edu",
+    "subject": "Speaking invitation",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-02-20",
+    "read": false
+  },
+  {
+    "id": "msg-21",
+    "name": "Hassan Abdo",
+    "email": "student21@university.edu",
+    "subject": "Request to join lab",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-03-21",
+    "read": false
+  },
+  {
+    "id": "msg-22",
+    "name": "Ahmed Selim",
+    "email": "student22@university.edu",
+    "subject": "Question about ECE-501",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-04-22",
+    "read": true
+  },
+  {
+    "id": "msg-23",
+    "name": "Mariam Khaled",
+    "email": "student23@university.edu",
+    "subject": "Recommendation letter",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-05-23",
+    "read": false
+  },
+  {
+    "id": "msg-24",
+    "name": "Omar Hassan",
+    "email": "student24@university.edu",
+    "subject": "Collaboration inquiry",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-06-24",
+    "read": false
+  },
+  {
+    "id": "msg-25",
+    "name": "Layla Naguib",
+    "email": "student25@university.edu",
+    "subject": "Speaking invitation",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-01-25",
+    "read": true
+  },
+  {
+    "id": "msg-26",
+    "name": "Yousef Tarek",
+    "email": "student26@university.edu",
+    "subject": "Request to join lab",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-02-26",
+    "read": false
+  },
+  {
+    "id": "msg-27",
+    "name": "Sara Ibrahim",
+    "email": "student27@university.edu",
+    "subject": "Question about ECE-501",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-03-27",
+    "read": false
+  },
+  {
+    "id": "msg-28",
+    "name": "Hassan Abdo",
+    "email": "student28@university.edu",
+    "subject": "Recommendation letter",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-04-01",
+    "read": true
+  },
+  {
+    "id": "msg-29",
+    "name": "Ahmed Selim",
+    "email": "student29@university.edu",
+    "subject": "Collaboration inquiry",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-05-02",
+    "read": false
+  },
+  {
+    "id": "msg-30",
+    "name": "Mariam Khaled",
+    "email": "student30@university.edu",
+    "subject": "Speaking invitation",
+    "body": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "date": "2026-06-03",
+    "read": false
+  }
+]

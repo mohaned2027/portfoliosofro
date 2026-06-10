@@ -1,0 +1,542 @@
+[
+  {
+    "id": "course-1",
+    "title": "Wirel Communications (ECE-501)",
+    "description": "A graduate-level treatment combining rigorous mathematical foundations with hands-on labs on software-defined-radio platforms. Students complete a capstone project on a real research problem.",
+    "objectives": [
+      "Master the mathematical foundations of the topic",
+      "Implement core algorithms in MATLAB / Python",
+      "Analyze real-world systems and trade-offs",
+      "Produce a publication-quality project report"
+    ],
+    "cover": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=70",
+    "lectures": [
+      {
+        "id": "lec-1-1",
+        "title": "Lecture 1: Fundamentals",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-02-10"
+      },
+      {
+        "id": "lec-1-2",
+        "title": "Lecture 2: Channel Models",
+        "pdf": "#",
+        "videoUrl": null,
+        "youtubeUrl": "https://youtube.com",
+        "date": "2025-03-10"
+      },
+      {
+        "id": "lec-1-3",
+        "title": "Lecture 3: Transceiver Design",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-04-10"
+      },
+      {
+        "id": "lec-1-4",
+        "title": "Lecture 4: Advanced Techniques",
+        "pdf": "#",
+        "videoUrl": null,
+        "youtubeUrl": null,
+        "date": "2025-05-10"
+      },
+      {
+        "id": "lec-1-5",
+        "title": "Lecture 5: Case Studies",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-06-10"
+      }
+    ]
+  },
+  {
+    "id": "course-2",
+    "title": "Digital Signal Processing (ECE-321)",
+    "description": "A graduate-level treatment combining rigorous mathematical foundations with hands-on labs on software-defined-radio platforms. Students complete a capstone project on a real research problem.",
+    "objectives": [
+      "Master the mathematical foundations of the topic",
+      "Implement core algorithms in MATLAB / Python",
+      "Analyze real-world systems and trade-offs",
+      "Produce a publication-quality project report"
+    ],
+    "cover": "https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1200&q=70",
+    "lectures": [
+      {
+        "id": "lec-2-1",
+        "title": "Lecture 1: Fundamentals",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-02-10"
+      },
+      {
+        "id": "lec-2-2",
+        "title": "Lecture 2: Channel Models",
+        "pdf": "#",
+        "videoUrl": null,
+        "youtubeUrl": "https://youtube.com",
+        "date": "2025-03-10"
+      },
+      {
+        "id": "lec-2-3",
+        "title": "Lecture 3: Transceiver Design",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-04-10"
+      },
+      {
+        "id": "lec-2-4",
+        "title": "Lecture 4: Advanced Techniques",
+        "pdf": "#",
+        "videoUrl": null,
+        "youtubeUrl": null,
+        "date": "2025-05-10"
+      },
+      {
+        "id": "lec-2-5",
+        "title": "Lecture 5: Case Studies",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-06-10"
+      }
+    ]
+  },
+  {
+    "id": "course-3",
+    "title": "Antenna Theory & Design (ECE-414)",
+    "description": "A graduate-level treatment combining rigorous mathematical foundations with hands-on labs on software-defined-radio platforms. Students complete a capstone project on a real research problem.",
+    "objectives": [
+      "Master the mathematical foundations of the topic",
+      "Implement core algorithms in MATLAB / Python",
+      "Analyze real-world systems and trade-offs",
+      "Produce a publication-quality project report"
+    ],
+    "cover": "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=1200&q=70",
+    "lectures": [
+      {
+        "id": "lec-3-1",
+        "title": "Lecture 1: Fundamentals",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-02-10"
+      },
+      {
+        "id": "lec-3-2",
+        "title": "Lecture 2: Channel Models",
+        "pdf": "#",
+        "videoUrl": null,
+        "youtubeUrl": "https://youtube.com",
+        "date": "2025-03-10"
+      },
+      {
+        "id": "lec-3-3",
+        "title": "Lecture 3: Transceiver Design",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-04-10"
+      },
+      {
+        "id": "lec-3-4",
+        "title": "Lecture 4: Advanced Techniques",
+        "pdf": "#",
+        "videoUrl": null,
+        "youtubeUrl": null,
+        "date": "2025-05-10"
+      },
+      {
+        "id": "lec-3-5",
+        "title": "Lecture 5: Case Studies",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-06-10"
+      }
+    ]
+  },
+  {
+    "id": "course-4",
+    "title": "Information Theory & Coding (ECE-512)",
+    "description": "A graduate-level treatment combining rigorous mathematical foundations with hands-on labs on software-defined-radio platforms. Students complete a capstone project on a real research problem.",
+    "objectives": [
+      "Master the mathematical foundations of the topic",
+      "Implement core algorithms in MATLAB / Python",
+      "Analyze real-world systems and trade-offs",
+      "Produce a publication-quality project report"
+    ],
+    "cover": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=70",
+    "lectures": [
+      {
+        "id": "lec-4-1",
+        "title": "Lecture 1: Fundamentals",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-02-10"
+      },
+      {
+        "id": "lec-4-2",
+        "title": "Lecture 2: Channel Models",
+        "pdf": "#",
+        "videoUrl": null,
+        "youtubeUrl": "https://youtube.com",
+        "date": "2025-03-10"
+      },
+      {
+        "id": "lec-4-3",
+        "title": "Lecture 3: Transceiver Design",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-04-10"
+      },
+      {
+        "id": "lec-4-4",
+        "title": "Lecture 4: Advanced Techniques",
+        "pdf": "#",
+        "videoUrl": null,
+        "youtubeUrl": null,
+        "date": "2025-05-10"
+      },
+      {
+        "id": "lec-4-5",
+        "title": "Lecture 5: Case Studies",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-06-10"
+      }
+    ]
+  },
+  {
+    "id": "course-5",
+    "title": "Optical Fiber Communications (ECE-432)",
+    "description": "A graduate-level treatment combining rigorous mathematical foundations with hands-on labs on software-defined-radio platforms. Students complete a capstone project on a real research problem.",
+    "objectives": [
+      "Master the mathematical foundations of the topic",
+      "Implement core algorithms in MATLAB / Python",
+      "Analyze real-world systems and trade-offs",
+      "Produce a publication-quality project report"
+    ],
+    "cover": "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=1200&q=70",
+    "lectures": [
+      {
+        "id": "lec-5-1",
+        "title": "Lecture 1: Fundamentals",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-02-10"
+      },
+      {
+        "id": "lec-5-2",
+        "title": "Lecture 2: Channel Models",
+        "pdf": "#",
+        "videoUrl": null,
+        "youtubeUrl": "https://youtube.com",
+        "date": "2025-03-10"
+      },
+      {
+        "id": "lec-5-3",
+        "title": "Lecture 3: Transceiver Design",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-04-10"
+      },
+      {
+        "id": "lec-5-4",
+        "title": "Lecture 4: Advanced Techniques",
+        "pdf": "#",
+        "videoUrl": null,
+        "youtubeUrl": null,
+        "date": "2025-05-10"
+      },
+      {
+        "id": "lec-5-5",
+        "title": "Lecture 5: Case Studies",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-06-10"
+      }
+    ]
+  },
+  {
+    "id": "course-6",
+    "title": "Satellite & Space Comms (ECE-545)",
+    "description": "A graduate-level treatment combining rigorous mathematical foundations with hands-on labs on software-defined-radio platforms. Students complete a capstone project on a real research problem.",
+    "objectives": [
+      "Master the mathematical foundations of the topic",
+      "Implement core algorithms in MATLAB / Python",
+      "Analyze real-world systems and trade-offs",
+      "Produce a publication-quality project report"
+    ],
+    "cover": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=70",
+    "lectures": [
+      {
+        "id": "lec-6-1",
+        "title": "Lecture 1: Fundamentals",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-02-10"
+      },
+      {
+        "id": "lec-6-2",
+        "title": "Lecture 2: Channel Models",
+        "pdf": "#",
+        "videoUrl": null,
+        "youtubeUrl": "https://youtube.com",
+        "date": "2025-03-10"
+      },
+      {
+        "id": "lec-6-3",
+        "title": "Lecture 3: Transceiver Design",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-04-10"
+      },
+      {
+        "id": "lec-6-4",
+        "title": "Lecture 4: Advanced Techniques",
+        "pdf": "#",
+        "videoUrl": null,
+        "youtubeUrl": null,
+        "date": "2025-05-10"
+      },
+      {
+        "id": "lec-6-5",
+        "title": "Lecture 5: Case Studies",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-06-10"
+      }
+    ]
+  },
+  {
+    "id": "course-7",
+    "title": "Advanced MIMO Systems (ECE-621)",
+    "description": "A graduate-level treatment combining rigorous mathematical foundations with hands-on labs on software-defined-radio platforms. Students complete a capstone project on a real research problem.",
+    "objectives": [
+      "Master the mathematical foundations of the topic",
+      "Implement core algorithms in MATLAB / Python",
+      "Analyze real-world systems and trade-offs",
+      "Produce a publication-quality project report"
+    ],
+    "cover": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=70",
+    "lectures": [
+      {
+        "id": "lec-7-1",
+        "title": "Lecture 1: Fundamentals",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-02-10"
+      },
+      {
+        "id": "lec-7-2",
+        "title": "Lecture 2: Channel Models",
+        "pdf": "#",
+        "videoUrl": null,
+        "youtubeUrl": "https://youtube.com",
+        "date": "2025-03-10"
+      },
+      {
+        "id": "lec-7-3",
+        "title": "Lecture 3: Transceiver Design",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-04-10"
+      },
+      {
+        "id": "lec-7-4",
+        "title": "Lecture 4: Advanced Techniques",
+        "pdf": "#",
+        "videoUrl": null,
+        "youtubeUrl": null,
+        "date": "2025-05-10"
+      },
+      {
+        "id": "lec-7-5",
+        "title": "Lecture 5: Case Studies",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-06-10"
+      }
+    ]
+  },
+  {
+    "id": "course-8",
+    "title": "Machine Learning for Comms (ECE-633)",
+    "description": "A graduate-level treatment combining rigorous mathematical foundations with hands-on labs on software-defined-radio platforms. Students complete a capstone project on a real research problem.",
+    "objectives": [
+      "Master the mathematical foundations of the topic",
+      "Implement core algorithms in MATLAB / Python",
+      "Analyze real-world systems and trade-offs",
+      "Produce a publication-quality project report"
+    ],
+    "cover": "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=1200&q=70",
+    "lectures": [
+      {
+        "id": "lec-8-1",
+        "title": "Lecture 1: Fundamentals",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-02-10"
+      },
+      {
+        "id": "lec-8-2",
+        "title": "Lecture 2: Channel Models",
+        "pdf": "#",
+        "videoUrl": null,
+        "youtubeUrl": "https://youtube.com",
+        "date": "2025-03-10"
+      },
+      {
+        "id": "lec-8-3",
+        "title": "Lecture 3: Transceiver Design",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-04-10"
+      },
+      {
+        "id": "lec-8-4",
+        "title": "Lecture 4: Advanced Techniques",
+        "pdf": "#",
+        "videoUrl": null,
+        "youtubeUrl": null,
+        "date": "2025-05-10"
+      },
+      {
+        "id": "lec-8-5",
+        "title": "Lecture 5: Case Studies",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-06-10"
+      }
+    ]
+  },
+  {
+    "id": "course-9",
+    "title": "5G/6G Network Architectures (ECE-641)",
+    "description": "A graduate-level treatment combining rigorous mathematical foundations with hands-on labs on software-defined-radio platforms. Students complete a capstone project on a real research problem.",
+    "objectives": [
+      "Master the mathematical foundations of the topic",
+      "Implement core algorithms in MATLAB / Python",
+      "Analyze real-world systems and trade-offs",
+      "Produce a publication-quality project report"
+    ],
+    "cover": "https://images.unsplash.com/photo-1496096265110-f83ad7f96608?auto=format&fit=crop&w=1200&q=70",
+    "lectures": [
+      {
+        "id": "lec-9-1",
+        "title": "Lecture 1: Fundamentals",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-02-10"
+      },
+      {
+        "id": "lec-9-2",
+        "title": "Lecture 2: Channel Models",
+        "pdf": "#",
+        "videoUrl": null,
+        "youtubeUrl": "https://youtube.com",
+        "date": "2025-03-10"
+      },
+      {
+        "id": "lec-9-3",
+        "title": "Lecture 3: Transceiver Design",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-04-10"
+      },
+      {
+        "id": "lec-9-4",
+        "title": "Lecture 4: Advanced Techniques",
+        "pdf": "#",
+        "videoUrl": null,
+        "youtubeUrl": null,
+        "date": "2025-05-10"
+      },
+      {
+        "id": "lec-9-5",
+        "title": "Lecture 5: Case Studies",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-06-10"
+      }
+    ]
+  },
+  {
+    "id": "course-10",
+    "title": "RF & Microwave Engineering (ECE-411)",
+    "description": "A graduate-level treatment combining rigorous mathematical foundations with hands-on labs on software-defined-radio platforms. Students complete a capstone project on a real research problem.",
+    "objectives": [
+      "Master the mathematical foundations of the topic",
+      "Implement core algorithms in MATLAB / Python",
+      "Analyze real-world systems and trade-offs",
+      "Produce a publication-quality project report"
+    ],
+    "cover": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=70",
+    "lectures": [
+      {
+        "id": "lec-10-1",
+        "title": "Lecture 1: Fundamentals",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-02-10"
+      },
+      {
+        "id": "lec-10-2",
+        "title": "Lecture 2: Channel Models",
+        "pdf": "#",
+        "videoUrl": null,
+        "youtubeUrl": "https://youtube.com",
+        "date": "2025-03-10"
+      },
+      {
+        "id": "lec-10-3",
+        "title": "Lecture 3: Transceiver Design",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-04-10"
+      },
+      {
+        "id": "lec-10-4",
+        "title": "Lecture 4: Advanced Techniques",
+        "pdf": "#",
+        "videoUrl": null,
+        "youtubeUrl": null,
+        "date": "2025-05-10"
+      },
+      {
+        "id": "lec-10-6",
+        "title": "Lecture 5: Case Studies",
+        "pdf": "#",
+        "videoUrl": "#",
+        "youtubeUrl": null,
+        "date": "2025-06-10"
+      }
+    ]
+  }
+]

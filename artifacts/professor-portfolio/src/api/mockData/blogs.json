@@ -1,0 +1,137 @@
+[
+  {
+    "id": "blog-1",
+    "slug": "post-1",
+    "title": "What Wvill 6G Really Look Like?",
+    "excerpt": "A short, accessible take on a contemporary topic in communications engineering — written for students, peers, and the broader engineering community.",
+    "content": "## Introduction\n\nThis post explores a topic at the intersection of research and practice. Modern wireless networks have evolved far beyond their origins, and the next decade promises even more dramatic shifts.\n\n## Key Insights\n\nFirst, we should recognize that the boundary between communication and computation is dissolving. Second, energy efficiency has moved from a desirable trait to a hard constraint. Third, intelligent surfaces and AI-native air interfaces are no longer speculation — they are shipping ideas.\n\n## What This Means\n\nFor students, this is a moment of opportunity: the curriculum is being rewritten in real time, and graduates who understand both the physics and the software stack will lead.\n\n## Conclusion\n\nThe field is wide open. Choose problems that matter, build things, publish honestly.",
+    "cover": "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-01-01"
+  },
+  {
+    "id": "blog-2",
+    "slug": "post-2",
+    "title": "Why Intelligent Surfaces Matter",
+    "excerpt": "A short, accessible take on a contemporary topic in communications engineering — written for students, peers, and the broader engineering community.",
+    "content": "## Introduction\n\nThis post explores a topic at the intersection of research and practice. Modern wireless networks have evolved far beyond their origins, and the next decade promises even more dramatic shifts.\n\n## Key Insights\n\nFirst, we should recognize that the boundary between communication and computation is dissolving. Second, energy efficiency has moved from a desirable trait to a hard constraint. Third, intelligent surfaces and AI-native air interfaces are no longer speculation — they are shipping ideas.\n\n## What This Means\n\nFor students, this is a moment of opportunity: the curriculum is being rewritten in real time, and graduates who understand both the physics and the software stack will lead.\n\n## Conclusion\n\nThe field is wide open. Choose problems that matter, build things, publish honestly.",
+    "cover": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-02-02"
+  },
+  {
+    "id": "blog-3",
+    "slug": "post-3",
+    "title": "Teaching Wireless in the Age of AI",
+    "excerpt": "A short, accessible take on a contemporary topic in communications engineering — written for students, peers, and the broader engineering community.",
+    "content": "## Introduction\n\nThis post explores a topic at the intersection of research and practice. Modern wireless networks have evolved far beyond their origins, and the next decade promises even more dramatic shifts.\n\n## Key Insights\n\nFirst, we should recognize that the boundary between communication and computation is dissolving. Second, energy efficiency has moved from a desirable trait to a hard constraint. Third, intelligent surfaces and AI-native air interfaces are no longer speculation — they are shipping ideas.\n\n## What This Means\n\nFor students, this is a moment of opportunity: the curriculum is being rewritten in real time, and graduates who understand both the physics and the software stack will lead.\n\n## Conclusion\n\nThe field is wide open. Choose problems that matter, build things, publish honestly.",
+    "cover": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-03-03"
+  },
+  {
+    "id": "blog-4",
+    "slug": "post-4",
+    "title": "From Theory to Testbed: A Researcher's Journey",
+    "excerpt": "A short, accessible take on a contemporary topic in communications engineering — written for students, peers, and the broader engineering community.",
+    "content": "## Introduction\n\nThis post explores a topic at the intersection of research and practice. Modern wireless networks have evolved far beyond their origins, and the next decade promises even more dramatic shifts.\n\n## Key Insights\n\nFirst, we should recognize that the boundary between communication and computation is dissolving. Second, energy efficiency has moved from a desirable trait to a hard constraint. Third, intelligent surfaces and AI-native air interfaces are no longer speculation — they are shipping ideas.\n\n## What This Means\n\nFor students, this is a moment of opportunity: the curriculum is being rewritten in real time, and graduates who understand both the physics and the software stack will lead.\n\n## Conclusion\n\nThe field is wide open. Choose problems that matter, build things, publish honestly.",
+    "cover": "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-04-04"
+  },
+  {
+    "id": "blog-5",
+    "slug": "post-5",
+    "title": "The Coming Convergence of Sensing and Comms",
+    "excerpt": "A short, accessible take on a contemporary topic in communications engineering — written for students, peers, and the broader engineering community.",
+    "content": "## Introduction\n\nThis post explores a topic at the intersection of research and practice. Modern wireless networks have evolved far beyond their origins, and the next decade promises even more dramatic shifts.\n\n## Key Insights\n\nFirst, we should recognize that the boundary between communication and computation is dissolving. Second, energy efficiency has moved from a desirable trait to a hard constraint. Third, intelligent surfaces and AI-native air interfaces are no longer speculation — they are shipping ideas.\n\n## What This Means\n\nFor students, this is a moment of opportunity: the curriculum is being rewritten in real time, and graduates who understand both the physics and the software stack will lead.\n\n## Conclusion\n\nThe field is wide open. Choose problems that matter, build things, publish honestly.",
+    "cover": "https://images.unsplash.com/photo-1496096265110-f83ad7f96608?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-05-05"
+  },
+  {
+    "id": "blog-6",
+    "slug": "post-6",
+    "title": "Open-Source SDR: A Tool for Every Lab",
+    "excerpt": "A short, accessible take on a contemporary topic in communications engineering — written for students, peers, and the broader engineering community.",
+    "content": "## Introduction\n\nThis post explores a topic at the intersection of research and practice. Modern wireless networks have evolved far beyond their origins, and the next decade promises even more dramatic shifts.\n\n## Key Insights\n\nFirst, we should recognize that the boundary between communication and computation is dissolving. Second, energy efficiency has moved from a desirable trait to a hard constraint. Third, intelligent surfaces and AI-native air interfaces are no longer speculation — they are shipping ideas.\n\n## What This Means\n\nFor students, this is a moment of opportunity: the curriculum is being rewritten in real time, and graduates who understand both the physics and the software stack will lead.\n\n## Conclusion\n\nThe field is wide open. Choose problems that matter, build things, publish honestly.",
+    "cover": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-06-06"
+  },
+  {
+    "id": "blog-7",
+    "slug": "post-7",
+    "title": "Mentoring Graduate Students Remotely",
+    "excerpt": "A short, accessible take on a contemporary topic in communications engineering — written for students, peers, and the broader engineering community.",
+    "content": "## Introduction\n\nThis post explores a topic at the intersection of research and practice. Modern wireless networks have evolved far beyond their origins, and the next decade promises even more dramatic shifts.\n\n## Key Insights\n\nFirst, we should recognize that the boundary between communication and computation is dissolving. Second, energy efficiency has moved from a desirable trait to a hard constraint. Third, intelligent surfaces and AI-native air interfaces are no longer speculation — they are shipping ideas.\n\n## What This Means\n\nFor students, this is a moment of opportunity: the curriculum is being rewritten in real time, and graduates who understand both the physics and the software stack will lead.\n\n## Conclusion\n\nThe field is wide open. Choose problems that matter, build things, publish honestly.",
+    "cover": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-07-07"
+  },
+  {
+    "id": "blog-8",
+    "slug": "post-8",
+    "title": "Why Energy-Efficient Networks Are Non-Negotiable",
+    "excerpt": "A short, accessible take on a contemporary topic in communications engineering — written for students, peers, and the broader engineering community.",
+    "content": "## Introduction\n\nThis post explores a topic at the intersection of research and practice. Modern wireless networks have evolved far beyond their origins, and the next decade promises even more dramatic shifts.\n\n## Key Insights\n\nFirst, we should recognize that the boundary between communication and computation is dissolving. Second, energy efficiency has moved from a desirable trait to a hard constraint. Third, intelligent surfaces and AI-native air interfaces are no longer speculation — they are shipping ideas.\n\n## What This Means\n\nFor students, this is a moment of opportunity: the curriculum is being rewritten in real time, and graduates who understand both the physics and the software stack will lead.\n\n## Conclusion\n\nThe field is wide open. Choose problems that matter, build things, publish honestly.",
+    "cover": "https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-08-08"
+  },
+  {
+    "id": "blog-9",
+    "slug": "post-9",
+    "title": "Egypt's Role in the Global 5G Story",
+    "excerpt": "A short, accessible take on a contemporary topic in communications engineering — written for students, peers, and the broader engineering community.",
+    "content": "## Introduction\n\nThis post explores a topic at the intersection of research and practice. Modern wireless networks have evolved far beyond their origins, and the next decade promises even more dramatic shifts.\n\n## Key Insights\n\nFirst, we should recognize that the boundary between communication and computation is dissolving. Second, energy efficiency has moved from a desirable trait to a hard constraint. Third, intelligent surfaces and AI-native air interfaces are no longer speculation — they are shipping ideas.\n\n## What This Means\n\nFor students, this is a moment of opportunity: the curriculum is being rewritten in real time, and graduates who understand both the physics and the software stack will lead.\n\n## Conclusion\n\nThe field is wide open. Choose problems that matter, build things, publish honestly.",
+    "cover": "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-09-09"
+  },
+  {
+    "id": "blog-10",
+    "slug": "post-10",
+    "title": "A Day in the Life of an Editor",
+    "excerpt": "A short, accessible take on a contemporary topic in communications engineering — written for students, peers, and the broader engineering community.",
+    "content": "## Introduction\n\nThis post explores a topic at the intersection of research and practice. Modern wireless networks have evolved far beyond their origins, and the next decade promises even more dramatic shifts.\n\n## Key Insights\n\nFirst, we should recognize that the boundary between communication and computation is dissolving. Second, energy efficiency has moved from a desirable trait to a hard constraint. Third, intelligent surfaces and AI-native air interfaces are no longer speculation — they are shipping ideas.\n\n## What This Means\n\nFor students, this is a moment of opportunity: the curriculum is being rewritten in real time, and graduates who understand both the physics and the software stack will lead.\n\n## Conclusion\n\nThe field is wide open. Choose problems that matter, build things, publish honestly.",
+    "cover": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-10-10"
+  },
+  {
+    "id": "blog-11",
+    "slug": "post-11",
+    "title": "Notes from PIMRC 2024",
+    "excerpt": "A short, accessible take on a contemporary topic in communications engineering — written for students, peers, and the broader engineering community.",
+    "content": "## Introduction\n\nThis post explores a topic at the intersection of research and practice. Modern wireless networks have evolved far beyond their origins, and the next decade promises even more dramatic shifts.\n\n## Key Insights\n\nFirst, we should recognize that the boundary between communication and computation is dissolving. Second, energy efficiency has moved from a desirable trait to a hard constraint. Third, intelligent surfaces and AI-native air interfaces are no longer speculation — they are shipping ideas.\n\n## What This Means\n\nFor students, this is a moment of opportunity: the curriculum is being rewritten in real time, and graduates who understand both the physics and the software stack will lead.\n\n## Conclusion\n\nThe field is wide open. Choose problems that matter, build things, publish honestly.",
+    "cover": "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-11-11"
+  },
+  {
+    "id": "blog-12",
+    "slug": "post-12",
+    "title": "Bridging Industry and Academia",
+    "excerpt": "A short, accessible take on a contemporary topic in communications engineering — written for students, peers, and the broader engineering community.",
+    "content": "## Introduction\n\nThis post explores a topic at the intersection of research and practice. Modern wireless networks have evolved far beyond their origins, and the next decade promises even more dramatic shifts.\n\n## Key Insights\n\nFirst, we should recognize that the boundary between communication and computation is dissolving. Second, energy efficiency has moved from a desirable trait to a hard constraint. Third, intelligent surfaces and AI-native air interfaces are no longer speculation — they are shipping ideas.\n\n## What This Means\n\nFor students, this is a moment of opportunity: the curriculum is being rewritten in real time, and graduates who understand both the physics and the software stack will lead.\n\n## Conclusion\n\nThe field is wide open. Choose problems that matter, build things, publish honestly.",
+    "cover": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-12-12"
+  },
+  {
+    "id": "blog-13",
+    "slug": "post-13",
+    "title": "How I Read 200 Papers a Year",
+    "excerpt": "A short, accessible take on a contemporary topic in communications engineering — written for students, peers, and the broader engineering community.",
+    "content": "## Introduction\n\nThis post explores a topic at the intersection of research and practice. Modern wireless networks have evolved far beyond their origins, and the next decade promises even more dramatic shifts.\n\n## Key Insights\n\nFirst, we should recognize that the boundary between communication and computation is dissolving. Second, energy efficiency has moved from a desirable trait to a hard constraint. Third, intelligent surfaces and AI-native air interfaces are no longer speculation — they are shipping ideas.\n\n## What This Means\n\nFor students, this is a moment of opportunity: the curriculum is being rewritten in real time, and graduates who understand both the physics and the software stack will lead.\n\n## Conclusion\n\nThe field is wide open. Choose problems that matter, build things, publish honestly.",
+    "cover": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-01-13"
+  },
+  {
+    "id": "blog-14",
+    "slug": "post-14",
+    "title": "On Writing Clearer Technical Papers",
+    "excerpt": "A short, accessible take on a contemporary topic in communications engineering — written for students, peers, and the broader engineering community.",
+    "content": "## Introduction\n\nThis post explores a topic at the intersection of research and practice. Modern wireless networks have evolved far beyond their origins, and the next decade promises even more dramatic shifts.\n\n## Key Insights\n\nFirst, we should recognize that the boundary between communication and computation is dissolving. Second, energy efficiency has moved from a desirable trait to a hard constraint. Third, intelligent surfaces and AI-native air interfaces are no longer speculation — they are shipping ideas.\n\n## What This Means\n\nFor students, this is a moment of opportunity: the curriculum is being rewritten in real time, and graduates who understand both the physics and the software stack will lead.\n\n## Conclusion\n\nThe field is wide open. Choose problems that matter, build things, publish honestly.",
+    "cover": "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-02-14"
+  },
+  {
+    "id": "blog-15",
+    "slug": "post-15",
+    "title": "What I'd Tell My PhD Self",
+    "excerpt": "A short, accessible take on a contemporary topic in communications engineering — written for students, peers, and the broader engineering community.",
+    "content": "## Introduction\n\nThis post explores a topic at the intersection of research and practice. Modern wireless networks have evolved far beyond their origins, and the next decade promises even more dramatic shifts.\n\n## Key Insights\n\nFirst, we should recognize that the boundary between communication and computation is dissolving. Second, energy efficiency has moved from a desirable trait to a hard constraint. Third, intelligent surfaces and AI-native air interfaces are no longer speculation — they are shipping ideas.\n\n## What This Means\n\nFor students, this is a moment of opportunity: the curriculum is being rewritten in real time, and graduates who understand both the physics and the software stack will lead.\n\n## Conclusion\n\nThe field is wide open. Choose problems that matter, build things, publish honestly.",
+    "cover": "https://images.unsplash.com/photo-1496096265110-f83ad7f96608?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-03-15"
+  }
+]
