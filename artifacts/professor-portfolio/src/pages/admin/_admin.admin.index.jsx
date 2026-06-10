@@ -1,389 +1,168 @@
-import React, { useState } from 'react';
-import { useProfessor, useCourses, useResearches, useAchievements, useStats, useBlogs, useEducation, useExperience, usePositions } from '../../context/DataContext';
-import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { TrendingUp, Users, BookOpen, Award, FileText, Activity, Settings } from 'lucide-react';
+import { Award, BookOpen, Edit3, MessageSquare, Video, FileText, Activity } from "lucide-react";
+import {
+  useAchievements, useResearches, useCourses, useBlogs, useMessages, useDashboardCharts, useProfessor
+} from "@/context/DataContext";
+import {
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+  PieChart, Pie, Cell,
+} from "recharts";
+
+const DONUT_COLORS = ["#3b82f6", "#06b6d4", "#a855f7", "#22c55e"];
+
+function StatCard({ label, value, icon: Icon }) {
+  return (
+    <div className="flex-1 min-w-[140px] bg-card border border-border rounded-lg px-5 py-4 flex items-center justify-between gap-3">
+      <div>
+        <p className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground mb-1">{label}</p>
+        <p className="text-3xl font-bold font-display">{value}</p>
+      </div>
+      <div className="grid size-9 place-items-center rounded-lg bg-electric/10 text-electric shrink-0">
+        <Icon className="size-5" />
+      </div>
+    </div>
+  );
+}
+
+const CustomTooltip = ({ active, payload, label }) => {
+  if (!active || !payload?.length) return null;
+  return (
+    <div className="bg-card border border-border rounded-lg px-3 py-2 text-xs shadow-lg">
+      <p className="font-medium mb-1">{label}</p>
+      {payload.map((p, i) => (
+        <p key={i} style={{ color: p.color }}>{p.name}: {Number(p.value).toLocaleString()}</p>
+      ))}
+    </div>
+  );
+};
 
 export default function DashboardHome() {
   const professor = useProfessor();
-  const courses = useCourses();
-  const researches = useResearches();
   const achievements = useAchievements();
-  const stats = useStats();
+  const researches = useResearches();
+  const courses = useCourses();
   const blogs = useBlogs();
-  const education = useEducation();
-  const experience = useExperience();
-  const positions = usePositions();
-  const [activeTab, setActiveTab] = useState('overview');
+  const messages = useMessages();
+  const charts = useDashboardCharts();
 
-  // Calculate analytics
-  const analytics = {
-    totalItems: (courses?.length || 0) + (researches?.length || 0) + (achievements?.length || 0) + (blogs?.length || 0),
-    avgCoursesPerYear: courses?.length ? Math.round(courses.length / 5) : 0,
-    researchGrowth: researches?.length ? Math.round((researches.length / stats?.publications) * 100) : 0,
-    achievementRate: achievements?.length ? Math.round((achievements.length / (stats?.awards || 1)) * 100) : 0,
-  };
+  const lecturesCount = (courses || []).reduce((s, c) => s + (c.lectures?.length || 0), 0);
+  const unread = (messages || []).filter(m => !m.read).length;
 
-  // Data for charts
-  const contentDistribution = [
-    { name: 'Courses', value: courses?.length || 0, color: '#3b82f6' },
-    { name: 'Research', value: researches?.length || 0, color: '#10b981' },
-    { name: 'Achievements', value: achievements?.length || 0, color: '#f59e0b' },
-    { name: 'Blogs', value: blogs?.length || 0, color: '#8b5cf6' },
+  const stats = [
+    { label: "Achievements", value: achievements?.length ?? 0,  icon: Award },
+    { label: "Researches",   value: researches?.length  ?? 0,   icon: FileText },
+    { label: "Courses",      value: courses?.length     ?? 0,   icon: BookOpen },
+    { label: "Lectures",     value: lecturesCount,               icon: Video },
+    { label: "Blogs",        value: blogs?.length       ?? 0,   icon: Edit3 },
+    {
+      label: "Messages",
+      value: unread > 0 ? `${messages?.length ?? 0} (${unread})` : String(messages?.length ?? 0),
+      icon: MessageSquare,
+    },
   ];
 
-  const monthlyActivity = [
-    { month: 'Jan', publications: 8, courses: 2, achievements: 1 },
-    { month: 'Feb', publications: 12, courses: 3, achievements: 2 },
-    { month: 'Mar', publications: 10, courses: 2, achievements: 1 },
-    { month: 'Apr', publications: 15, courses: 4, achievements: 3 },
-    { month: 'May', publications: 13, courses: 3, achievements: 2 },
-    { month: 'Jun', publications: 18, courses: 5, achievements: 4 },
-  ];
-
-  const StatCard = ({ title, value, icon: Icon, trend, color }) => (
-    <div className="bg-card border rounded-lg p-6 space-y-2 hover:shadow-lg transition">
-      <div className="flex items-center justify-between">
-        <h3 className="text-sm font-medium text-muted-foreground">{title}</h3>
-        <div className={`p-2 rounded-lg ${color}`}>
-          <Icon className="size-4 text-white" />
-        </div>
-      </div>
-      <p className="text-3xl font-bold">{value}</p>
-      {trend && <p className="text-xs text-green-600 flex items-center gap-1"><TrendingUp className="size-3" /> {trend}</p>}
-    </div>
-  );
-
-  const DataTable = ({ title, data, columns }) => (
-    <div className="bg-card border rounded-lg p-6">
-      <h3 className="text-lg font-semibold mb-4">{title}</h3>
-      <div className="overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b">
-              {columns.map(col => (
-                <th key={col} className="text-left py-2 px-3 font-medium text-muted-foreground">{col}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {data?.slice(0, 5).map((item, idx) => (
-              <tr key={idx} className="border-b hover:bg-muted/50 transition">
-                <td className="py-3 px-3">{item.title || item.name}</td>
-                <td className="py-3 px-3">{item.date || item.year || '-'}</td>
-                <td className="py-3 px-3">
-                  <span className="px-2 py-1 rounded text-xs bg-blue-100 text-blue-800">
-                    {item.status || 'Active'}
-                  </span>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
+  const breakdown  = charts?.contentBreakdown  ?? [];
+  const traffic    = charts?.monthlyVisits      ?? [];
+  const activities = charts?.recentActivities   ?? [];
 
   return (
-    <div className="space-y-8">
-      {/* Header */}
+    <div className="space-y-7">
+      {/* Page header */}
       <div>
-        <h1 className="text-4xl font-bold">Welcome back, {professor?.name?.split(' ')[0]}!</h1>
-        <p className="text-muted-foreground mt-2">{professor?.title}</p>
+        <h1 className="text-3xl font-bold font-display">Dashboard</h1>
+        <p className="text-sm text-muted-foreground mt-1">
+          Overview of your academic portfolio at a glance.
+        </p>
       </div>
 
-      {/* Tab Navigation */}
-      <div className="flex gap-2 border-b">
-        <button
-          onClick={() => setActiveTab('overview')}
-          className={`px-4 py-2 font-medium transition ${activeTab === 'overview' ? 'border-b-2 border-electric text-electric' : 'text-muted-foreground'}`}
-        >
-          Overview
-        </button>
-        <button
-          onClick={() => setActiveTab('analytics')}
-          className={`px-4 py-2 font-medium transition ${activeTab === 'analytics' ? 'border-b-2 border-electric text-electric' : 'text-muted-foreground'}`}
-        >
-          Analytics
-        </button>
-        <button
-          onClick={() => setActiveTab('data')}
-          className={`px-4 py-2 font-medium transition ${activeTab === 'data' ? 'border-b-2 border-electric text-electric' : 'text-muted-foreground'}`}
-        >
-          Data Management
-        </button>
+      {/* Stats row */}
+      <div className="flex flex-wrap gap-3">
+        {stats.map(s => <StatCard key={s.label} {...s} />)}
       </div>
 
-      {/* OVERVIEW TAB */}
-      {activeTab === 'overview' && (
-        <div className="space-y-8">
-          {/* Statistics Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <StatCard 
-              title="Total Courses" 
-              value={courses?.length || 0}
-              icon={BookOpen}
-              trend={`+${analytics.avgCoursesPerYear} per year`}
-              color="bg-blue-500"
-            />
-            <StatCard 
-              title="Researches" 
-              value={researches?.length || 0}
-              icon={FileText}
-              trend={`${analytics.researchGrowth}% of publications`}
-              color="bg-green-500"
-            />
-            <StatCard 
-              title="Achievements" 
-              value={achievements?.length || 0}
-              icon={Award}
-              trend={`${analytics.achievementRate}% completion`}
-              color="bg-amber-500"
-            />
-            <StatCard 
-              title="Total Content" 
-              value={analytics.totalItems}
-              icon={Activity}
-              trend={`${blogs?.length || 0} blog posts`}
-              color="bg-purple-500"
-            />
+      {/* Charts row */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        {/* Site Traffic – 2/3 width */}
+        <div className="lg:col-span-2 bg-card border border-border rounded-lg p-5">
+          <div className="flex items-start justify-between mb-4">
+            <div>
+              <p className="font-semibold">Site Traffic</p>
+              <p className="text-xs text-muted-foreground">Monthly visits &amp; content downloads</p>
+            </div>
+            <span className="text-[11px] font-mono text-electric bg-electric/10 px-2 py-0.5 rounded">
+              Last 12 months
+            </span>
           </div>
+          <ResponsiveContainer width="100%" height={220}>
+            <LineChart data={traffic} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+              <XAxis
+                dataKey="month"
+                tick={{ fontSize: 11, fill: "var(--color-muted-foreground)" }}
+                axisLine={false} tickLine={false}
+              />
+              <YAxis
+                tick={{ fontSize: 11, fill: "var(--color-muted-foreground)" }}
+                axisLine={false} tickLine={false}
+              />
+              <Tooltip content={<CustomTooltip />} />
+              <Line type="monotone" dataKey="visits"    stroke="#3b82f6" strokeWidth={2} dot={false} name="Visits" />
+              <Line type="monotone" dataKey="downloads" stroke="#22c55e" strokeWidth={2} dot={false} name="Downloads" />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
 
-          {/* Quick Info */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Profile Summary */}
-            <div className="bg-card border rounded-lg p-6 space-y-4">
-              <h2 className="text-lg font-semibold">Profile Summary</h2>
-              <div className="space-y-2 text-sm">
-                <p><strong>Email:</strong> {professor?.email}</p>
-                <p><strong>Phone:</strong> {professor?.phone}</p>
-                <p><strong>Department:</strong> {professor?.department}</p>
-                <p><strong>University:</strong> {professor?.university}</p>
-              </div>
-            </div>
-
-            {/* Recent Stats */}
-            <div className="bg-card border rounded-lg p-6 space-y-4">
-              <h2 className="text-lg font-semibold">Statistics</h2>
-              <div className="space-y-2 text-sm">
-                <p><strong>Publications:</strong> {stats?.publications || 0}</p>
-                <p><strong>Courses:</strong> {stats?.courses || 0}</p>
-                <p><strong>Students Supervised:</strong> {stats?.students || 0}</p>
-                <p><strong>Research Areas:</strong> {stats?.researchAreas || 0}</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Recent Courses */}
-          <div className="bg-card border rounded-lg p-6 space-y-4">
-            <h2 className="text-lg font-semibold">Recent Courses</h2>
-            <div className="space-y-2">
-              {(courses || []).slice(0, 3).map(course => (
-                <div key={course.id} className="p-3 bg-muted rounded flex justify-between items-center">
-                  <div>
-                    <p className="font-medium">{course.title}</p>
-                    <p className="text-xs text-muted-foreground">{course.description?.substring(0, 50)}...</p>
-                  </div>
-                  <span className="text-xs bg-primary text-primary-foreground px-2 py-1 rounded">
-                    {course.lectures?.length || 0} lectures
-                  </span>
-                </div>
-              ))}
-            </div>
+        {/* Content Breakdown – 1/3 width */}
+        <div className="bg-card border border-border rounded-lg p-5">
+          <p className="font-semibold mb-0.5">Content Breakdown</p>
+          <p className="text-xs text-muted-foreground mb-3">By category</p>
+          <ResponsiveContainer width="100%" height={170}>
+            <PieChart>
+              <Pie
+                data={breakdown}
+                cx="50%" cy="50%"
+                innerRadius={48} outerRadius={72}
+                dataKey="value" paddingAngle={3}
+              >
+                {breakdown.map((_, i) => (
+                  <Cell key={i} fill={DONUT_COLORS[i % DONUT_COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip content={<CustomTooltip />} />
+            </PieChart>
+          </ResponsiveContainer>
+          <div className="flex flex-wrap gap-x-3 gap-y-1 mt-1 justify-center">
+            {breakdown.map((item, i) => (
+              <span key={item.name} className="flex items-center gap-1 text-[11px] text-muted-foreground">
+                <span
+                  className="size-2 rounded-full inline-block"
+                  style={{ background: DONUT_COLORS[i % DONUT_COLORS.length] }}
+                />
+                {item.name}
+              </span>
+            ))}
           </div>
         </div>
-      )}
+      </div>
 
-      {/* ANALYTICS TAB */}
-      {activeTab === 'analytics' && (
-        <div className="space-y-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Content Distribution Pie Chart */}
-            <div className="bg-card border rounded-lg p-6">
-              <h3 className="text-lg font-semibold mb-4">Content Distribution</h3>
-              <ResponsiveContainer width="100%" height={300}>
-                <PieChart>
-                  <Pie
-                    data={contentDistribution}
-                    cx="50%"
-                    cy="50%"
-                    labelLine={false}
-                    label={({ name, value }) => `${name}: ${value}`}
-                    outerRadius={80}
-                    fill="#8884d8"
-                    dataKey="value"
-                  >
-                    {contentDistribution.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                </PieChart>
-              </ResponsiveContainer>
+      {/* Recent Activity */}
+      <div className="bg-card border border-border rounded-lg p-5">
+        <p className="flex items-center gap-2 font-semibold mb-4">
+          <Activity className="size-4 text-electric" />
+          Recent Activity
+        </p>
+        <div className="space-y-3">
+          {activities.map(act => (
+            <div key={act.id} className="flex items-start gap-3 text-sm">
+              <span className="mt-1.5 size-2 rounded-full bg-electric shrink-0" />
+              <div className="flex-1 min-w-0">
+                <p className="font-medium">{act.action}</p>
+                <p className="text-xs text-muted-foreground truncate">{act.target}</p>
+              </div>
+              <span className="text-xs text-muted-foreground shrink-0 pl-4">{act.time}</span>
             </div>
-
-            {/* Monthly Activity Line Chart */}
-            <div className="bg-card border rounded-lg p-6">
-              <h3 className="text-lg font-semibold mb-4">Monthly Activity</h3>
-              <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={monthlyActivity}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="month" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Line type="monotone" dataKey="publications" stroke="#10b981" strokeWidth={2} />
-                  <Line type="monotone" dataKey="courses" stroke="#3b82f6" strokeWidth={2} />
-                  <Line type="monotone" dataKey="achievements" stroke="#f59e0b" strokeWidth={2} />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-
-          {/* Bar Chart - Comparative Analysis */}
-          <div className="bg-card border rounded-lg p-6">
-            <h3 className="text-lg font-semibold mb-4">Content Performance</h3>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={monthlyActivity}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="month" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="publications" fill="#10b981" />
-                <Bar dataKey="courses" fill="#3b82f6" />
-                <Bar dataKey="achievements" fill="#f59e0b" />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
+          ))}
         </div>
-      )}
-
-      {/* DATA MANAGEMENT TAB */}
-      {activeTab === 'data' && (
-        <div className="space-y-8">
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <p className="text-sm text-blue-800">
-              <strong>💡 Tip:</strong> All changes to the data below will be reflected across the entire website. Edit the JSON files in the mockData folder or connect to a real API to persist changes.
-            </p>
-          </div>
-
-          {/* Data Tables */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <DataTable 
-              title="Courses" 
-              data={courses}
-              columns={['Title', 'Date', 'Status']}
-            />
-            <DataTable 
-              title="Research Publications" 
-              data={researches}
-              columns={['Title', 'Year', 'Status']}
-            />
-            <DataTable 
-              title="Achievements" 
-              data={achievements}
-              columns={['Title', 'Date', 'Status']}
-            />
-            <DataTable 
-              title="Blog Posts" 
-              data={blogs}
-              columns={['Title', 'Date', 'Status']}
-            />
-          </div>
-
-          {/* Raw Data Editor */}
-          <div className="bg-card border rounded-lg p-6">
-            <h3 className="text-lg font-semibold mb-4">Quick Stats Editor</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              <div>
-                <label className="text-sm font-medium">Publications</label>
-                <input 
-                  type="number" 
-                  defaultValue={stats?.publications || 0}
-                  className="w-full mt-1 px-3 py-2 border rounded-md bg-muted"
-                  disabled
-                />
-              </div>
-              <div>
-                <label className="text-sm font-medium">Courses</label>
-                <input 
-                  type="number" 
-                  defaultValue={stats?.courses || 0}
-                  className="w-full mt-1 px-3 py-2 border rounded-md bg-muted"
-                  disabled
-                />
-              </div>
-              <div>
-                <label className="text-sm font-medium">Awards</label>
-                <input 
-                  type="number" 
-                  defaultValue={stats?.awards || 0}
-                  className="w-full mt-1 px-3 py-2 border rounded-md bg-muted"
-                  disabled
-                />
-              </div>
-              <div>
-                <label className="text-sm font-medium">Experience (years)</label>
-                <input 
-                  type="number" 
-                  defaultValue={stats?.experience || 0}
-                  className="w-full mt-1 px-3 py-2 border rounded-md bg-muted"
-                  disabled
-                />
-              </div>
-              <div>
-                <label className="text-sm font-medium">Students Supervised</label>
-                <input 
-                  type="number" 
-                  defaultValue={stats?.students || 0}
-                  className="w-full mt-1 px-3 py-2 border rounded-md bg-muted"
-                  disabled
-                />
-              </div>
-              <div>
-                <label className="text-sm font-medium">Citations</label>
-                <input 
-                  type="number" 
-                  defaultValue={stats?.citations || 0}
-                  className="w-full mt-1 px-3 py-2 border rounded-md bg-muted"
-                  disabled
-                />
-              </div>
-            </div>
-            <p className="text-xs text-muted-foreground mt-4">
-              📝 To edit these values, modify the <code className="bg-muted px-2 py-1 rounded">src/api/mockData/stats.json</code> file
-            </p>
-          </div>
-
-          {/* Data Source Info */}
-          <div className="bg-card border rounded-lg p-6">
-            <h3 className="text-lg font-semibold mb-4">Data Source Configuration</h3>
-            <div className="space-y-3 text-sm">
-              <div className="flex items-center gap-3 p-3 bg-muted rounded">
-                <span className="text-2xl">📁</span>
-                <div>
-                  <p className="font-medium">Mock Data Location</p>
-                  <p className="text-muted-foreground">src/api/mockData/</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 p-3 bg-muted rounded">
-                <span className="text-2xl">🔄</span>
-                <div>
-                  <p className="font-medium">Data Service</p>
-                  <p className="text-muted-foreground">src/api/request.js (MOCK_MODE = true)</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 p-3 bg-muted rounded">
-                <span className="text-2xl">🌐</span>
-                <div>
-                  <p className="font-medium">Switch to Real API</p>
-                  <p className="text-muted-foreground">Set MOCK_MODE = false in request.js</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      </div>
     </div>
   );
 }
