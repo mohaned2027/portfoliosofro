@@ -1,0 +1,1 @@
+- [Admin page write pattern](admin-write-pattern.md) — files must be read with `read` tool (not bash) before write; parallel reads in same response are sufficient.
