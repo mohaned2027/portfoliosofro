@@ -2,7 +2,7 @@ import { PageHeader } from "@/components/common/Headers";
 import { useProfessor, useEducation } from "@/context/DataContext";
 import professorImg from "@/assets/professor.jpg";
 import { motion } from "framer-motion";
-import { GraduationCap, Target, Sparkles, BookMarked } from "lucide-react";
+import { GraduationCap, Target, Sparkles, BookMarked, FileDown } from "lucide-react";
 
 function AboutPage() {
   const professor = useProfessor();
@@ -40,6 +40,19 @@ function AboutPage() {
                 <p className="text-xs text-muted-foreground">{professor.office}</p>
                 <p className="text-xs text-muted-foreground">{professor.officeHours}</p>
               </div>
+
+              {professor.cv && (
+                <div className="pt-3">
+                  <a
+                    href={professor.cv}
+                    download="Dr_Mohamed_Sobhy_CV.pdf"
+                    className="flex items-center justify-center gap-2 w-full py-2 rounded-lg bg-electric text-electric-foreground text-xs font-medium hover:opacity-90 transition shadow-lg shadow-electric/20"
+                  >
+                    <FileDown className="size-3.5" />
+                    Download CV
+                  </a>
+                </div>
+              )}
             </div>
             {/* Socials */}
             {professor.socials && (

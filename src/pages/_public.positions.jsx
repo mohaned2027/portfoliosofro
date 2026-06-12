@@ -1,6 +1,6 @@
 import { PageHeader } from "@/components/common/Headers";
 import { Card } from "@/components/common/Cards";
-import { positions } from "@/data/mockData";
+import { usePositions } from "@/context/DataContext";
 import {
   Crown,
   GraduationCap,
@@ -26,6 +26,7 @@ const ICONS = {
   building: Building,
 };
 function PositionsPage() {
+  const positions = usePositions();
   return (
     <>
       <PageHeader

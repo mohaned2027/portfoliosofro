@@ -2,9 +2,10 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Mail, Phone, MapPin, Clock, Send, Linkedin, Github, Twitter } from "lucide-react";
 import { PageHeader } from "@/components/common/Headers";
-import { professor } from "@/data/mockData";
+import { useProfessor } from "@/context/DataContext";
 import { api } from "@/api/client";
 function ContactPage() {
+  const professor = useProfessor();
   const [form, setForm] = useState({
     name: "",
     email: "",
