@@ -1,8 +1,9 @@
 import { PageHeader } from "@/components/common/Headers";
-import { experiences } from "@/data/mockData";
+import { useExperience } from "@/context/DataContext";
 import { motion } from "framer-motion";
 import { Briefcase } from "lucide-react";
 function ExperiencesPage() {
+  const experiences = useExperience();
   return (
     <>
       <PageHeader

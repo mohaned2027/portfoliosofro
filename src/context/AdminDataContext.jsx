@@ -14,19 +14,19 @@ import { MOCK_MODE, apiFetch } from "@/api/request";
 import { DASHBOARD_ENDPOINTS as EP } from "@/api/endpoints";
 
 // ── JSON seed data (imported at build time; used when MOCK_MODE = true) ──────
-import achievementsJson from "@/data/mockData/achievements.json";
-import researchesJson from "@/data/mockData/researches.json";
-import experiencesJson from "@/data/mockData/experiences.json";
-import positionsJson from "@/data/mockData/positions.json";
-import coursesJson from "@/data/mockData/courses.json";
-import blogsJson from "@/data/mockData/blogs.json";
-import messagesJson from "@/data/mockData/messages.json";
-import educationJson from "@/data/mockData/education.json";
-import professorJson from "@/data/mockData/professor.json";
-import settingsJson from "@/data/mockData/settings.json";
-import statsJson from "@/data/mockData/stats.json";
-import mediaJson from "@/data/mockData/media.json";
-import chartsJson from "@/data/mockData/dashboardCharts.json";
+import achievementsJson from "@/api/mockData/achievements.json";
+import researchesJson from "@/api/mockData/researches.json";
+import experiencesJson from "@/api/mockData/experiences.json";
+import positionsJson from "@/api/mockData/positions.json";
+import coursesJson from "@/api/mockData/courses.json";
+import blogsJson from "@/api/mockData/blogs.json";
+import messagesJson from "@/api/mockData/messages.json";
+import educationJson from "@/api/mockData/education.json";
+import professorJson from "@/api/mockData/professor.json";
+import settingsJson from "@/api/mockData/settings.json";
+import statsJson from "@/api/mockData/stats.json";
+import mediaJson from "@/api/mockData/media.json";
+import chartsJson from "@/api/mockData/dashboardCharts.json";
 
 // ── Generic hooks ────────────────────────────────────────────────────────────
 
