@@ -26,6 +26,7 @@ import DashboardHome from "./pages/admin/_admin.admin.index";
 import AdminAchievements from "./pages/admin/_admin.admin.achievements";
 import AchievementForm from "./pages/admin/_admin.admin.achievements.form";
 import AdminBlogs from "./pages/admin/_admin.admin.blogs";
+import BlogForm from "./pages/admin/_admin.admin.blogs.form";
 import AdminCourses from "./pages/admin/_admin.admin.courses";
 import AdminEducation from "./pages/admin/_admin.admin.education";
 import AdminExperiences from "./pages/admin/_admin.admin.experiences";
@@ -98,6 +99,8 @@ export default function App() {
                 <Route path="admin/achievements/new" element={<AchievementForm />} />
                 <Route path="admin/achievements/:id/edit" element={<AchievementForm />} />
                 <Route path="admin/blogs" element={<AdminBlogs />} />
+                <Route path="admin/blogs/new" element={<BlogForm />} />
+                <Route path="admin/blogs/:id/edit" element={<BlogForm />} />
                 <Route path="admin/courses" element={<AdminCourses />} />
                 <Route path="admin/education" element={<AdminEducation />} />
                 <Route path="admin/experiences" element={<AdminExperiences />} />
