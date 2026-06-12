@@ -1,10 +1,73 @@
-import { useState, useEffect } from "react";
-import { KeyRound, Eye, EyeOff, Save, ImageIcon } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { KeyRound, Eye, EyeOff, Save, ImageIcon, Upload } from "lucide-react";
 import { useSiteSettings } from "@/context/SiteSettingsContext";
 import { api } from "@/api/client";
 
 const INPUT =
   "w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 focus:ring-1 focus:ring-electric/30";
+
+function ImageDropField({ label, value, onChange, contain }) {
+  const inputRef = useRef(null);
+  const [dragging, setDragging] = useState(false);
+
+  const handleFile = (file) => {
+    if (!file || !file.type.startsWith("image/")) return;
+    const reader = new FileReader();
+    reader.onload = () => onChange(reader.result);
+    reader.readAsDataURL(file);
+  };
+
+  const onDrop = (e) => {
+    e.preventDefault();
+    setDragging(false);
+    const file = e.dataTransfer?.files?.[0];
+    handleFile(file);
+  };
+
+  const onDragOver = (e) => {
+    e.preventDefault();
+    setDragging(true);
+  };
+
+  return (
+    <div className="space-y-1.5">
+      <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
+        {label}
+      </label>
+      <div
+        onDrop={onDrop}
+        onDragOver={onDragOver}
+        onDragLeave={() => setDragging(false)}
+        onClick={() => inputRef.current?.click()}
+        className={`relative flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed p-4 cursor-pointer transition ${
+          dragging
+            ? "border-electric bg-electric/10"
+            : "border-border hover:border-electric/50"
+        }`}
+      >
+        {value ? (
+          <img
+            src={value}
+            alt=""
+            className={`size-16 rounded-lg ${contain ? "object-contain" : "object-cover"}`}
+          />
+        ) : (
+          <Upload className="size-6 text-muted-foreground" />
+        )}
+        <p className="text-xs text-muted-foreground">
+          {dragging ? "Drop here" : "Drag & drop or click to browse"}
+        </p>
+        <input
+          ref={inputRef}
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={(e) => handleFile(e.target.files?.[0])}
+        />
+      </div>
+    </div>
+  );
+}
 
 function SiteIdentityCard() {
   const { settings, updateSettings } = useSiteSettings();
@@ -58,55 +121,18 @@ function SiteIdentityCard() {
           />
         </div>
 
-        <div className="space-y-1.5">
-          <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
-            Icon
-          </label>
-          <div className="flex items-center gap-3">
-            <span className="grid size-10 shrink-0 place-items-center overflow-hidden rounded-lg border border-border bg-muted/30">
-              {form.icon ? (
-                <img
-                  src={form.icon}
-                  alt=""
-                  className="size-full object-cover"
-                />
-              ) : (
-                <ImageIcon className="size-4 text-muted-foreground" />
-              )}
-            </span>
-            <input
-              value={form.icon}
-              onChange={(e) => set("icon", e.target.value)}
-              placeholder="/professor.jpg or https://…"
-              className={INPUT}
-            />
-          </div>
-        </div>
+        <ImageDropField
+          label="Icon"
+          value={form.icon}
+          onChange={(v) => set("icon", v)}
+        />
 
-        <div className="space-y-1.5">
-          <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
-            Favicon
-          </label>
-          <div className="flex items-center gap-3">
-            <span className="grid size-10 shrink-0 place-items-center overflow-hidden rounded-lg border border-border bg-muted/30">
-              {form.favicon ? (
-                <img
-                  src={form.favicon}
-                  alt=""
-                  className="size-full object-contain"
-                />
-              ) : (
-                <ImageIcon className="size-4 text-muted-foreground" />
-              )}
-            </span>
-            <input
-              value={form.favicon}
-              onChange={(e) => set("favicon", e.target.value)}
-              placeholder="/favicon.svg or https://…"
-              className={INPUT}
-            />
-          </div>
-        </div>
+        <ImageDropField
+          label="Favicon"
+          value={form.favicon}
+          onChange={(v) => set("favicon", v)}
+          contain
+        />
 
         <button
           type="submit"
