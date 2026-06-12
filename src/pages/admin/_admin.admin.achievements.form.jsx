@@ -162,7 +162,7 @@ export default function AchievementForm() {
     );
 
   return (
-    <form onSubmit={submit} className="space-y-6 max-w-3xl">
+    <form onSubmit={submit} className="space-y-6 max-w-2xl mx-auto">
       {/* Header */}
       <div className="flex items-center gap-4">
         <button
