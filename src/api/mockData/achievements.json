@@ -1,322 +1,62 @@
 [
   {
     "id": "ach-1",
-    "title": "IEEE Best Paper Award — ICC 2025",
-    "description": "A milestone in academic research, leadership, or community contribution to the field of communications engineering.",
-    "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This achievement reflects a sustained commitment to excellence in research, teaching, and academic leadership. It was awarded after rigorous peer evaluation and represents a meaningful contribution to the international research community in wireless communications and electronics engineering.",
-    "cover": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=70",
-    "date": "2024-01-15",
+    "title": "Best Paper Award — NRSC 2014",
+    "description": "A milestone in academic research, supervision, or community contribution in communications engineering.",
+    "fullDescription": "Best Paper Award at the 31st National Radio Science Conference (NRSC) for work on carrier frequency offset correction in OFDM systems.",
+    "cover": "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?auto=format&fit=crop&w=1200&q=70",
+    "date": "2014-04-01",
     "category": "Award",
-    "liveLink": "https://example.com/achievement",
+    "liveLink": null,
     "gallery": [
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=1200&q=70"
+      "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?auto=format&fit=crop&w=1200&q=70",
+      "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=70",
+      "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=1200&q=70"
     ]
   },
   {
     "id": "ach-2",
-    "title": "National Prize in Engineering Sciences",
-    "description": "A milestone in academic research, leadership, or community contribution to the field of communications engineering.",
-    "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This achievement reflects a sustained commitment to excellence in research, teaching, and academic leadership. It was awarded after rigorous peer evaluation and represents a meaningful contribution to the international research community in wireless communications and electronics engineering.",
-    "cover": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=70",
-    "date": "2023-02-15",
-    "category": "Grant",
+    "title": "Supervisor — 6th Rank, UAVC (ICMTC 2024)",
+    "description": "A milestone in academic research, supervision, or community contribution in communications engineering.",
+    "fullDescription": "Supervised the team ranked 6th in the Unmanned Aerial Vehicles Competition (UAVC) at the 8th International Competition of the Military Technical College (ICMTC 2024), Cairo, Egypt.",
+    "cover": "https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1200&q=70",
+    "date": "2024-01-01",
+    "category": "Award",
     "liveLink": null,
     "gallery": [
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=70"
+      "https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1200&q=70",
+      "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=1200&q=70",
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=70"
     ]
   },
   {
     "id": "ach-3",
-    "title": "Keynote Speaker, GlobeCom Singapore",
-    "description": "A milestone in academic research, leadership, or community contribution to the field of communications engineering.",
-    "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This achievement reflects a sustained commitment to excellence in research, teaching, and academic leadership. It was awarded after rigorous peer evaluation and represents a meaningful contribution to the international research community in wireless communications and electronics engineering.",
-    "cover": "https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1200&q=70",
-    "date": "2022-03-15",
-    "category": "Editorship",
+    "title": "Supervisor — 10th Rank, ITC-EGYPT 2023",
+    "description": "A milestone in academic research, supervision, or community contribution in communications engineering.",
+    "fullDescription": "Supervised the team ranked 10th over 520 contestants at the International Telecommunications Conference ITC-EGYPT 2023, Air Defense College, Alexandria, Egypt.",
+    "cover": "https://images.unsplash.com/photo-1591115765373-5207764f72e7?auto=format&fit=crop&w=1200&q=70",
+    "date": "2023-01-01",
+    "category": "Award",
     "liveLink": null,
     "gallery": [
-      "https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=1200&q=70"
+      "https://images.unsplash.com/photo-1591115765373-5207764f72e7?auto=format&fit=crop&w=1200&q=70",
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=70",
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=70"
     ]
   },
   {
     "id": "ach-4",
-    "title": "Editor — IEEE Trans. on Wireless Comms",
-    "description": "A milestone in academic research, leadership, or community contribution to the field of communications engineering.",
-    "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This achievement reflects a sustained commitment to excellence in research, teaching, and academic leadership. It was awarded after rigorous peer evaluation and represents a meaningful contribution to the international research community in wireless communications and electronics engineering.",
-    "cover": "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=1200&q=70",
-    "date": "2021-04-15",
-    "category": "Keynote",
-    "liveLink": "https://example.com/achievement",
-    "gallery": [
-      "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=70"
-    ]
-  },
-  {
-    "id": "ach-5",
-    "title": "Grant: 6G Testbed, $1.4M from STDF",
-    "description": "A milestone in academic research, leadership, or community contribution to the field of communications engineering.",
-    "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This achievement reflects a sustained commitment to excellence in research, teaching, and academic leadership. It was awarded after rigorous peer evaluation and represents a meaningful contribution to the international research community in wireless communications and electronics engineering.",
-    "cover": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=70",
-    "date": "2020-05-15",
-    "category": "Patent",
+    "title": "Supervisor — 8th Rank, EgSA Satellite Project 2022",
+    "description": "A milestone in academic research, supervision, or community contribution in communications engineering.",
+    "fullDescription": "Supervised the team ranked 8th over 56 contestants in the 'Satellite Universities Project' at the Egyptian Space Agency (EgSA), Cairo, Egypt.",
+    "cover": "https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=1200&q=70",
+    "date": "2022-01-01",
+    "category": "Award",
     "liveLink": null,
     "gallery": [
-      "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=70"
-    ]
-  },
-  {
-    "id": "ach-6",
-    "title": "Fellow of the African Academy of Sciences",
-    "description": "A milestone in academic research, leadership, or community contribution to the field of communications engineering.",
-    "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This achievement reflects a sustained commitment to excellence in research, teaching, and academic leadership. It was awarded after rigorous peer evaluation and represents a meaningful contribution to the international research community in wireless communications and electronics engineering.",
-    "cover": "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=1200&q=70",
-    "date": "2019-06-15",
-    "category": "Leadership",
-    "liveLink": null,
-    "gallery": [
-      "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=70",
+      "https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=1200&q=70",
       "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=70",
       "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=1200&q=70"
-    ]
-  },
-  {
-    "id": "ach-7",
-    "title": "Outstanding Educator Award",
-    "description": "A milestone in academic research, leadership, or community contribution to the field of communications engineering.",
-    "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This achievement reflects a sustained commitment to excellence in research, teaching, and academic leadership. It was awarded after rigorous peer evaluation and represents a meaningful contribution to the international research community in wireless communications and electronics engineering.",
-    "cover": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=70",
-    "date": "2018-07-15",
-    "category": "Award",
-    "liveLink": "https://example.com/achievement",
-    "gallery": [
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1496096265110-f83ad7f96608?auto=format&fit=crop&w=1200&q=70"
-    ]
-  },
-  {
-    "id": "ach-8",
-    "title": "Patent: Adaptive Beamforming for RIS",
-    "description": "A milestone in academic research, leadership, or community contribution to the field of communications engineering.",
-    "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This achievement reflects a sustained commitment to excellence in research, teaching, and academic leadership. It was awarded after rigorous peer evaluation and represents a meaningful contribution to the international research community in wireless communications and electronics engineering.",
-    "cover": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=70",
-    "date": "2017-08-15",
-    "category": "Grant",
-    "liveLink": null,
-    "gallery": [
-      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1496096265110-f83ad7f96608?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=70"
-    ]
-  },
-  {
-    "id": "ach-9",
-    "title": "Visiting Scholar — MIT RLE",
-    "description": "A milestone in academic research, leadership, or community contribution to the field of communications engineering.",
-    "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This achievement reflects a sustained commitment to excellence in research, teaching, and academic leadership. It was awarded after rigorous peer evaluation and represents a meaningful contribution to the international research community in wireless communications and electronics engineering.",
-    "cover": "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=1200&q=70",
-    "date": "2016-09-15",
-    "category": "Editorship",
-    "liveLink": null,
-    "gallery": [
-      "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1496096265110-f83ad7f96608?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=70"
-    ]
-  },
-  {
-    "id": "ach-10",
-    "title": "Chair, IEEE ComSoc Egypt Chapter",
-    "description": "A milestone in academic research, leadership, or community contribution to the field of communications engineering.",
-    "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This achievement reflects a sustained commitment to excellence in research, teaching, and academic leadership. It was awarded after rigorous peer evaluation and represents a meaningful contribution to the international research community in wireless communications and electronics engineering.",
-    "cover": "https://images.unsplash.com/photo-1496096265110-f83ad7f96608?auto=format&fit=crop&w=1200&q=70",
-    "date": "2015-10-15",
-    "category": "Keynote",
-    "liveLink": "https://example.com/achievement",
-    "gallery": [
-      "https://images.unsplash.com/photo-1496096265110-f83ad7f96608?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1200&q=70"
-    ]
-  },
-  {
-    "id": "ach-11",
-    "title": "Distinguished Lecturer — IEEE VTS",
-    "description": "A milestone in academic research, leadership, or community contribution to the field of communications engineering.",
-    "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This achievement reflects a sustained commitment to excellence in research, teaching, and academic leadership. It was awarded after rigorous peer evaluation and represents a meaningful contribution to the international research community in wireless communications and electronics engineering.",
-    "cover": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=70",
-    "date": "2024-11-15",
-    "category": "Patent",
-    "liveLink": null,
-    "gallery": [
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=1200&q=70"
-    ]
-  },
-  {
-    "id": "ach-12",
-    "title": "Best Demo Award, IEEE WCNC",
-    "description": "A milestone in academic research, leadership, or community contribution to the field of communications engineering.",
-    "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This achievement reflects a sustained commitment to excellence in research, teaching, and academic leadership. It was awarded after rigorous peer evaluation and represents a meaningful contribution to the international research community in wireless communications and electronics engineering.",
-    "cover": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=70",
-    "date": "2023-12-15",
-    "category": "Leadership",
-    "liveLink": null,
-    "gallery": [
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=70"
-    ]
-  },
-  {
-    "id": "ach-13",
-    "title": "Founding Director, 5G Innovation Lab",
-    "description": "A milestone in academic research, leadership, or community contribution to the field of communications engineering.",
-    "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This achievement reflects a sustained commitment to excellence in research, teaching, and academic leadership. It was awarded after rigorous peer evaluation and represents a meaningful contribution to the international research community in wireless communications and electronics engineering.",
-    "cover": "https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1200&q=70",
-    "date": "2022-01-15",
-    "category": "Award",
-    "liveLink": "https://example.com/achievement",
-    "gallery": [
-      "https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=1200&q=70"
-    ]
-  },
-  {
-    "id": "ach-14",
-    "title": "Patent: Low-PAPR OFDM Waveform",
-    "description": "A milestone in academic research, leadership, or community contribution to the field of communications engineering.",
-    "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This achievement reflects a sustained commitment to excellence in research, teaching, and academic leadership. It was awarded after rigorous peer evaluation and represents a meaningful contribution to the international research community in wireless communications and electronics engineering.",
-    "cover": "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=1200&q=70",
-    "date": "2021-02-15",
-    "category": "Grant",
-    "liveLink": null,
-    "gallery": [
-      "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=70"
-    ]
-  },
-  {
-    "id": "ach-15",
-    "title": "TPC Chair — IEEE PIMRC 2024",
-    "description": "A milestone in academic research, leadership, or community contribution to the field of communications engineering.",
-    "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This achievement reflects a sustained commitment to excellence in research, teaching, and academic leadership. It was awarded after rigorous peer evaluation and represents a meaningful contribution to the international research community in wireless communications and electronics engineering.",
-    "cover": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=70",
-    "date": "2020-03-15",
-    "category": "Editorship",
-    "liveLink": null,
-    "gallery": [
-      "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=70"
-    ]
-  },
-  {
-    "id": "ach-16",
-    "title": "University Medal of Excellence",
-    "description": "A milestone in academic research, leadership, or community contribution to the field of communications engineering.",
-    "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This achievement reflects a sustained commitment to excellence in research, teaching, and academic leadership. It was awarded after rigorous peer evaluation and represents a meaningful contribution to the international research community in wireless communications and electronics engineering.",
-    "cover": "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=1200&q=70",
-    "date": "2019-04-15",
-    "category": "Keynote",
-    "liveLink": "https://example.com/achievement",
-    "gallery": [
-      "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=1200&q=70"
-    ]
-  },
-  {
-    "id": "ach-17",
-    "title": "Industry Award — Vodafone Research",
-    "description": "A milestone in academic research, leadership, or community contribution to the field of communications engineering.",
-    "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This achievement reflects a sustained commitment to excellence in research, teaching, and academic leadership. It was awarded after rigorous peer evaluation and represents a meaningful contribution to the international research community in wireless communications and electronics engineering.",
-    "cover": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=70",
-    "date": "2018-05-15",
-    "category": "Patent",
-    "liveLink": null,
-    "gallery": [
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1496096265110-f83ad7f96608?auto=format&fit=crop&w=1200&q=70"
-    ]
-  },
-  {
-    "id": "ach-18",
-    "title": "10,000+ Google Scholar Citations",
-    "description": "A milestone in academic research, leadership, or community contribution to the field of communications engineering.",
-    "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This achievement reflects a sustained commitment to excellence in research, teaching, and academic leadership. It was awarded after rigorous peer evaluation and represents a meaningful contribution to the international research community in wireless communications and electronics engineering.",
-    "cover": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=70",
-    "date": "2017-06-15",
-    "category": "Leadership",
-    "liveLink": null,
-    "gallery": [
-      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1496096265110-f83ad7f96608?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=70"
-    ]
-  },
-  {
-    "id": "ach-19",
-    "title": "ABET Accreditation Lead",
-    "description": "A milestone in academic research, leadership, or community contribution to the field of communications engineering.",
-    "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This achievement reflects a sustained commitment to excellence in research, teaching, and academic leadership. It was awarded after rigorous peer evaluation and represents a meaningful contribution to the international research community in wireless communications and electronics engineering.",
-    "cover": "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=1200&q=70",
-    "date": "2016-07-15",
-    "category": "Award",
-    "liveLink": "https://example.com/achievement",
-    "gallery": [
-      "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1496096265110-f83ad7f96608?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=70"
-    ]
-  },
-  {
-    "id": "ach-20",
-    "title": "Sustainability in Networks Award",
-    "description": "A milestone in academic research, leadership, or community contribution to the field of communications engineering.",
-    "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This achievement reflects a sustained commitment to excellence in research, teaching, and academic leadership. It was awarded after rigorous peer evaluation and represents a meaningful contribution to the international research community in wireless communications and electronics engineering.",
-    "cover": "https://images.unsplash.com/photo-1496096265110-f83ad7f96608?auto=format&fit=crop&w=1200&q=70",
-    "date": "2015-08-15",
-    "category": "Grant",
-    "liveLink": null,
-    "gallery": [
-      "https://images.unsplash.com/photo-1496096265110-f83ad7f96608?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=70",
-      "https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1200&q=70"
     ]
   }
 ]

@@ -1,72 +1,72 @@
 [
   {
     "id": "pos-1",
-    "title": "Head of Department",
-    "organization": "Communications & Electronics Engineering — CIT",
-    "description": "Strategic leadership of academic programs, research direction, and faculty development.",
+    "title": "Head of ECE Department",
+    "organization": "IAET, Egyptian Aviation Academy (EAA)",
+    "description": "Strategic leadership of the Electronics & Communications Engineering department.",
     "icon": "crown"
   },
   {
     "id": "pos-2",
-    "title": "Full Professor",
-    "organization": "Faculty of Engineering, CIT",
-    "description": "Graduate teaching and research supervision in wireless communications.",
+    "title": "Associate Professor",
+    "organization": "ECE Department, IAET, EAA",
+    "description": "Teaching and research in communications and signal processing.",
     "icon": "academic"
   },
   {
     "id": "pos-3",
-    "title": "Director, Smart Radio Lab",
-    "organization": "CIT Research Center",
-    "description": "Leading a 22-person lab on 6G testbeds, RIS, and AI-native air interfaces.",
+    "title": "Head of the Advanced Communication LAB",
+    "organization": "ECE Department, IAET, EAA",
+    "description": "Directing the advanced communications research and teaching laboratory.",
     "icon": "radio"
   },
   {
     "id": "pos-4",
-    "title": "Associate Editor",
-    "organization": "IEEE Trans. on Wireless Communications",
-    "description": "Handling editorial decisions on MIMO, beamforming, and intelligent surfaces.",
+    "title": "Journal Reviewer",
+    "organization": "Annals of Telecommunications, JCM, Telecom. & Radio Engineering, J. Laser Science",
+    "description": "Peer review for international communications journals.",
     "icon": "editor"
   },
   {
     "id": "pos-5",
-    "title": "Distinguished Lecturer",
-    "organization": "IEEE Vehicular Technology Society",
-    "description": "Delivering invited talks across 12 countries on 6G research directions.",
-    "icon": "mic"
-  },
-  {
-    "id": "pos-6",
-    "title": "Chair",
-    "organization": "IEEE ComSoc Egypt Chapter",
-    "description": "Building the communications-engineering community across Egyptian universities.",
-    "icon": "users"
-  },
-  {
-    "id": "pos-7",
-    "title": "Scientific Reviewer",
-    "organization": "STDF — Egyptian Science Fund",
-    "description": "Reviewing national research grant applications in ICT.",
-    "icon": "shield"
-  },
-  {
-    "id": "pos-8",
-    "title": "Academic Committee Member",
-    "organization": "Supreme Council of Universities",
-    "description": "Curriculum oversight for engineering programs nationwide.",
-    "icon": "scroll"
-  },
-  {
-    "id": "pos-9",
-    "title": "TPC Chair",
-    "organization": "IEEE PIMRC 2024",
-    "description": "Technical program leadership for a flagship IEEE conference.",
+    "title": "TPC Member",
+    "organization": "IEEE NILES & IEEE JAC-ECC",
+    "description": "Technical program committee member for flagship IEEE conferences.",
     "icon": "calendar"
   },
   {
-    "id": "pos-10",
-    "title": "Industry Advisor",
-    "organization": "Vodafone Innovation Hub",
-    "description": "Advisory role on 5G-Advanced and 6G technology roadmap.",
+    "id": "pos-6",
+    "title": "UAVC Judge Board Member",
+    "organization": "International Competition of the Military Technical College (ICMTC 2022–2024)",
+    "description": "Judging unmanned aerial vehicle competitions.",
+    "icon": "shield"
+  },
+  {
+    "id": "pos-7",
+    "title": "Counselor, IEEE IAET Student Branch",
+    "organization": "IAET, EAA",
+    "description": "Mentoring and counseling the IEEE student branch.",
+    "icon": "users"
+  },
+  {
+    "id": "pos-8",
+    "title": "Session Chairman",
+    "organization": "IAET Scientific Conference (ISC-21)",
+    "description": "Chaired the Electrical Communications session.",
+    "icon": "mic"
+  },
+  {
+    "id": "pos-9",
+    "title": "Member of the Board",
+    "organization": "Egyptian Aviation Academy (EAA)",
+    "description": "Institutional governance and academic oversight.",
     "icon": "building"
+  },
+  {
+    "id": "pos-10",
+    "title": "Quality Assurance Unit Member",
+    "organization": "ECE Department, IAET, EAA",
+    "description": "Ensuring academic quality and accreditation standards.",
+    "icon": "scroll"
   }
 ]
