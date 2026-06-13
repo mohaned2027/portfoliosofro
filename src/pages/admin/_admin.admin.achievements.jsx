@@ -1,20 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Plus, Search, Pencil, Trash2, ImageIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useAdminAchievements } from "@/context/AdminDataContext";
 import { api } from "@/api/client";
+import { useResourceList } from "@/lib/useResourceList";
 import { confirmDelete } from "@/lib/confirm";
 import { Pagination, usePagination } from "@/components/admin/Pagination";
 
 export default function AdminAchievements() {
-  const raw = useAdminAchievements() ?? [];
-  const [items, setItems] = useState([]);
+  const fallback = useAdminAchievements() ?? [];
+  const [items, setItems] = useResourceList(api.achievements, fallback);
   const [search, setSearch] = useState("");
   const nav = useNavigate();
-
-  useEffect(() => {
-    setItems(raw);
-  }, [raw]);
 
   const filtered = items.filter(
     (a) => !search || a.title?.toLowerCase().includes(search.toLowerCase()),

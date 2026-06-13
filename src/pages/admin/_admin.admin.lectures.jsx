@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Plus, Search, Pencil, Trash2, X, Video } from "lucide-react";
 import { useAdminCourses } from "@/context/AdminDataContext";
 import { api } from "@/api/client";
+import { useResourceList } from "@/lib/useResourceList";
 import { confirmDelete } from "@/lib/confirm";
 import { Pagination, usePagination } from "@/components/admin/Pagination";
 
@@ -120,7 +121,7 @@ function LectureModal({ initial, courses, onClose, onSaved }) {
 }
 
 export default function AdminLectures() {
-  const coursesRaw = useAdminCourses() ?? [];
+  const [coursesRaw] = useResourceList(api.courses, useAdminCourses() ?? []);
   const [search, setSearch] = useState("");
   const [modal, setModal] = useState(null);
 

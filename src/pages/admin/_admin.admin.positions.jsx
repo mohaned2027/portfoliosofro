@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Plus,
   Search,
@@ -25,6 +25,7 @@ import {
   Layers,
 } from "lucide-react";
 import { useAdminPositions } from "@/context/AdminDataContext";
+import { useResourceList } from "@/lib/useResourceList";
 import { api } from "@/api/client";
 import { confirmDelete } from "@/lib/confirm";
 import { Pagination, usePagination } from "@/components/admin/Pagination";
@@ -155,14 +156,10 @@ function PositionModal({ initial, onClose, onSaved }) {
 }
 
 export default function AdminPositions() {
-  const raw = useAdminPositions() ?? [];
-  const [items, setItems] = useState([]);
+  const fallback = useAdminPositions() ?? [];
+  const [items, setItems] = useResourceList(api.positions, fallback);
   const [search, setSearch] = useState("");
   const [modal, setModal] = useState(null);
-
-  useEffect(() => {
-    setItems(raw);
-  }, [raw]);
 
   const filtered = items.filter(
     (p) =>

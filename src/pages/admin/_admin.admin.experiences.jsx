@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Plus, Search, Pencil, Trash2, X, Briefcase } from "lucide-react";
 import { useAdminExperiences } from "@/context/AdminDataContext";
+import { useResourceList } from "@/lib/useResourceList";
 import { api } from "@/api/client";
 import { confirmDelete } from "@/lib/confirm";
 import { Pagination, usePagination } from "@/components/admin/Pagination";
@@ -124,14 +125,10 @@ function ExpModal({ initial, onClose, onSaved }) {
 }
 
 export default function AdminExperiences() {
-  const raw = useAdminExperiences() ?? [];
-  const [items, setItems] = useState([]);
+  const fallback = useAdminExperiences() ?? [];
+  const [items, setItems] = useResourceList(api.experiences, fallback);
   const [search, setSearch] = useState("");
   const [modal, setModal] = useState(null);
-
-  useEffect(() => {
-    setItems(raw);
-  }, [raw]);
 
   const filtered = items.filter(
     (e) =>

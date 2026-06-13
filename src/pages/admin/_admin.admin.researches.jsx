@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Plus, Search, Pencil, Trash2, ImageIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useAdminResearches } from "@/context/AdminDataContext";
 import { api } from "@/api/client";
+import { useResourceList } from "@/lib/useResourceList";
 import { confirmDelete } from "@/lib/confirm";
 import { Pagination, usePagination } from "@/components/admin/Pagination";
 
@@ -13,14 +14,10 @@ const STATUS_CHIP = {
 };
 
 export default function AdminResearches() {
-  const raw = useAdminResearches() ?? [];
-  const [items, setItems] = useState([]);
+  const fallback = useAdminResearches() ?? [];
+  const [items, setItems] = useResourceList(api.researches, fallback);
   const [search, setSearch] = useState("");
   const nav = useNavigate();
-
-  useEffect(() => {
-    setItems(raw);
-  }, [raw]);
 
   const filtered = items.filter(
     (r) => !search || r.title?.toLowerCase().includes(search.toLowerCase()),

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import {
   Plus,
   Search,
@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useAdminMedia } from "@/context/AdminDataContext";
 import { api } from "@/api/client";
+import { useResourceList } from "@/lib/useResourceList";
 import { confirmDelete } from "@/lib/confirm";
 
 const TYPE_ICON = { image: FileImage, video: Film, document: FileText };
@@ -135,11 +136,8 @@ function MediaModal({ initial, onClose, onSaved }) {
 }
 
 export default function AdminMedia() {
-  const raw = useAdminMedia() ?? [];
-  const [items, setItems] = useState([]);
-  useEffect(() => {
-    setItems(raw);
-  }, [raw]);
+  const fallback = useAdminMedia() ?? [];
+  const [items, setItems] = useResourceList(api.media, fallback);
   const [search, setSearch] = useState("");
   const [modal, setModal] = useState(null);
   const filtered = items.filter(

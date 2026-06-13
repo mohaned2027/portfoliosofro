@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { Plus, Search, Pencil, Trash2, X, UploadCloud, ImageIcon } from "lucide-react";
 import { useAdminCourses } from "@/context/AdminDataContext";
 import { api } from "@/api/client";
+import { useResourceList } from "@/lib/useResourceList";
 import { confirmDelete } from "@/lib/confirm";
 import { Pagination, usePagination } from "@/components/admin/Pagination";
 
@@ -169,14 +170,10 @@ function CourseModal({ initial, onClose, onSaved }) {
 }
 
 export default function AdminCourses() {
-  const raw = useAdminCourses() ?? [];
-  const [items, setItems] = useState([]);
+  const fallback = useAdminCourses() ?? [];
+  const [items, setItems] = useResourceList(api.courses, fallback);
   const [search, setSearch] = useState("");
   const [modal, setModal] = useState(null);
-
-  useEffect(() => {
-    setItems(raw);
-  }, [raw]);
 
   const filtered = items.filter(
     (c) => !search || c.title?.toLowerCase().includes(search.toLowerCase()),

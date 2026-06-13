@@ -1,20 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Plus, Search, Pencil, Trash2, Image as ImageIcon } from "lucide-react";
 import { useAdminBlogs } from "@/context/AdminDataContext";
 import { api } from "@/api/client";
+import { useResourceList } from "@/lib/useResourceList";
 import { confirmDelete } from "@/lib/confirm";
 import { Pagination, usePagination } from "@/components/admin/Pagination";
 
 export default function AdminBlogs() {
   const navigate = useNavigate();
-  const raw = useAdminBlogs() ?? [];
-  const [items, setItems] = useState([]);
+  const fallback = useAdminBlogs() ?? [];
+  const [items, setItems] = useResourceList(api.blogs, fallback);
   const [search, setSearch] = useState("");
-
-  useEffect(() => {
-    setItems(raw);
-  }, [raw]);
 
   const filtered = items.filter(
     (b) => !search || b.title?.toLowerCase().includes(search.toLowerCase()),
