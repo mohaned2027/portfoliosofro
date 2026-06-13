@@ -42,16 +42,6 @@ function ExperiencesPage() {
                   <h3 className="mt-1 font-display text-lg font-bold">{e.position}</h3>
                   <p className="text-sm text-muted-foreground">{e.organization}</p>
                   <p className="mt-2 text-sm">{e.description}</p>
-                  <ul
-                    className={`mt-3 space-y-1 text-xs text-muted-foreground ${i % 2 ? "md:text-right" : ""}`}
-                  >
-                    {e.responsibilities.map((r) => (
-                      <li key={r} className="flex items-start gap-1.5">
-                        <span className="size-1 mt-1.5 rounded-full bg-electric shrink-0" />
-                        {r}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               </div>
               <span className="absolute left-4 md:left-1/2 top-6 grid size-8 -translate-x-1/2 place-items-center rounded-full border-2 border-electric bg-background glow-sm">
