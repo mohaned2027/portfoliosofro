@@ -18,8 +18,8 @@ export function PublicFooter() {
             </div>
           </div>
           <p className="text-sm text-muted-foreground max-w-md">
-            Research, teaching, and academic leadership at the frontier of wireless communications
-            and 6G systems.
+            Research, teaching, and academic leadership at the frontier of
+            wireless communications and 6G systems.
           </p>
         </div>
         <div>
@@ -53,15 +53,15 @@ export function PublicFooter() {
             {[
               {
                 Icon: Linkedin,
-                href: professor.socials.linkedin,
+                href: professor.social_links?.linkedin,
               },
               {
                 Icon: Github,
-                href: professor.socials.github,
+                href: professor.social_links?.github,
               },
               {
                 Icon: Twitter,
-                href: professor.socials.twitter,
+                href: professor.social_links?.twitter,
               },
               {
                 Icon: Mail,

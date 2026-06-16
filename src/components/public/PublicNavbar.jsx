@@ -100,7 +100,7 @@ export function PublicNavbar() {
             </span>
             <div className="leading-tight">
               <p className="font-display text-sm font-bold">
-                {settings?.doctorName ?? "Prof. K. Mansour"}
+                {settings?.doctor_name ?? "Prof. K. Mansour"}
               </p>
               <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
                 ECE • CIT
