@@ -117,20 +117,34 @@ function crud(key) {
     const ep = EP_MAP[key];
     return {
       list: async (_q) => {
-        const res = await apiFetch(ep.list, "GET");
-        const data = extractArray(res);
-        return {
-          data,
-          total: data.length,
-          page: 1,
-          pageSize: data.length,
-          totalPages: 1,
-        };
+        try {
+          const res = await apiFetch(ep.list, "GET");
+          const data = extractArray(res);
+          const src = data.length > 0 ? data : store[key] ?? [];
+          return {
+            data: src,
+            total: src.length,
+            page: 1,
+            pageSize: src.length,
+            totalPages: 1,
+          };
+        } catch {
+          const src = store[key] ?? [];
+          return { data: src, total: src.length, page: 1, pageSize: src.length, totalPages: 1 };
+        }
       },
-      get: (id) => {
+      get: async (id) => {
         const pubShow = PUB_SHOW[key];
         const url = pubShow ? pubShow(id) : ep.show(id);
-        return apiFetch(url, "GET");
+        try {
+          return await apiFetch(url, "GET");
+        } catch {
+          const found = (store[key] ?? []).find(
+            (x) => String(x.id) === String(id) || x.slug === id,
+          );
+          if (found) return found;
+          throw new Error("Not found");
+        }
       },
       create: (payload) => apiFetch(ep.store, "POST", payload),
       update: (id, payload) => apiFetch(ep.update(id), "PUT", payload),
@@ -233,7 +247,10 @@ export const api = {
         },
       }
     : {
-        get: () => apiFetch(EP.user.get, "GET"),
+        get: async () => {
+          try { return await apiFetch(EP.user.get, "GET"); }
+          catch { return store.professor; }
+        },
         update: (payload) => apiFetch(EP.user.update, "PUT", payload),
       },
 
@@ -246,7 +263,10 @@ export const api = {
         },
       }
     : {
-        get: () => apiFetch(EP.about.get, "GET"),
+        get: async () => {
+          try { return await apiFetch(EP.about.get, "GET"); }
+          catch { return store.about; }
+        },
         update: (payload) => apiFetch(EP.about.update, "PUT", payload),
       },
 
@@ -259,7 +279,10 @@ export const api = {
         },
       }
     : {
-        get: () => apiFetch(EP.settings.get, "GET"),
+        get: async () => {
+          try { return await apiFetch(EP.settings.get, "GET"); }
+          catch { return store.settings; }
+        },
         update: (payload) => apiFetch(EP.settings.update, "PUT", payload),
       },
 
@@ -283,17 +306,20 @@ export const api = {
       }
     : {
         list: async (_q) => {
-          const res = await apiFetch(EP.messages.list, "GET");
-          const data = extractArray(res);
-          return {
-            data,
-            total: data.length,
-            page: 1,
-            pageSize: data.length,
-            totalPages: 1,
-          };
+          try {
+            const res = await apiFetch(EP.messages.list, "GET");
+            const data = extractArray(res);
+            const src = data.length > 0 ? data : store.messages;
+            return { data: src, total: src.length, page: 1, pageSize: src.length, totalPages: 1 };
+          } catch {
+            const src = store.messages;
+            return { data: src, total: src.length, page: 1, pageSize: src.length, totalPages: 1 };
+          }
         },
-        get: (id) => apiFetch(EP.messages.list + `/${id}`, "GET"),
+        get: async (id) => {
+          try { return await apiFetch(EP.messages.list + `/${id}`, "GET"); }
+          catch { return store.messages.find((x) => String(x.id) === String(id)) ?? null; }
+        },
         remove: (id) => apiFetch(EP.messages.delete(id), "DELETE"),
         markRead: (id) => apiFetch(EP.messages.read(id), "PATCH"),
       },
