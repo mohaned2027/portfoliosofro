@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "title": "ICI Cancellation over Time-Varying Channels via Hybrid Symbol-Time Compression and Frank-Windowing",
+    "slug": "ici-cancellation-over-time-varying-channels",
+    "excerpt": "This work investigates performance enhancement of modern communication systems through analytical modeling and extensive simulation.",
+    "content": "This work investigates performance enhancement of modern communication systems through analytical modeling and extensive simulation, demonstrating measurable improvements in spectral efficiency, capacity, and robustness over established baselines.",
+    "cover": "https://images.unsplash.com/photo-1563770660439-4636190af475?auto=format&fit=crop&w=1200&q=70",
+    "date": "2024-03-10",
+    "category": "Communications",
+    "live_link": "https://scholar.google.com",
+    "gallery": []
+  },
+  {
+    "id": 2,
+    "title": "A Time Mirroring (TM) Scheme for ICI Mitigation in Time-Varying Channels for DVB Systems",
+    "slug": "time-mirroring-scheme-ici-mitigation",
+    "excerpt": "This work investigates performance enhancement of modern communication systems through analytical modeling and extensive simulation.",
+    "content": "This work investigates performance enhancement of modern communication systems through analytical modeling and extensive simulation, demonstrating measurable improvements in spectral efficiency, capacity, and robustness over established baselines.",
+    "cover": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=70",
+    "date": "2023-06-15",
+    "category": "Communications",
+    "live_link": "https://scholar.google.com",
+    "gallery": []
+  },
+  {
+    "id": 3,
+    "title": "Non-Orthogonal Algorithm with Fourier Transform Symmetry for Performance Enhancement of DCO-OFDM Systems",
+    "slug": "non-orthogonal-algorithm-fourier-transform",
+    "excerpt": "This work investigates performance enhancement of modern communication systems through analytical modeling and extensive simulation.",
+    "content": "This work investigates performance enhancement of modern communication systems through analytical modeling and extensive simulation, demonstrating measurable improvements in spectral efficiency, capacity, and robustness over established baselines.",
+    "cover": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=70",
+    "date": "2023-04-20",
+    "category": "Signal Processing",
+    "live_link": "https://scholar.google.com",
+    "gallery": []
+  },
+  {
+    "id": 4,
+    "title": "Enhancing Performance of Downlink NOMA-Based C-RAN Topology through Optimal User Pairing and Dynamic Power Allocation",
+    "slug": "enhancing-performance-downlink-noma",
+    "excerpt": "This work investigates performance enhancement of modern communication systems through analytical modeling and extensive simulation.",
+    "content": "This work investigates performance enhancement of modern communication systems through analytical modeling and extensive simulation, demonstrating measurable improvements in spectral efficiency, capacity, and robustness over established baselines.",
+    "cover": "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1200&q=70",
+    "date": "2023-02-10",
+    "category": "Wireless Networks",
+    "live_link": "https://scholar.google.com",
+    "gallery": []
+  },
+  {
+    "id": 5,
+    "title": "Performance Improvement for DCO-OFDM and ACO-OFDM Systems Using Symbol Time Compression",
+    "slug": "performance-improvement-dco-ofdm-aco-ofdm",
+    "excerpt": "This work investigates performance enhancement of modern communication systems through analytical modeling and extensive simulation.",
+    "content": "This work investigates performance enhancement of modern communication systems through analytical modeling and extensive simulation, demonstrating measurable improvements in spectral efficiency, capacity, and robustness over established baselines.",
+    "cover": "https://images.unsplash.com/photo-1461749280684-dab9536b4b69?auto=format&fit=crop&w=1200&q=70",
+    "date": "2023-01-05",
+    "category": "Optical Communications",
+    "live_link": "https://scholar.google.com",
+    "gallery": []
+  },
+  {
+    "id": 6,
+    "title": "Nonlinear Equalization for Performance Enhancement of FBMC Systems Using Walsh Transform",
+    "slug": "nonlinear-equalization-fbmc-walsh-transform",
+    "excerpt": "This work investigates performance enhancement of modern communication systems through analytical modeling and extensive simulation.",
+    "content": "This work investigates performance enhancement of modern communication systems through analytical modeling and extensive simulation, demonstrating measurable improvements in spectral efficiency, capacity, and robustness over established baselines.",
+    "cover": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=70",
+    "date": "2023-01-01",
+    "category": "Signal Processing",
+    "live_link": "https://scholar.google.com",
+    "gallery": []
+  }
+]

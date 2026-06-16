@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "title": "Head of ECE Department",
+    "slug": "head-of-ece-department",
+    "description": "Strategic leadership of the Electronics & Communications Engineering department.",
+    "start_date": "2021-01-01",
+    "end_date": null,
+    "is_current": true
+  },
+  {
+    "id": 2,
+    "title": "Associate Professor",
+    "slug": "associate-professor",
+    "description": "Teaching and research in communications and signal processing.",
+    "start_date": "2025-01-01",
+    "end_date": null,
+    "is_current": true
+  },
+  {
+    "id": 3,
+    "title": "Head of the Advanced Communication LAB",
+    "slug": "head-of-advanced-communication-lab",
+    "description": "Directing the advanced communications research and teaching laboratory.",
+    "start_date": "2020-01-01",
+    "end_date": null,
+    "is_current": true
+  },
+  {
+    "id": 4,
+    "title": "Journal Reviewer",
+    "slug": "journal-reviewer",
+    "description": "Peer review for international communications journals.",
+    "start_date": "2018-01-01",
+    "end_date": null,
+    "is_current": true
+  },
+  {
+    "id": 5,
+    "title": "TPC Member",
+    "slug": "tpc-member",
+    "description": "Technical program committee member for flagship IEEE conferences.",
+    "start_date": "2020-01-01",
+    "end_date": null,
+    "is_current": true
+  },
+  {
+    "id": 6,
+    "title": "UAVC Judge Board Member",
+    "slug": "uavc-judge-board-member",
+    "description": "Judging unmanned aerial vehicle competitions.",
+    "start_date": "2022-01-01",
+    "end_date": null,
+    "is_current": true
+  },
+  {
+    "id": 7,
+    "title": "Counselor, IEEE IAET Student Branch",
+    "slug": "counselor-ieee-iaet-student-branch",
+    "description": "Mentoring and counseling the IEEE student branch.",
+    "start_date": "2019-01-01",
+    "end_date": null,
+    "is_current": true
+  },
+  {
+    "id": 8,
+    "title": "Session Chairman",
+    "slug": "session-chairman",
+    "description": "Chaired the Electrical Communications session.",
+    "start_date": "2021-01-01",
+    "end_date": "2021-12-31",
+    "is_current": false
+  },
+  {
+    "id": 9,
+    "title": "Member of the Board",
+    "slug": "member-of-the-board",
+    "description": "Institutional governance and academic oversight.",
+    "start_date": "2021-01-01",
+    "end_date": null,
+    "is_current": true
+  },
+  {
+    "id": 10,
+    "title": "Quality Assurance Unit Member",
+    "slug": "quality-assurance-unit-member",
+    "description": "Ensuring academic quality and accreditation standards.",
+    "start_date": "2021-01-01",
+    "end_date": null,
+    "is_current": true
+  }
+]

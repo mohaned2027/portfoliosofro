@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "title": "Electrical Communications (1-A) — ECE 303",
+    "slug": "electrical-communications-1a-ece-303",
+    "excerpt": "Foundations of analog and digital electrical communication systems.",
+    "content": "This course covers the theoretical foundations of analog and digital electrical communication systems, including modulation techniques, signal analysis, and noise performance.",
+    "cover": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-02-10",
+    "category": "Communications",
+    "live_link": null,
+    "gallery": []
+  },
+  {
+    "id": 2,
+    "title": "Electrical Communications (1-B) — ECE 304",
+    "slug": "electrical-communications-1b-ece-304",
+    "excerpt": "Digital communications: modulation, coding, and performance analysis.",
+    "content": "Advanced digital communications course covering digital modulation schemes, error-control coding, and system performance analysis in AWGN and fading channels.",
+    "cover": "https://images.unsplash.com/photo-1563770660439-4636190af475?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-02-10",
+    "category": "Communications",
+    "live_link": null,
+    "gallery": []
+  },
+  {
+    "id": 3,
+    "title": "Optical Communications — ECE 502",
+    "slug": "optical-communications-ece-502",
+    "excerpt": "Fiber-optic systems, laser sources, and receivers.",
+    "content": "This course introduces optical communication systems including fiber-optic technology, laser diode sources, photodetectors, and system design for long-haul and short-reach applications.",
+    "cover": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-02-10",
+    "category": "Communications",
+    "live_link": null,
+    "gallery": []
+  },
+  {
+    "id": 4,
+    "title": "Digital Signal Processing — ECE 401",
+    "slug": "digital-signal-processing-ece-401",
+    "excerpt": "DFT, FFT algorithms, and digital filter design.",
+    "content": "Comprehensive coverage of digital signal processing techniques including discrete Fourier transform, fast FFT algorithms, FIR and IIR filter design, and practical applications in communications.",
+    "cover": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-02-10",
+    "category": "Signal Processing",
+    "live_link": null,
+    "gallery": []
+  },
+  {
+    "id": 5,
+    "title": "Mobile Communication Systems — ECE 503",
+    "slug": "mobile-communication-systems-ece-503",
+    "excerpt": "Cellular architectures, 4G/5G, and wireless channel modeling.",
+    "content": "Study of mobile communication systems from 2G to 5G including cellular architectures, multiple access techniques, OFDM, MIMO systems, and wireless channel modeling.",
+    "cover": "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-02-10",
+    "category": "Wireless",
+    "live_link": null,
+    "gallery": []
+  },
+  {
+    "id": 6,
+    "title": "Information Theory & Coding — ECE 504",
+    "slug": "information-theory-coding-ece-504",
+    "excerpt": "Entropy, channel capacity, and error-correcting codes.",
+    "content": "Introduction to information theory and coding including source coding, channel coding, Shannon's theorems, convolutional codes, turbo codes, and LDPC codes.",
+    "cover": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-02-10",
+    "category": "Theory",
+    "live_link": null,
+    "gallery": []
+  }
+]

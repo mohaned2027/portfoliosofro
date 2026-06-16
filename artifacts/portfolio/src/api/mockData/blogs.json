@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "title": "What Will 6G Really Look Like?",
+    "slug": "what-will-6g-really-look-like",
+    "excerpt": "A short, accessible take on a contemporary topic in communications engineering — written for students, peers, and the broader engineering community.",
+    "content": "## Introduction\n\nThis post explores a topic at the intersection of research and practice. Modern wireless networks have evolved far beyond their origins, and the next decade promises even more dramatic shifts.\n\n## Key Insights\n\nFirst, we should recognize that the boundary between communication and computation is dissolving. Second, energy efficiency has moved from a desirable trait to a hard constraint. Third, intelligent surfaces and AI-native air interfaces are no longer speculation — they are shipping ideas.\n\n## What This Means\n\nFor students, this is a moment of opportunity: the curriculum is being rewritten in real time, and graduates who understand both the physics and the software stack will lead.\n\n## Conclusion\n\nThe field is wide open. Choose problems that matter, build things, publish honestly.",
+    "cover": "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-01-01",
+    "category": "Technology",
+    "live_link": null,
+    "gallery": []
+  },
+  {
+    "id": 2,
+    "title": "Why Intelligent Surfaces Matter",
+    "slug": "why-intelligent-surfaces-matter",
+    "excerpt": "A short, accessible take on a contemporary topic in communications engineering — written for students, peers, and the broader engineering community.",
+    "content": "## Introduction\n\nThis post explores a topic at the intersection of research and practice. Modern wireless networks have evolved far beyond their origins, and the next decade promises even more dramatic shifts.\n\n## Key Insights\n\nFirst, we should recognize that the boundary between communication and computation is dissolving. Second, energy efficiency has moved from a desirable trait to a hard constraint. Third, intelligent surfaces and AI-native air interfaces are no longer speculation — they are shipping ideas.\n\n## What This Means\n\nFor students, this is a moment of opportunity: the curriculum is being rewritten in real time, and graduates who understand both the physics and the software stack will lead.\n\n## Conclusion\n\nThe field is wide open. Choose problems that matter, build things, publish honestly.",
+    "cover": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-02-02",
+    "category": "Research",
+    "live_link": null,
+    "gallery": []
+  },
+  {
+    "id": 3,
+    "title": "Teaching Wireless in the Age of AI",
+    "slug": "teaching-wireless-in-the-age-of-ai",
+    "excerpt": "A short, accessible take on a contemporary topic in communications engineering — written for students, peers, and the broader engineering community.",
+    "content": "## Introduction\n\nThis post explores a topic at the intersection of research and practice. Modern wireless networks have evolved far beyond their origins, and the next decade promises even more dramatic shifts.\n\n## Key Insights\n\nFirst, we should recognize that the boundary between communication and computation is dissolving. Second, energy efficiency has moved from a desirable trait to a hard constraint. Third, intelligent surfaces and AI-native air interfaces are no longer speculation — they are shipping ideas.\n\n## What This Means\n\nFor students, this is a moment of opportunity: the curriculum is being rewritten in real time, and graduates who understand both the physics and the software stack will lead.\n\n## Conclusion\n\nThe field is wide open. Choose problems that matter, build things, publish honestly.",
+    "cover": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-03-03",
+    "category": "Education",
+    "live_link": null,
+    "gallery": []
+  },
+  {
+    "id": 4,
+    "title": "From Theory to Testbed: A Researcher's Journey",
+    "slug": "from-theory-to-testbed",
+    "excerpt": "A short, accessible take on a contemporary topic in communications engineering — written for students, peers, and the broader engineering community.",
+    "content": "## Introduction\n\nThis post explores a topic at the intersection of research and practice. Modern wireless networks have evolved far beyond their origins, and the next decade promises even more dramatic shifts.\n\n## Key Insights\n\nFirst, we should recognize that the boundary between communication and computation is dissolving. Second, energy efficiency has moved from a desirable trait to a hard constraint. Third, intelligent surfaces and AI-native air interfaces are no longer speculation — they are shipping ideas.\n\n## What This Means\n\nFor students, this is a moment of opportunity: the curriculum is being rewritten in real time, and graduates who understand both the physics and the software stack will lead.\n\n## Conclusion\n\nThe field is wide open. Choose problems that matter, build things, publish honestly.",
+    "cover": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1200&q=70",
+    "date": "2025-04-04",
+    "category": "Research",
+    "live_link": null,
+    "gallery": []
+  }
+]

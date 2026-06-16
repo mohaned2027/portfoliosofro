@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "title": "Associate Professor",
+    "slug": "associate-professor",
+    "company": "ECE Department, IAET, EAA",
+    "description": "Leading teaching, research and graduate projects in the ECE department.",
+    "start_date": "2025-01-01",
+    "end_date": null,
+    "is_current": true
+  },
+  {
+    "id": 2,
+    "title": "Head of ECE Department",
+    "slug": "head-of-ece-department",
+    "company": "IAET, EAA",
+    "description": "Departmental leadership, control board, and quality assurance.",
+    "start_date": "2021-01-01",
+    "end_date": null,
+    "is_current": true
+  },
+  {
+    "id": 3,
+    "title": "Assistant Professor",
+    "slug": "assistant-professor",
+    "company": "ECE Department, IAET, EAA",
+    "description": "Teaching and supervising undergraduate and graduate communications courses.",
+    "start_date": "2018-01-01",
+    "end_date": "2024-12-31",
+    "is_current": false
+  },
+  {
+    "id": 4,
+    "title": "Adjunct Assistant Professor",
+    "slug": "adjunct-assistant-professor-cairo",
+    "company": "Credit Hour Mechatronic Program, Faculty of Engineering, Cairo University",
+    "description": "Adjunct teaching within the Mechatronics credit-hour program.",
+    "start_date": "2022-01-01",
+    "end_date": null,
+    "is_current": true
+  },
+  {
+    "id": 5,
+    "title": "Adjunct Assistant Professor",
+    "slug": "adjunct-assistant-professor-hti",
+    "company": "ECE Department, Higher Technological Institute (HTI)",
+    "description": "Adjunct teaching of communications and electronics courses.",
+    "start_date": "2020-01-01",
+    "end_date": null,
+    "is_current": true
+  },
+  {
+    "id": 6,
+    "title": "Head of IT Department",
+    "slug": "head-of-it-department",
+    "company": "IAET, EAA",
+    "description": "Led the Information Technology department.",
+    "start_date": "2021-01-01",
+    "end_date": "2022-12-31",
+    "is_current": false
+  },
+  {
+    "id": 7,
+    "title": "Teaching Assistant",
+    "slug": "teaching-assistant",
+    "company": "ECE Department, IAET, EAA",
+    "description": "Teaching assistance and advanced communication lab experiment preparation.",
+    "start_date": "2005-01-01",
+    "end_date": "2018-12-31",
+    "is_current": false
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "Ahmed Selim",
+    "email": "student1@university.edu",
+    "subject": "Request to join lab",
+    "message": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "read_at": "2026-01-02T10:00:00.000000Z",
+    "created_at": "2026-01-01T09:00:00.000000Z"
+  },
+  {
+    "id": 2,
+    "name": "Mariam Khaled",
+    "email": "student2@university.edu",
+    "subject": "Question about ECE-501",
+    "message": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "read_at": null,
+    "created_at": "2026-02-02T14:30:00.000000Z"
+  },
+  {
+    "id": 3,
+    "name": "Omar Hassan",
+    "email": "student3@university.edu",
+    "subject": "Recommendation letter",
+    "message": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "read_at": null,
+    "created_at": "2026-03-03T08:15:00.000000Z"
+  },
+  {
+    "id": 4,
+    "name": "Layla Naguib",
+    "email": "student4@university.edu",
+    "subject": "Collaboration inquiry",
+    "message": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "read_at": "2026-04-05T11:00:00.000000Z",
+    "created_at": "2026-04-04T16:45:00.000000Z"
+  },
+  {
+    "id": 5,
+    "name": "Yousef Tarek",
+    "email": "student5@university.edu",
+    "subject": "Speaking invitation",
+    "message": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "read_at": null,
+    "created_at": "2026-05-05T10:00:00.000000Z"
+  },
+  {
+    "id": 6,
+    "name": "Sara Ibrahim",
+    "email": "student6@university.edu",
+    "subject": "Request to join lab",
+    "message": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "read_at": null,
+    "created_at": "2026-06-06T13:20:00.000000Z"
+  },
+  {
+    "id": 7,
+    "name": "Hassan Abdo",
+    "email": "student7@university.edu",
+    "subject": "Question about ECE-501",
+    "message": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "read_at": "2026-01-08T09:00:00.000000Z",
+    "created_at": "2026-01-07T15:00:00.000000Z"
+  },
+  {
+    "id": 8,
+    "name": "Ahmed Selim",
+    "email": "student8@university.edu",
+    "subject": "Recommendation letter",
+    "message": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "read_at": null,
+    "created_at": "2026-02-08T11:30:00.000000Z"
+  },
+  {
+    "id": 9,
+    "name": "Mariam Khaled",
+    "email": "student9@university.edu",
+    "subject": "Collaboration inquiry",
+    "message": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "read_at": null,
+    "created_at": "2026-03-09T07:45:00.000000Z"
+  },
+  {
+    "id": 10,
+    "name": "Omar Hassan",
+    "email": "student10@university.edu",
+    "subject": "Speaking invitation",
+    "message": "Dear Professor, I hope this message finds you well. I am writing to inquire about an opportunity to collaborate on your ongoing research. I would be grateful for the chance to discuss this further at your convenience. Best regards.",
+    "read_at": "2026-04-11T10:00:00.000000Z",
+    "created_at": "2026-04-10T12:00:00.000000Z"
+  }
+]
