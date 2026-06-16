@@ -100,15 +100,81 @@ const PUB_SHOW = {
   blogs: PUB.blogs?.show,
 };
 
-/** Extract the first array value from a response object (e.g. { achievements: [...], count }) */
-function extractArray(res) {
-  if (Array.isArray(res)) return res;
-  if (res && typeof res === "object") {
-    for (const v of Object.values(res)) {
-      if (Array.isArray(v)) return v;
+/** 
+ * Extract the first array value from a response object 
+ * and return the full unwrapped data object if possible.
+ */
+function normalizeResponse(res) {
+  // If backend returned { status, message, data: { key: [...] } }
+  // We want to return { data: [...], total, ... }
+  const payload = res?.data || res;
+  
+  if (Array.isArray(payload)) return { data: payload, total: payload.length };
+  
+  if (payload && typeof payload === "object") {
+    // Find the first array property (e.g. researches, blogs)
+    for (const [k, v] of Object.entries(payload)) {
+      if (Array.isArray(v)) {
+        return {
+          data: v,
+          total: payload.count || v.length,
+          page: 1,
+          pageSize: v.length,
+          totalPages: 1
+        };
+      }
     }
   }
-  return [];
+  
+  return { data: [], total: 0 };
+}
+
+/** 
+ * Prepares payload for backend. 
+ * If it contains a File or array of Files, converts to FormData.
+ * Also handles Laravel _method spoofing for PUT/PATCH with files.
+ */
+function preparePayload(data, method = "POST") {
+  // Ensure we don't send internal fields
+  const payload = { ...data };
+  delete payload.id;
+  delete payload.created_at;
+  delete payload.updated_at;
+  delete payload._avatarPreview;
+
+  // Handle special fields that need JSON serialization
+  if (payload.social_links && typeof payload.social_links === 'object') {
+    payload.social_links = JSON.stringify(payload.social_links);
+  }
+
+  const hasFile = Object.values(payload).some(
+    v => v instanceof File || (Array.isArray(v) && v[0] instanceof File)
+  );
+
+  if (!hasFile) return { body: payload, method };
+
+  const fd = new FormData();
+  Object.entries(payload).forEach(([k, v]) => {
+    if (Array.isArray(v)) {
+      // If it's a file array (like gallery), append each
+      if (v[0] instanceof File) {
+        v.forEach(item => fd.append(`${k}[]`, item));
+      } else {
+        // For simple arrays like skills[] or authors[], backend might expect multiple appends or JSON
+        v.forEach(item => fd.append(`${k}[]`, item));
+      }
+    } else if (v !== null && v !== undefined) {
+      fd.append(k, v);
+    }
+  });
+
+  // Laravel multipart PUT workaround: Use POST with _method=PUT
+  if (method === "PUT" || method === "PATCH") {
+    fd.append("_method", method);
+    return { body: fd, method: "POST" };
+  }
+
+  return { body: fd, method };
 }
 
 // ── Generic CRUD factory ─────────────────────────────────────────────────────
@@ -118,23 +184,28 @@ function crud(key) {
     return {
       list: async (_q) => {
         const res = await apiFetch(ep.list, "GET");
-        const data = extractArray(res);
-        return {
-          data,
-          total: data.length,
-          page: 1,
-          pageSize: data.length,
-          totalPages: 1,
-        };
+        return normalizeResponse(res);
       },
-      get: (id) => {
+      get: async (id) => {
         const pubShow = PUB_SHOW[key];
         const url = pubShow ? pubShow(id) : ep.show(id);
-        return apiFetch(url, "GET");
+        const res = await apiFetch(url, "GET");
+        return res?.data || res;
       },
-      create: (payload) => apiFetch(ep.store, "POST", payload),
-      update: (id, payload) => apiFetch(ep.update(id), "PUT", payload),
-      remove: (id) => apiFetch(ep.delete(id), "DELETE"),
+      create: async (payload) => {
+        const { body, method } = preparePayload(payload, "POST");
+        const res = await apiFetch(ep.store, method, body);
+        return res?.data || res;
+      },
+      update: async (id, payload) => {
+        const { body, method } = preparePayload(payload, "PUT");
+        const res = await apiFetch(ep.update(id), method, body);
+        return res?.data || res;
+      },
+      remove: async (id) => {
+        const res = await apiFetch(ep.delete(id), "DELETE");
+        return res?.data || res;
+      },
     };
   }
 
@@ -189,13 +260,10 @@ export const api = {
       }
     : {
         login: async (email, password) => {
-          const res = await apiFetch(EP.auth.login, "POST", {
-            email,
-            password,
-          });
-          // res is already unwrapped: { token, user }
-          if (res?.token) setAuthToken(res.token);
-          return { token: res.token, user: res.user };
+          const res = await apiFetch(EP.auth.login, "POST", { email, password });
+          const data = res?.data || res;
+          if (data?.token) setAuthToken(data.token);
+          return { token: data.token, user: data.user };
         },
         forgotPassword: (email) =>
           apiFetch(EP.auth.forgotPassword, "POST", { email }),
@@ -207,7 +275,10 @@ export const api = {
             password,
             password_confirmation,
           }),
-        profile: () => apiFetch(EP.user.get, "GET"),
+        profile: async () => {
+           const res = await apiFetch(EP.user.get, "GET");
+           return res?.data || res;
+        },
       },
 
   professor: MOCK_MODE
@@ -219,8 +290,15 @@ export const api = {
         },
       }
     : {
-        get: () => apiFetch(EP.user.get, "GET"),
-        update: (payload) => apiFetch(EP.user.update, "PUT", payload),
+        get: async () => {
+          const res = await apiFetch(EP.user.get, "GET");
+          return res?.data || res;
+        },
+        update: async (payload) => {
+          const { body, method } = preparePayload(payload, "PUT");
+          const res = await apiFetch(EP.user.update, method, body);
+          return res?.data || res;
+        },
       },
 
   about: MOCK_MODE
@@ -232,8 +310,17 @@ export const api = {
         },
       }
     : {
-        get: () => apiFetch(EP.about.get, "GET"),
-        update: (payload) => apiFetch(EP.about.update, "PUT", payload),
+        get: async () => {
+          const res = await apiFetch(EP.about.get, "GET");
+          const data = res?.data || res;
+          // singleton about returns data.about as array or object
+          return Array.isArray(data?.about) ? data.about[0] : (data?.about || data);
+        },
+        update: async (payload) => {
+          const { body, method } = preparePayload(payload, "PUT");
+          const res = await apiFetch(EP.about.update, method, body);
+          return res?.data || res;
+        },
       },
 
   settings: MOCK_MODE
@@ -245,8 +332,17 @@ export const api = {
         },
       }
     : {
-        get: () => apiFetch(EP.settings.get, "GET"),
-        update: (payload) => apiFetch(EP.settings.update, "PUT", payload),
+        get: async () => {
+          const res = await apiFetch(EP.settings.get, "GET");
+          const data = res?.data || res;
+          // singleton settings returns data.settings as array or object
+          return Array.isArray(data?.settings) ? data.settings[0] : (data?.settings || data);
+        },
+        update: async (payload) => {
+          const { body, method } = preparePayload(payload, "PUT");
+          const res = await apiFetch(EP.settings.update, method, body);
+          return res?.data || res;
+        },
       },
 
   education: crud("education"),
@@ -270,18 +366,20 @@ export const api = {
     : {
         list: async (_q) => {
           const res = await apiFetch(EP.messages.list, "GET");
-          const data = extractArray(res);
-          return {
-            data,
-            total: data.length,
-            page: 1,
-            pageSize: data.length,
-            totalPages: 1,
-          };
+          return normalizeResponse(res);
         },
-        get: (id) => apiFetch(EP.messages.list + `/${id}`, "GET"),
-        remove: (id) => apiFetch(EP.messages.delete(id), "DELETE"),
-        markRead: (id) => apiFetch(EP.messages.read(id), "PATCH"),
+        get: async (id) => {
+          const res = await apiFetch(EP.messages.list + `/${id}`, "GET");
+          return res?.data || res;
+        },
+        remove: async (id) => {
+          const res = await apiFetch(EP.messages.delete(id), "DELETE");
+          return res?.data || res;
+        },
+        markRead: async (id) => {
+          const res = await apiFetch(EP.messages.read(id), "PATCH");
+          return res?.data || res;
+        },
       },
 
   contact: MOCK_MODE
@@ -297,6 +395,9 @@ export const api = {
         },
       }
     : {
-        send: (payload) => apiFetch(PUB.contactUs.store, "POST", payload),
+        send: async (payload) => {
+          const res = await apiFetch(PUB.contactUs.store, "POST", payload);
+          return res?.data || res;
+        },
       },
 };

@@ -174,11 +174,11 @@ export function CrudPage({ title, subtitle, queryKey, api, columns, fields, defa
                       <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
                         {f.label}
                       </span>
-                      <Dropzone
-                        value={val || undefined}
-                        onChange={(d) => set(d ?? "")}
-                        className="mt-1"
-                      />
+	                      <Dropzone
+	                        value={val instanceof File ? URL.createObjectURL(val) : (val || undefined)}
+	                        onChange={(d) => set(d ?? "")}
+	                        className="mt-1"
+	                      />
                     </div>
                   );
                 }

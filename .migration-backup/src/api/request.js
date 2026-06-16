@@ -17,7 +17,7 @@ import siteSettings from "./mockData/settings.json";
 // ============================================================
 // CONFIGURATION
 // ============================================================
-export const MOCK_MODE = true; // ← switch to false to use real backend
+export const MOCK_MODE = false; // ← SET TO FALSE TO USE REAL BACKEND
 
 // ============================================================
 // MOCK DATA MAP — endpoint substring → in-memory dataset
@@ -54,8 +54,12 @@ const simulateDelay = () =>
 const TOKEN_KEY = "auth_token";
 export const getAuthToken = () =>
   typeof window !== "undefined" ? localStorage.getItem(TOKEN_KEY) : null;
-export const setAuthToken = (t) => localStorage.setItem(TOKEN_KEY, t);
-export const removeAuthToken = () => localStorage.removeItem(TOKEN_KEY);
+export const setAuthToken = (t) => {
+  if (typeof window !== "undefined") localStorage.setItem(TOKEN_KEY, t);
+};
+export const removeAuthToken = () => {
+  if (typeof window !== "undefined") localStorage.removeItem(TOKEN_KEY);
+};
 export const isAuthenticated = () => !!getAuthToken();
 
 // ============================================================
@@ -142,13 +146,17 @@ export const apiFetch = async (endpoint, method = "GET", body = null) => {
   const fullUrl = endpoint.startsWith("http")
     ? endpoint
     : `${BASE_URL}${endpoint}`;
+  
   const headers = { Accept: "application/json" };
   const token = getAuthToken();
   if (token) headers["Authorization"] = `Bearer ${token}`;
-  if (body && !(body instanceof FormData))
+  
+  // Note: For multipart/form-data (FormData), fetch handles the Content-Type header and boundary.
+  if (body && !(body instanceof FormData)) {
     headers["Content-Type"] = "application/json";
+  }
 
-  const res = await fetch(fullUrl, {
+  const fetchOptions = {
     method,
     headers,
     body: body
@@ -156,27 +164,46 @@ export const apiFetch = async (endpoint, method = "GET", body = null) => {
         ? body
         : JSON.stringify(body)
       : null,
-  });
+  };
+
+  const res = await fetch(fullUrl, fetchOptions);
   const ct = res.headers.get("content-type") || "";
   const json = ct.includes("application/json")
     ? await res.json()
     : await res.text();
+
   if (res.status === 401) {
-    if (!endpoint.includes("/auth/login")) removeAuthToken();
-    const err = new Error(json?.message || "Unauthorized");
+    if (!endpoint.includes("/auth/login")) {
+      removeAuthToken();
+      // Optional: redirect to login if in browser
+      // if (typeof window !== "undefined") window.location.href = "/login";
+    }
+    const err = new Error(typeof json === 'object' ? (json?.message || "Unauthorized") : "Unauthorized");
     err.status = 401;
     throw err;
   }
+
   if (!res.ok) {
-    const err = new Error(json?.message || "Request failed");
+    let message = "Request failed";
+    let errors = null;
+    
+    if (typeof json === 'object') {
+      message = json.message || message;
+      // Handle Laravel validation errors
+      if (json.data && json.data.errors) {
+        errors = json.data.errors;
+      }
+    }
+    
+    const err = new Error(message);
     err.status = res.status;
     err.data = json;
+    err.errors = errors;
     throw err;
   }
-  // Unwrap standard backend envelope { status, message, data }
-  if (json && typeof json === "object" && "data" in json) {
-    return json.data;
-  }
+
+  // Backend standard: { status, message, data }
+  // We return the full JSON to the client.js layer for more precise unwrap/normalization
   return json;
 };
 

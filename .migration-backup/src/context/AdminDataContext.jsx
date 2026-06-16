@@ -38,9 +38,21 @@ function useAdminList(jsonData, apiUrl) {
     apiFetch(apiUrl, "GET")
       .then((res) => {
         if (!active) return;
-        setData(
-          Array.isArray(res) ? res : Array.isArray(res?.data) ? res.data : [],
-        );
+        const payload = res?.data || res;
+        if (Array.isArray(payload)) {
+          setData(payload);
+        } else if (payload && typeof payload === "object") {
+          // Find the first array property (e.g. researches, blogs)
+          for (const v of Object.values(payload)) {
+            if (Array.isArray(v)) {
+              setData(v);
+              return;
+            }
+          }
+          setData([]);
+        } else {
+          setData([]);
+        }
       })
       .catch(() => {});
     return () => {
@@ -61,7 +73,17 @@ function useAdminObject(jsonData, apiUrl) {
     apiFetch(apiUrl, "GET")
       .then((res) => {
         if (!active) return;
-        setData(res?.data ?? res ?? null);
+        let payload = res?.data || res;
+        // Handle singleton keyed responses like { about: [...] } or { settings: [...] }
+        if (payload && typeof payload === "object" && !Array.isArray(payload)) {
+          for (const v of Object.values(payload)) {
+            if (Array.isArray(v)) {
+              payload = v[0];
+              break;
+            }
+          }
+        }
+        setData(payload ?? null);
       })
       .catch(() => {});
     return () => {

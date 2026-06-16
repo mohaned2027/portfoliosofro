@@ -57,23 +57,32 @@ export default function AdminProfile() {
 
   const handleAvatar = (file) => {
     if (!file) return;
+    set("avatar", file);
+    // For local preview
     const r = new FileReader();
-    r.onload = () => set("avatar", r.result);
+    r.onload = () => set("_avatarPreview", r.result);
     r.readAsDataURL(file);
   };
 
   const handleCV = (file) => {
     if (!file) return;
-    const r = new FileReader();
-    r.onload = () => set("cv", r.result);
-    r.readAsDataURL(file);
+    set("cv", file);
   };
 
   const submit = async (e) => {
     e.preventDefault();
     setSaving(true);
     try {
-      await api.professor.update(form);
+      const payload = { ...form };
+      delete payload._avatarPreview;
+      
+      // Serialize social_links as JSON string if it's an object, 
+      // as the backend might expect a string or multipart might need it.
+      if (payload.social_links && typeof payload.social_links === 'object') {
+        payload.social_links = JSON.stringify(payload.social_links);
+      }
+
+      await api.professor.update(payload);
       setSaved(true);
       setTimeout(() => setSaved(false), 2500);
     } finally {
@@ -106,9 +115,9 @@ export default function AdminProfile() {
         <Section title="Profile Photo">
           <div className="flex items-center gap-5">
             <div className="relative shrink-0">
-              {form.avatar ? (
+              {form._avatarPreview || (typeof form.avatar === 'string' && form.avatar) ? (
                 <img
-                  src={form.avatar}
+                  src={form._avatarPreview || form.avatar}
                   alt=""
                   className="size-20 rounded-full object-cover border-2 border-electric/30"
                 />

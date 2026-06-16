@@ -19,9 +19,7 @@ export function Dropzone({
         setErr(`Max ${maxMb}MB`);
         return;
       }
-      const reader = new FileReader();
-      reader.onload = () => onChange(reader.result);
-      reader.readAsDataURL(file);
+	      onChange(file);
     },
     [maxMb, onChange],
   );

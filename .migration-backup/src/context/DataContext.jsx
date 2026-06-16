@@ -27,9 +27,10 @@ import positionsData from "@/api/mockData/positions.json";
 
 /** Extract the first array value from a response object */
 function extractArray(res) {
-  if (Array.isArray(res)) return res;
-  if (res && typeof res === "object") {
-    for (const v of Object.values(res)) {
+  const payload = res?.data || res;
+  if (Array.isArray(payload)) return payload;
+  if (payload && typeof payload === "object") {
+    for (const v of Object.values(payload)) {
       if (Array.isArray(v)) return v;
     }
   }
@@ -68,8 +69,17 @@ function usePublicObject(jsonData, apiUrl) {
     apiFetch(apiUrl, "GET")
       .then((res) => {
         if (!active) return;
-        // apiFetch already unwraps the { status, message, data } envelope
-        setData(res ?? null);
+        let payload = res?.data || res;
+        // Handle singleton keyed responses like { about: [...] } or { settings: [...] }
+        if (payload && typeof payload === "object" && !Array.isArray(payload)) {
+          for (const v of Object.values(payload)) {
+            if (Array.isArray(v)) {
+              payload = v[0];
+              break;
+            }
+          }
+        }
+        setData(payload ?? null);
       })
       .catch(() => {});
     return () => {
@@ -117,7 +127,7 @@ export const DataProvider = ({ children }) => {
   const researches = usePublicList(researchesData, EP.researches.list);
   const achievements = usePublicList(achievementsData, EP.achievements.list);
   const blogs = usePublicList(blogsData, EP.blogs.list);
-  const messages = usePublicList(messagesData, "/messages");
+  const messages = usePublicList(messagesData, EP.contactUs.store); // Using store as list placeholder for public context if needed
   const positions = usePublicList(positionsData, EP.positions.list);
 
   return (
