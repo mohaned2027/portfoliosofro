@@ -17,7 +17,7 @@ import siteSettings from "./mockData/settings.json";
 // ============================================================
 // CONFIGURATION
 // ============================================================
-export const MOCK_MODE = true; // ← switch to false to use real backend
+export const MOCK_MODE = false; // ← set to true to use mock data (no backend needed)
 
 // ============================================================
 // MOCK DATA MAP — endpoint substring → in-memory dataset

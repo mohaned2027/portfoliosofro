@@ -36,7 +36,7 @@ function extractArray(res) {
   return [];
 }
 
-/** Hook for a list resource (returns array). */
+/** Hook for a list resource (returns array). Falls back to JSON data if API fails. */
 function usePublicList(jsonData, apiUrl) {
   const [data, setData] = useState(MOCK_MODE ? jsonData : []);
 
@@ -46,10 +46,12 @@ function usePublicList(jsonData, apiUrl) {
     apiFetch(apiUrl, "GET")
       .then((res) => {
         if (!active) return;
-        // Backend returns unwrapped { achievements: [...], count } or similar
-        setData(extractArray(res));
+        const arr = extractArray(res);
+        setData(arr.length > 0 ? arr : jsonData);
       })
-      .catch(() => {});
+      .catch(() => {
+        if (active) setData(jsonData);
+      });
     return () => {
       active = false;
     };
@@ -58,7 +60,7 @@ function usePublicList(jsonData, apiUrl) {
   return data;
 }
 
-/** Hook for a single-object resource (returns object or null). */
+/** Hook for a single-object resource (returns object or null). Falls back to JSON data if API fails. */
 function usePublicObject(jsonData, apiUrl) {
   const [data, setData] = useState(MOCK_MODE ? jsonData : null);
 
@@ -68,10 +70,11 @@ function usePublicObject(jsonData, apiUrl) {
     apiFetch(apiUrl, "GET")
       .then((res) => {
         if (!active) return;
-        // apiFetch already unwraps the { status, message, data } envelope
-        setData(res ?? null);
+        setData(res ?? jsonData ?? null);
       })
-      .catch(() => {});
+      .catch(() => {
+        if (active) setData(jsonData ?? null);
+      });
     return () => {
       active = false;
     };
