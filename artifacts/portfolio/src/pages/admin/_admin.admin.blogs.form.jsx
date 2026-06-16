@@ -15,11 +15,12 @@ function Label({ children }) {
   );
 }
 
-function Field({ label, children }) {
+function Field({ label, error, children }) {
   return (
     <div className="space-y-1.5">
       <Label>{label}</Label>
       {children}
+      {error && <p className="text-xs text-destructive mt-0.5">{error}</p>}
     </div>
   );
 }
@@ -103,6 +104,7 @@ export default function BlogForm() {
   const [form, setForm] = useState(EMPTY);
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [fe, setFe] = useState({});
 
   const isEdit = Boolean(id);
 
@@ -122,7 +124,10 @@ export default function BlogForm() {
     }
   }, [id, navigate]);
 
-  const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
+  const set = (k, v) => {
+    setFe((p) => { const n = { ...p }; delete n[k]; return n; });
+    setForm((f) => ({ ...f, [k]: v }));
+  };
 
   const submit = async (e) => {
     e.preventDefault();
@@ -134,6 +139,8 @@ export default function BlogForm() {
         await api.blogs.create(form);
       }
       navigate("/admin/blogs");
+    } catch (err) {
+      setFe(err?.data?.errors ?? {});
     } finally {
       setSaving(false);
     }
@@ -196,7 +203,7 @@ export default function BlogForm() {
             </p>
           </div>
           <div className="px-6 py-5 space-y-4">
-            <Field label="Title">
+            <Field label="Title" error={fe?.title?.[0]}>
               <input
                 required
                 value={form.title}
@@ -206,7 +213,7 @@ export default function BlogForm() {
               />
             </Field>
 
-            <Field label="Excerpt">
+            <Field label="Excerpt" error={fe?.excerpt?.[0]}>
               <textarea
                 rows={3}
                 value={form.excerpt}
@@ -226,7 +233,7 @@ export default function BlogForm() {
             </p>
           </div>
           <div className="px-6 py-5 space-y-4">
-            <Field label="Category">
+            <Field label="Category" error={fe?.category?.[0]}>
               <input
                 value={form.category}
                 onChange={(e) => set("category", e.target.value)}
@@ -235,7 +242,7 @@ export default function BlogForm() {
               />
             </Field>
 
-            <Field label="Date">
+            <Field label="Date" error={fe?.date?.[0]}>
               <input
                 type="date"
                 value={form.date}
@@ -255,7 +262,7 @@ export default function BlogForm() {
           </p>
         </div>
         <div className="px-6 py-5">
-          <Field label="">
+          <Field label="" error={fe?.content?.[0]}>
             <textarea
               rows={16}
               required

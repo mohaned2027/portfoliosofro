@@ -21,11 +21,12 @@ function Label({ children }) {
     </label>
   );
 }
-function Field({ label, children }) {
+function Field({ label, error, children }) {
   return (
     <div className="space-y-1.5">
       <Label>{label}</Label>
       {children}
+      {error && <p className="text-xs text-destructive mt-0.5">{error}</p>}
     </div>
   );
 }
@@ -117,6 +118,7 @@ export default function AchievementForm() {
   const [form, setForm] = useState(EMPTY);
   const [saving, setSaving] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [fe, setFe] = useState({});
 
   useEffect(() => {
     if (!isEdit) {
@@ -143,7 +145,10 @@ export default function AchievementForm() {
     }
   }, [allItems, id, isEdit]);
 
-  const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
+  const set = (k, v) => {
+    setFe((p) => { const n = { ...p }; delete n[k]; return n; });
+    setForm((f) => ({ ...f, [k]: v }));
+  };
 
   const addImage = (src) =>
     setForm((f) => ({ ...f, images: [...f.images, src] }));
@@ -163,6 +168,8 @@ export default function AchievementForm() {
         await api.achievements.create(payload);
       }
       nav("/admin/achievements");
+    } catch (err) {
+      setFe(err?.data?.errors ?? {});
     } finally {
       setSaving(false);
     }
@@ -227,7 +234,7 @@ export default function AchievementForm() {
           </p>
         </div>
         <div className="px-6 py-5 space-y-4">
-          <Field label="Title">
+          <Field label="Title" error={fe?.title?.[0]}>
             <input
               required
               value={form.title}
@@ -237,7 +244,7 @@ export default function AchievementForm() {
           </Field>
 
           <div className="grid grid-cols-2 gap-4">
-            <Field label="Category">
+            <Field label="Category" error={fe?.category?.[0]}>
               <input
                 value={form.category}
                 onChange={(e) => set("category", e.target.value)}
@@ -245,7 +252,7 @@ export default function AchievementForm() {
                 className={INPUT}
               />
             </Field>
-            <Field label="Date">
+            <Field label="Date" error={fe?.date?.[0]}>
               <input
                 type="date"
                 value={form.date}
@@ -255,7 +262,7 @@ export default function AchievementForm() {
             </Field>
           </div>
 
-          <Field label="Short Description (Excerpt)">
+          <Field label="Short Description (Excerpt)" error={fe?.excerpt?.[0]}>
             <textarea
               rows={3}
               value={form.excerpt}
@@ -264,7 +271,7 @@ export default function AchievementForm() {
             />
           </Field>
 
-          <Field label="Full Description (Content)">
+          <Field label="Full Description (Content)" error={fe?.content?.[0]}>
             <textarea
               rows={5}
               value={form.content}
@@ -273,7 +280,7 @@ export default function AchievementForm() {
             />
           </Field>
 
-          <Field label="Live Link (optional)">
+          <Field label="Live Link (optional)" error={fe?.live_link?.[0]}>
             <input
               type="url"
               value={form.live_link}

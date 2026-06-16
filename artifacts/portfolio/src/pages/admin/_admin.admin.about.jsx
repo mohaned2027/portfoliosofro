@@ -16,13 +16,14 @@ function Section({ title, children }) {
   );
 }
 
-function Field({ label, children }) {
+function Field({ label, error, children }) {
   return (
     <div className="space-y-1.5">
       <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
         {label}
       </label>
       {children}
+      {error && <p className="text-xs text-destructive mt-0.5">{error}</p>}
     </div>
   );
 }
@@ -36,12 +37,16 @@ export default function AdminAbout() {
   const [form, setForm] = useState({});
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [fe, setFe] = useState({});
 
   useEffect(() => {
     if (about) setForm(structuredClone(about));
   }, [about]);
 
-  const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
+  const set = (k, v) => {
+    setFe((p) => { const n = { ...p }; delete n[k]; return n; });
+    setForm((f) => ({ ...f, [k]: v }));
+  };
 
   const setSkillField = (idx, key, val) =>
     setForm((f) => {
@@ -88,6 +93,8 @@ export default function AdminAbout() {
       await api.about.update(form);
       setSaved(true);
       setTimeout(() => setSaved(false), 2500);
+    } catch (err) {
+      setFe(err?.data?.errors ?? {});
     } finally {
       setSaving(false);
     }
@@ -115,7 +122,7 @@ export default function AdminAbout() {
 
       {/* About */}
       <Section title="About">
-        <Field label="Bio">
+        <Field label="Bio" error={fe?.bio?.[0]}>
           <textarea
             rows={5}
             value={form.bio ?? ""}
@@ -123,7 +130,7 @@ export default function AdminAbout() {
             className={TEXTAREA}
           />
         </Field>
-        <Field label="Vision">
+        <Field label="Vision" error={fe?.vision?.[0]}>
           <textarea
             rows={3}
             value={form.vision ?? ""}

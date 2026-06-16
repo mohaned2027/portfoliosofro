@@ -27,7 +27,11 @@ function ExpModal({ initial, onClose, onSaved }) {
     ...(initial?.id ? { id: initial.id } : {}),
   });
   const [saving, setSaving] = useState(false);
-  const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
+  const [fe, setFe] = useState({});
+  const set = (k, v) => {
+    setFe((p) => { const n = { ...p }; delete n[k]; return n; });
+    setForm((f) => ({ ...f, [k]: v }));
+  };
   const submit = async (e) => {
     e.preventDefault();
     setSaving(true);
@@ -36,6 +40,8 @@ function ExpModal({ initial, onClose, onSaved }) {
         ? await api.experiences.update(initial.id, form)
         : await api.experiences.create(form);
       onSaved();
+    } catch (err) {
+      setFe(err?.data?.errors ?? {});
     } finally {
       setSaving(false);
     }
@@ -65,6 +71,7 @@ function ExpModal({ initial, onClose, onSaved }) {
               onChange={(e) => set("title", e.target.value)}
               className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 focus:ring-1 focus:ring-electric/30"
             />
+            {fe?.title?.[0] && <p className="text-xs text-destructive mt-0.5">{fe.title[0]}</p>}
           </div>
           <div className="space-y-1.5">
             <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
@@ -76,6 +83,7 @@ function ExpModal({ initial, onClose, onSaved }) {
               onChange={(e) => set("company", e.target.value)}
               className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 focus:ring-1 focus:ring-electric/30"
             />
+            {fe?.company?.[0] && <p className="text-xs text-destructive mt-0.5">{fe.company[0]}</p>}
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
@@ -112,6 +120,7 @@ function ExpModal({ initial, onClose, onSaved }) {
               onChange={(e) => set("description", e.target.value)}
               className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 resize-none"
             />
+            {fe?.description?.[0] && <p className="text-xs text-destructive mt-0.5">{fe.description[0]}</p>}
           </div>
         </form>
         <div className="flex justify-end gap-3 px-6 py-4 border-t border-border">

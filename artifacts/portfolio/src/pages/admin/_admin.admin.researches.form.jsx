@@ -8,13 +8,14 @@ const INPUT =
   "w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 focus:ring-1 focus:ring-electric/30";
 const TEXTAREA = `${INPUT} resize-none`;
 
-function Field({ label, children }) {
+function Field({ label, error, children }) {
   return (
     <div className="space-y-1.5">
       <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
         {label}
       </label>
       {children}
+      {error && <p className="text-xs text-destructive mt-0.5">{error}</p>}
     </div>
   );
 }
@@ -100,6 +101,7 @@ export default function ResearchForm() {
   const [form, setForm] = useState(EMPTY);
   const [saving, setSaving] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [fe, setFe] = useState({});
 
   useEffect(() => {
     if (!isEdit) {
@@ -116,7 +118,10 @@ export default function ResearchForm() {
     }
   }, [allItems, id, isEdit]);
 
-  const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
+  const set = (k, v) => {
+    setFe((p) => { const n = { ...p }; delete n[k]; return n; });
+    setForm((f) => ({ ...f, [k]: v }));
+  };
 
   const submit = async (e) => {
     e.preventDefault();
@@ -129,6 +134,8 @@ export default function ResearchForm() {
         await api.researches.create(payload);
       }
       nav("/admin/researches");
+    } catch (err) {
+      setFe(err?.data?.errors ?? {});
     } finally {
       setSaving(false);
     }
@@ -189,7 +196,7 @@ export default function ResearchForm() {
           </p>
         </div>
         <div className="px-6 py-5 space-y-4">
-          <Field label="Title">
+          <Field label="Title" error={fe?.title?.[0]}>
             <input
               required
               value={form.title}
@@ -199,7 +206,7 @@ export default function ResearchForm() {
           </Field>
 
           <div className="grid grid-cols-2 gap-4">
-            <Field label="Date">
+            <Field label="Date" error={fe?.date?.[0]}>
               <input
                 type="date"
                 value={form.date?.slice(0, 10) ?? ""}
@@ -207,7 +214,7 @@ export default function ResearchForm() {
                 className={INPUT}
               />
             </Field>
-            <Field label="Category">
+            <Field label="Category" error={fe?.category?.[0]}>
               <input
                 value={form.category ?? ""}
                 onChange={(e) => set("category", e.target.value)}
@@ -217,7 +224,7 @@ export default function ResearchForm() {
             </Field>
           </div>
 
-          <Field label="Excerpt (Short Description)">
+          <Field label="Excerpt (Short Description)" error={fe?.excerpt?.[0]}>
             <textarea
               rows={3}
               value={form.excerpt}
@@ -226,7 +233,7 @@ export default function ResearchForm() {
             />
           </Field>
 
-          <Field label="Content (Full Description)">
+          <Field label="Content (Full Description)" error={fe?.content?.[0]}>
             <textarea
               rows={6}
               value={form.content}
@@ -235,7 +242,7 @@ export default function ResearchForm() {
             />
           </Field>
 
-          <Field label="Live Link (optional)">
+          <Field label="Live Link (optional)" error={fe?.live_link?.[0]}>
             <input
               type="url"
               value={form.live_link ?? ""}

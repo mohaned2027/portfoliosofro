@@ -91,7 +91,11 @@ function CourseModal({ initial, onClose, onSaved }) {
     ...(initial ?? {}),
   });
   const [saving, setSaving] = useState(false);
-  const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
+  const [fe, setFe] = useState({});
+  const set = (k, v) => {
+    setFe((p) => { const n = { ...p }; delete n[k]; return n; });
+    setForm((f) => ({ ...f, [k]: v }));
+  };
   const submit = async (e) => {
     e.preventDefault();
     setSaving(true);
@@ -101,6 +105,8 @@ function CourseModal({ initial, onClose, onSaved }) {
         ? await api.courses.update(initial.id, p)
         : await api.courses.create(p);
       onSaved();
+    } catch (err) {
+      setFe(err?.data?.errors ?? {});
     } finally {
       setSaving(false);
     }
@@ -133,6 +139,7 @@ function CourseModal({ initial, onClose, onSaved }) {
               onChange={(e) => set("title", e.target.value)}
               className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 focus:ring-1 focus:ring-electric/30"
             />
+            {fe?.title?.[0] && <p className="text-xs text-destructive mt-0.5">{fe.title[0]}</p>}
           </div>
           <div className="space-y-1.5">
             <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
@@ -144,6 +151,7 @@ function CourseModal({ initial, onClose, onSaved }) {
               onChange={(e) => set("excerpt", e.target.value)}
               className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 resize-none"
             />
+            {fe?.excerpt?.[0] && <p className="text-xs text-destructive mt-0.5">{fe.excerpt[0]}</p>}
           </div>
           <div className="space-y-1.5">
             <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
@@ -155,6 +163,7 @@ function CourseModal({ initial, onClose, onSaved }) {
               onChange={(e) => set("content", e.target.value)}
               className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 resize-none"
             />
+            {fe?.content?.[0] && <p className="text-xs text-destructive mt-0.5">{fe.content[0]}</p>}
           </div>
           <div className="space-y-1.5">
             <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
@@ -165,6 +174,7 @@ function CourseModal({ initial, onClose, onSaved }) {
               onChange={(e) => set("category", e.target.value)}
               className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60"
             />
+            {fe?.category?.[0] && <p className="text-xs text-destructive mt-0.5">{fe.category[0]}</p>}
           </div>
           <div className="space-y-1.5">
             <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
@@ -177,6 +187,7 @@ function CourseModal({ initial, onClose, onSaved }) {
               placeholder="https://…"
               className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60"
             />
+            {fe?.live_link?.[0] && <p className="text-xs text-destructive mt-0.5">{fe.live_link[0]}</p>}
           </div>
           <div className="space-y-1.5">
             <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">

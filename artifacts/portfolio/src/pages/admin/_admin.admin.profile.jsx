@@ -16,13 +16,14 @@ function Section({ title, children }) {
   );
 }
 
-function Field({ label, children }) {
+function Field({ label, error, children }) {
   return (
     <div className="space-y-1.5">
       <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
         {label}
       </label>
       {children}
+      {error && <p className="text-xs text-destructive mt-0.5">{error}</p>}
     </div>
   );
 }
@@ -44,6 +45,7 @@ export default function AdminProfile() {
   const [form, setForm] = useState({});
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [fe, setFe] = useState({});
   const avatarRef = useRef(null);
   const cvRef = useRef(null);
 
@@ -51,7 +53,10 @@ export default function AdminProfile() {
     if (professor) setForm(structuredClone(professor));
   }, [professor]);
 
-  const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
+  const set = (k, v) => {
+    setFe((p) => { const n = { ...p }; delete n[k]; return n; });
+    setForm((f) => ({ ...f, [k]: v }));
+  };
   const setSocial = (k, v) =>
     setForm((f) => ({ ...f, social_links: { ...(f.social_links ?? {}), [k]: v } }));
 
@@ -76,6 +81,8 @@ export default function AdminProfile() {
       await api.professor.update(form);
       setSaved(true);
       setTimeout(() => setSaved(false), 2500);
+    } catch (err) {
+      setFe(err?.data?.errors ?? {});
     } finally {
       setSaving(false);
     }
@@ -181,14 +188,14 @@ export default function AdminProfile() {
       {/* Basic info */}
       <Section title="Basic Information">
         <div className="grid grid-cols-2 gap-4">
-          <Field label="Full Name">
+          <Field label="Full Name" error={fe?.name?.[0]}>
             <input
               value={form.name ?? ""}
               onChange={(e) => set("name", e.target.value)}
               className={INPUT}
             />
           </Field>
-          <Field label="Title / Rank">
+          <Field label="Title / Rank" error={fe?.title?.[0]}>
             <input
               value={form.title ?? ""}
               onChange={(e) => set("title", e.target.value)}
@@ -197,14 +204,14 @@ export default function AdminProfile() {
           </Field>
         </div>
         <div className="grid grid-cols-2 gap-4">
-          <Field label="Department">
+          <Field label="Department" error={fe?.department?.[0]}>
             <input
               value={form.department ?? ""}
               onChange={(e) => set("department", e.target.value)}
               className={INPUT}
             />
           </Field>
-          <Field label="University">
+          <Field label="University" error={fe?.university?.[0]}>
             <input
               value={form.university ?? ""}
               onChange={(e) => set("university", e.target.value)}
@@ -217,7 +224,7 @@ export default function AdminProfile() {
       {/* Contact */}
       <Section title="Contact">
         <div className="grid grid-cols-2 gap-4">
-          <Field label="Email">
+          <Field label="Email" error={fe?.email?.[0]}>
             <input
               type="email"
               value={form.email ?? ""}
@@ -225,7 +232,7 @@ export default function AdminProfile() {
               className={INPUT}
             />
           </Field>
-          <Field label="Phone">
+          <Field label="Phone" error={fe?.phone?.[0]}>
             <input
               type="tel"
               value={form.phone ?? ""}
@@ -235,14 +242,14 @@ export default function AdminProfile() {
           </Field>
         </div>
         <div className="grid grid-cols-2 gap-4">
-          <Field label="Office">
+          <Field label="Office" error={fe?.office?.[0]}>
             <input
               value={form.office ?? ""}
               onChange={(e) => set("office", e.target.value)}
               className={INPUT}
             />
           </Field>
-          <Field label="Office Hours">
+          <Field label="Office Hours" error={fe?.office_hours?.[0]}>
             <input
               value={form.office_hours ?? ""}
               onChange={(e) => set("office_hours", e.target.value)}
@@ -250,7 +257,7 @@ export default function AdminProfile() {
             />
           </Field>
         </div>
-        <Field label="Address">
+        <Field label="Address" error={fe?.address?.[0]}>
           <input
             value={form.address ?? ""}
             onChange={(e) => set("address", e.target.value)}

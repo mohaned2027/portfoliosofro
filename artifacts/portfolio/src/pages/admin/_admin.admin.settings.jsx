@@ -74,6 +74,7 @@ function SiteIdentityCard() {
   const [form, setForm] = useState({ doctor_name: "", icon: "", favicon: "" });
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [fe, setFe] = useState({});
 
   useEffect(() => {
     if (settings)
@@ -84,7 +85,10 @@ function SiteIdentityCard() {
       });
   }, [settings]);
 
-  const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
+  const set = (k, v) => {
+    setFe((p) => { const n = { ...p }; delete n[k]; return n; });
+    setForm((f) => ({ ...f, [k]: v }));
+  };
 
   const submit = async (e) => {
     e.preventDefault();
@@ -94,6 +98,8 @@ function SiteIdentityCard() {
       await api.settings.update(form);
       setSaved(true);
       setTimeout(() => setSaved(false), 2500);
+    } catch (err) {
+      setFe(err?.data?.errors ?? {});
     } finally {
       setSaving(false);
     }
@@ -119,6 +125,7 @@ function SiteIdentityCard() {
             placeholder="e.g. Dr. Mohamed Sobhy Elbakry"
             className={INPUT}
           />
+          {fe?.doctor_name?.[0] && <p className="text-xs text-destructive mt-0.5">{fe.doctor_name[0]}</p>}
         </div>
 
         <ImageDropField
