@@ -6,7 +6,15 @@ import { useResourceList } from "@/lib/useResourceList";
 import { confirmDelete } from "@/lib/confirm";
 import { Pagination, usePagination } from "@/components/admin/Pagination";
 
-const EMPTY = { title: "", courseId: "", pdf: "", videoUrl: "", youtubeUrl: "", noteUrl: "", date: "" };
+const EMPTY = {
+  title: "",
+  courseId: "",
+  pdf: "",
+  videoUrl: "",
+  youtubeUrl: "",
+  noteUrl: "",
+  date: "",
+};
 
 function LectureModal({ initial, courses, onClose, onSaved }) {
   const [form, setForm] = useState({ ...EMPTY, ...(initial ?? {}) });
@@ -20,7 +28,9 @@ function LectureModal({ initial, courses, onClose, onSaved }) {
     }
     setSaving(true);
     try {
-      initial?.id ? await api.courses.update(initial.id, form) : await api.courses.create(form);
+      initial?.id
+        ? await api.lectures.update(initial.id, form)
+        : await api.lectures.create(form);
       onSaved();
     } finally {
       setSaving(false);
@@ -30,7 +40,9 @@ function LectureModal({ initial, courses, onClose, onSaved }) {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
       <div className="bg-card border border-border rounded-xl w-full max-w-lg shadow-2xl">
         <div className="flex items-center justify-between px-6 py-4 border-b border-border">
-          <p className="font-semibold">{initial?.id ? "Edit Lecture" : "New Lecture"}</p>
+          <p className="font-semibold">
+            {initial?.id ? "Edit Lecture" : "New Lecture"}
+          </p>
           <button
             onClick={onClose}
             className="grid size-7 place-items-center rounded hover:bg-muted text-muted-foreground"
@@ -126,7 +138,11 @@ export default function AdminLectures() {
   const [modal, setModal] = useState(null);
 
   const allLectures = coursesRaw.flatMap((c) =>
-    (c.lectures ?? []).map((l) => ({ ...l, courseTitle: c.title, courseId: c.id })),
+    (c.lectures ?? []).map((l) => ({
+      ...l,
+      courseTitle: c.title,
+      courseId: c.id,
+    })),
   );
   const filtered = allLectures.filter(
     (l) =>
@@ -134,10 +150,14 @@ export default function AdminLectures() {
       l.title?.toLowerCase().includes(search.toLowerCase()) ||
       l.courseTitle?.toLowerCase().includes(search.toLowerCase()),
   );
-  const { page, setPage, totalPages, paginated } = usePagination(filtered, search);
+  const { page, setPage, totalPages, paginated } = usePagination(
+    filtered,
+    search,
+  );
 
   const del = async (id) => {
-    if (!(await confirmDelete("This lecture will be permanently deleted."))) return;
+    if (!(await confirmDelete("This lecture will be permanently deleted.")))
+      return;
   };
 
   return (
@@ -145,7 +165,9 @@ export default function AdminLectures() {
       <div className="flex items-start justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold font-display">Lectures</h1>
-          <p className="text-sm text-muted-foreground mt-1">All lecture materials across courses</p>
+          <p className="text-sm text-muted-foreground mt-1">
+            All lecture materials across courses
+          </p>
         </div>
         <button
           onClick={() => setModal("create")}
@@ -198,8 +220,12 @@ export default function AdminLectures() {
                     <Video className="size-4" />
                   </div>
                 </td>
-                <td className="px-4 py-3 font-medium max-w-[220px] truncate">{item.title}</td>
-                <td className="px-4 py-3 text-muted-foreground">{item.courseTitle}</td>
+                <td className="px-4 py-3 font-medium max-w-[220px] truncate">
+                  {item.title}
+                </td>
+                <td className="px-4 py-3 text-muted-foreground">
+                  {item.courseTitle}
+                </td>
                 <td className="px-4 py-3 text-muted-foreground">{item.date}</td>
                 <td className="px-4 py-3">
                   <div className="flex items-center justify-end gap-1">
@@ -221,14 +247,22 @@ export default function AdminLectures() {
             ))}
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={5} className="text-center py-12 text-muted-foreground text-sm">
+                <td
+                  colSpan={5}
+                  className="text-center py-12 text-muted-foreground text-sm"
+                >
                   No lectures found
                 </td>
               </tr>
             )}
           </tbody>
         </table>
-        <Pagination page={page} totalPages={totalPages} total={filtered.length} setPage={setPage} />
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          total={filtered.length}
+          setPage={setPage}
+        />
       </div>
       {modal && (
         <LectureModal
