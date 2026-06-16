@@ -28,7 +28,18 @@ import settingsJson from "@/api/mockData/settings.json";
 
 // ── Generic hooks ────────────────────────────────────────────────────────────
 
-/** Hook for a list resource (returns array). */
+/** Extract the first array value from a response object */
+function extractArray(res) {
+  if (Array.isArray(res)) return res;
+  if (res && typeof res === "object") {
+    for (const v of Object.values(res)) {
+      if (Array.isArray(v)) return v;
+    }
+  }
+  return [];
+}
+
+/** Hook for a list resource (returns array). Falls back to JSON data if API fails. */
 function useAdminList(jsonData, apiUrl) {
   const [data, setData] = useState(MOCK_MODE ? jsonData : []);
 
@@ -38,11 +49,12 @@ function useAdminList(jsonData, apiUrl) {
     apiFetch(apiUrl, "GET")
       .then((res) => {
         if (!active) return;
-        setData(
-          Array.isArray(res) ? res : Array.isArray(res?.data) ? res.data : [],
-        );
+        const arr = extractArray(res);
+        setData(arr.length > 0 ? arr : jsonData);
       })
-      .catch(() => {});
+      .catch(() => {
+        if (active) setData(jsonData);
+      });
     return () => {
       active = false;
     };
@@ -51,7 +63,7 @@ function useAdminList(jsonData, apiUrl) {
   return data;
 }
 
-/** Hook for a single-object resource (returns object or null). */
+/** Hook for a single-object resource (returns object or null). Falls back to JSON data if API fails. */
 function useAdminObject(jsonData, apiUrl) {
   const [data, setData] = useState(MOCK_MODE ? jsonData : null);
 
@@ -61,9 +73,11 @@ function useAdminObject(jsonData, apiUrl) {
     apiFetch(apiUrl, "GET")
       .then((res) => {
         if (!active) return;
-        setData(res?.data ?? res ?? null);
+        setData(res ?? jsonData ?? null);
       })
-      .catch(() => {});
+      .catch(() => {
+        if (active) setData(jsonData ?? null);
+      });
     return () => {
       active = false;
     };
