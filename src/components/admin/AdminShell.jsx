@@ -255,7 +255,7 @@ export function AdminShell({ children }) {
           <p className="text-sm text-muted-foreground">
             Welcome back,{" "}
             <span className="text-foreground font-medium">
-              {settings?.doctorName ?? user?.name ?? "Professor"}
+              {settings?.doctor_name ?? user?.name ?? "Professor"}
             </span>
           </p>
 

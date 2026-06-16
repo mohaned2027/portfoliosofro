@@ -1,6 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ArrowLeft, UploadCloud, X, ImageIcon, GripVertical } from "lucide-react";
+import {
+  ArrowLeft,
+  UploadCloud,
+  X,
+  ImageIcon,
+  GripVertical,
+} from "lucide-react";
 import { useAdminAchievements } from "@/context/AdminDataContext";
 import { api } from "@/api/client";
 
@@ -84,7 +90,8 @@ function ImageGrid({ images, onRemove, onAdd }) {
 
       {images.length > 0 && (
         <p className="text-[11px] text-muted-foreground font-mono">
-          First image is the cover · {images.length} image{images.length !== 1 ? "s" : ""} total
+          First image is the cover · {images.length} image
+          {images.length !== 1 ? "s" : ""} total
         </p>
       )}
     </div>
@@ -93,11 +100,11 @@ function ImageGrid({ images, onRemove, onAdd }) {
 
 const EMPTY = {
   title: "",
-  description: "",
-  fullDescription: "",
+  excerpt: "",
+  content: "",
   date: "",
   category: "",
-  liveLink: "",
+  live_link: "",
   images: [],
 };
 
@@ -118,14 +125,18 @@ export default function AchievementForm() {
     }
     const item = allItems.find((a) => a.id === id);
     if (item) {
-      const images = item.gallery?.length ? item.gallery : item.cover ? [item.cover] : [];
+      const images = item.gallery?.length
+        ? item.gallery
+        : item.cover
+          ? [item.cover]
+          : [];
       setForm({
         title: item.title ?? "",
-        description: item.description ?? item.shortDescription ?? "",
-        fullDescription: item.fullDescription ?? "",
+        excerpt: item.excerpt ?? "",
+        content: item.content ?? "",
         date: item.date ?? "",
         category: item.category ?? "",
-        liveLink: item.liveLink ?? "",
+        live_link: item.live_link ?? "",
         images,
       });
       setLoaded(true);
@@ -134,7 +145,8 @@ export default function AchievementForm() {
 
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
 
-  const addImage = (src) => setForm((f) => ({ ...f, images: [...f.images, src] }));
+  const addImage = (src) =>
+    setForm((f) => ({ ...f, images: [...f.images, src] }));
   const removeImage = (idx) =>
     setForm((f) => ({ ...f, images: f.images.filter((_, i) => i !== idx) }));
 
@@ -158,7 +170,9 @@ export default function AchievementForm() {
 
   if (!loaded)
     return (
-      <div className="flex items-center justify-center py-32 text-muted-foreground">Loading…</div>
+      <div className="flex items-center justify-center py-32 text-muted-foreground">
+        Loading…
+      </div>
     );
 
   return (
@@ -176,7 +190,9 @@ export default function AchievementForm() {
           <h1 className="text-3xl font-bold font-display">
             {isEdit ? "Edit Achievement" : "New Achievement"}
           </h1>
-          <p className="text-sm text-muted-foreground mt-0.5">Fill in the details below</p>
+          <p className="text-sm text-muted-foreground mt-0.5">
+            Fill in the details below
+          </p>
         </div>
         <button
           type="submit"
@@ -195,7 +211,11 @@ export default function AchievementForm() {
           </p>
         </div>
         <div className="px-6 py-5">
-          <ImageGrid images={form.images} onAdd={addImage} onRemove={removeImage} />
+          <ImageGrid
+            images={form.images}
+            onAdd={addImage}
+            onRemove={removeImage}
+          />
         </div>
       </div>
 
@@ -235,20 +255,20 @@ export default function AchievementForm() {
             </Field>
           </div>
 
-          <Field label="Short Description">
+          <Field label="Short Description (Excerpt)">
             <textarea
               rows={3}
-              value={form.description}
-              onChange={(e) => set("description", e.target.value)}
+              value={form.excerpt}
+              onChange={(e) => set("excerpt", e.target.value)}
               className={TEXTAREA}
             />
           </Field>
 
-          <Field label="Full Description">
+          <Field label="Full Description (Content)">
             <textarea
               rows={5}
-              value={form.fullDescription}
-              onChange={(e) => set("fullDescription", e.target.value)}
+              value={form.content}
+              onChange={(e) => set("content", e.target.value)}
               className={TEXTAREA}
             />
           </Field>
@@ -256,8 +276,8 @@ export default function AchievementForm() {
           <Field label="Live Link (optional)">
             <input
               type="url"
-              value={form.liveLink}
-              onChange={(e) => set("liveLink", e.target.value)}
+              value={form.live_link}
+              onChange={(e) => set("live_link", e.target.value)}
               placeholder="https://…"
               className={INPUT}
             />

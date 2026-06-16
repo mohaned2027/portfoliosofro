@@ -1,5 +1,13 @@
 import { useState, useRef } from "react";
-import { Plus, Search, Pencil, Trash2, X, UploadCloud, ImageIcon } from "lucide-react";
+import {
+  Plus,
+  Search,
+  Pencil,
+  Trash2,
+  X,
+  UploadCloud,
+  ImageIcon,
+} from "lucide-react";
 import { useAdminCourses } from "@/context/AdminDataContext";
 import { api } from "@/api/client";
 import { useResourceList } from "@/lib/useResourceList";
@@ -56,7 +64,9 @@ function Dropzone({ value, onChange }) {
           <div className="grid size-11 place-items-center rounded-full bg-electric/10 text-electric">
             <UploadCloud className="size-5" />
           </div>
-          <p className="text-sm font-medium">Drag &amp; drop or click to browse</p>
+          <p className="text-sm font-medium">
+            Drag &amp; drop or click to browse
+          </p>
           <p className="text-xs text-muted-foreground flex items-center gap-1">
             <ImageIcon className="size-3" /> PNG · JPG · WEBP
           </p>
@@ -66,15 +76,19 @@ function Dropzone({ value, onChange }) {
   );
 }
 
-const EMPTY = { title: "", description: "", objectives: "", cover: "" };
+const EMPTY = {
+  title: "",
+  excerpt: "",
+  content: "",
+  cover: "",
+  category: "",
+  live_link: "",
+};
 
 function CourseModal({ initial, onClose, onSaved }) {
   const [form, setForm] = useState({
     ...EMPTY,
     ...(initial ?? {}),
-    objectives: Array.isArray(initial?.objectives)
-      ? initial.objectives.join("\n")
-      : (initial?.objectives ?? ""),
   });
   const [saving, setSaving] = useState(false);
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
@@ -82,14 +96,10 @@ function CourseModal({ initial, onClose, onSaved }) {
     e.preventDefault();
     setSaving(true);
     try {
-      const p = {
-        ...form,
-        objectives: form.objectives
-          .split("\n")
-          .map((s) => s.trim())
-          .filter(Boolean),
-      };
-      initial?.id ? await api.courses.update(initial.id, p) : await api.courses.create(p);
+      const p = { ...form };
+      initial?.id
+        ? await api.courses.update(initial.id, p)
+        : await api.courses.create(p);
       onSaved();
     } finally {
       setSaving(false);
@@ -99,7 +109,9 @@ function CourseModal({ initial, onClose, onSaved }) {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
       <div className="bg-card border border-border rounded-xl w-full max-w-md max-h-[90vh] flex flex-col shadow-2xl">
         <div className="flex items-center justify-between px-6 py-4 border-b border-border shrink-0">
-          <p className="font-semibold">{initial?.id ? "Edit Course" : "New Course"}</p>
+          <p className="font-semibold">
+            {initial?.id ? "Edit Course" : "New Course"}
+          </p>
           <button
             onClick={onClose}
             className="grid size-7 place-items-center rounded hover:bg-muted text-muted-foreground"
@@ -107,7 +119,10 @@ function CourseModal({ initial, onClose, onSaved }) {
             <X className="size-4" />
           </button>
         </div>
-        <form onSubmit={submit} className="flex-1 overflow-y-auto px-6 py-5 space-y-4">
+        <form
+          onSubmit={submit}
+          className="flex-1 overflow-y-auto px-6 py-5 space-y-4"
+        >
           <div className="space-y-1.5">
             <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
               Title
@@ -121,31 +136,56 @@ function CourseModal({ initial, onClose, onSaved }) {
           </div>
           <div className="space-y-1.5">
             <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
-              Description
+              Excerpt
             </label>
             <textarea
-              rows={4}
-              value={form.description}
-              onChange={(e) => set("description", e.target.value)}
+              rows={3}
+              value={form.excerpt}
+              onChange={(e) => set("excerpt", e.target.value)}
               className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 resize-none"
             />
           </div>
           <div className="space-y-1.5">
             <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
-              Objectives (one per line)
+              Content
             </label>
             <textarea
               rows={4}
-              value={form.objectives}
-              onChange={(e) => set("objectives", e.target.value)}
+              value={form.content}
+              onChange={(e) => set("content", e.target.value)}
               className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 resize-none"
+            />
+          </div>
+          <div className="space-y-1.5">
+            <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
+              Category
+            </label>
+            <input
+              value={form.category}
+              onChange={(e) => set("category", e.target.value)}
+              className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60"
+            />
+          </div>
+          <div className="space-y-1.5">
+            <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
+              Live Link
+            </label>
+            <input
+              type="url"
+              value={form.live_link}
+              onChange={(e) => set("live_link", e.target.value)}
+              placeholder="https://…"
+              className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60"
             />
           </div>
           <div className="space-y-1.5">
             <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
               Cover Image
             </label>
-            <Dropzone value={form.cover} onChange={(v) => set("cover", v ?? "")} />
+            <Dropzone
+              value={form.cover}
+              onChange={(v) => set("cover", v ?? "")}
+            />
           </div>
         </form>
         <div className="flex justify-end gap-3 px-6 py-4 border-t border-border shrink-0">
@@ -178,14 +218,22 @@ export default function AdminCourses() {
   const filtered = items.filter(
     (c) => !search || c.title?.toLowerCase().includes(search.toLowerCase()),
   );
-  const { page, setPage, totalPages, paginated } = usePagination(filtered, search);
+  const { page, setPage, totalPages, paginated } = usePagination(
+    filtered,
+    search,
+  );
 
   const refresh = async () => {
     const res = await api.courses.list({ pageSize: 999 });
     setItems(res.data ?? []);
   };
   const del = async (id) => {
-    if (!(await confirmDelete("This course and its lectures will be permanently deleted."))) return;
+    if (
+      !(await confirmDelete(
+        "This course and its lectures will be permanently deleted.",
+      ))
+    )
+      return;
     await api.courses.remove(id);
     setItems((p) => p.filter((c) => c.id !== id));
   };
@@ -195,7 +243,9 @@ export default function AdminCourses() {
       <div className="flex items-start justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold font-display">Courses</h1>
-          <p className="text-sm text-muted-foreground mt-1">Undergraduate and graduate courses</p>
+          <p className="text-sm text-muted-foreground mt-1">
+            Undergraduate and graduate courses
+          </p>
         </div>
         <button
           onClick={() => setModal("create")}
@@ -227,7 +277,7 @@ export default function AdminCourses() {
                 Title
               </th>
               <th className="px-4 py-3 text-left text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
-                Lectures
+                Category
               </th>
               <th className="px-4 py-3 text-right text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
                 Actions
@@ -253,8 +303,12 @@ export default function AdminCourses() {
                     </div>
                   )}
                 </td>
-                <td className="px-4 py-3 font-medium max-w-xs truncate">{item.title}</td>
-                <td className="px-4 py-3 text-muted-foreground">{item.lectures?.length ?? 0}</td>
+                <td className="px-4 py-3 font-medium max-w-xs truncate">
+                  {item.title}
+                </td>
+                <td className="px-4 py-3 text-muted-foreground">
+                  {item.category ?? "—"}
+                </td>
                 <td className="px-4 py-3">
                   <div className="flex items-center justify-end gap-1">
                     <button
@@ -275,14 +329,22 @@ export default function AdminCourses() {
             ))}
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={4} className="text-center py-12 text-muted-foreground text-sm">
+                <td
+                  colSpan={4}
+                  className="text-center py-12 text-muted-foreground text-sm"
+                >
                   No courses found
                 </td>
               </tr>
             )}
           </tbody>
         </table>
-        <Pagination page={page} totalPages={totalPages} total={filtered.length} setPage={setPage} />
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          total={filtered.length}
+          setPage={setPage}
+        />
       </div>
       {modal && (
         <CourseModal

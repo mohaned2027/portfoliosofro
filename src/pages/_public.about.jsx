@@ -62,7 +62,7 @@ function AboutPage() {
                   {professor.office}
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  {professor.officeHours}
+                  {professor.office_hours}
                 </p>
               </div>
 
@@ -80,9 +80,9 @@ function AboutPage() {
               )}
             </div>
             {/* Socials */}
-            {professor.socials && (
+            {professor.social_links && (
               <div className="flex flex-wrap gap-2">
-                {Object.entries(professor.socials)
+                {Object.entries(professor.social_links)
                   .filter(([, v]) => v)
                   .map(([k, v]) => (
                     <a
@@ -128,15 +128,15 @@ function AboutPage() {
                     <div className="flex flex-wrap items-baseline justify-between gap-2">
                       <p className="font-display font-semibold">{e.degree}</p>
                       <p className="font-mono text-xs text-electric">
-                        {e.year}
+                        {e.end_date ? new Date(e.end_date).getFullYear() : "Present"}
                       </p>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      {e.school ?? e.institution}
+                      {e.university}
                     </p>
-                    {e.focus && (
+                    {e.description && (
                       <p className="text-xs text-muted-foreground mt-1">
-                        Focus: {e.focus}
+                        {e.description}
                       </p>
                     )}
                   </motion.div>

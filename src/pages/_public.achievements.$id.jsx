@@ -33,10 +33,10 @@ function AchievementDetail() {
           </span>
         </div>
         <h1 className="font-display text-3xl md:text-5xl font-bold tracking-tight">{a.title}</h1>
-        <p className="mt-4 text-muted-foreground leading-relaxed">{a.fullDescription}</p>
-        {a.liveLink && (
+        <p className="mt-4 text-muted-foreground leading-relaxed">{a.content}</p>
+        {a.live_link && (
           <a
-            href={a.liveLink}
+            href={a.live_link}
             target="_blank"
             rel="noreferrer"
             className="mt-6 inline-flex items-center gap-2 rounded-md bg-electric px-5 py-2.5 text-sm font-medium text-electric-foreground hover:opacity-90"

@@ -67,10 +67,10 @@ function ResearchesPage() {
                 key={r.id}
                 to={`/researches/${r.id}`}
                 cover={r.cover}
-                eyebrow={String(r.year)}
+                eyebrow={r.date ? new Date(r.date).toLocaleDateString() : ""}
                 title={r.title}
-                meta={r.abstract}
-                footer={`${r.authors.join(", ")} • ${r.journal}`}
+                meta={r.excerpt}
+                footer={r.category}
               />
             ))}
           </div>

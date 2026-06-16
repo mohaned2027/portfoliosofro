@@ -53,7 +53,7 @@ export default function AdminProfile() {
 
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
   const setSocial = (k, v) =>
-    setForm((f) => ({ ...f, socials: { ...(f.socials ?? {}), [k]: v } }));
+    setForm((f) => ({ ...f, social_links: { ...(f.social_links ?? {}), [k]: v } }));
 
   const handleAvatar = (file) => {
     if (!file) return;
@@ -244,8 +244,8 @@ export default function AdminProfile() {
           </Field>
           <Field label="Office Hours">
             <input
-              value={form.officeHours ?? ""}
-              onChange={(e) => set("officeHours", e.target.value)}
+              value={form.office_hours ?? ""}
+              onChange={(e) => set("office_hours", e.target.value)}
               className={INPUT}
             />
           </Field>
@@ -265,7 +265,7 @@ export default function AdminProfile() {
           {SOCIAL_KEYS.map((k) => (
             <Field key={k} label={k}>
               <input
-                value={form.socials?.[k] ?? ""}
+                value={form.social_links?.[k] ?? ""}
                 onChange={(e) => setSocial(k, e.target.value)}
                 placeholder="https://…"
                 className={INPUT}

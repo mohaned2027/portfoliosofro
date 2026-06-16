@@ -6,13 +6,26 @@ import { useResourceList } from "@/lib/useResourceList";
 import { confirmDelete } from "@/lib/confirm";
 import { Pagination, usePagination } from "@/components/admin/Pagination";
 
-const EMPTY = { degree: "", school: "", year: "", focus: "" };
+const EMPTY = {
+  degree: "",
+  university: "",
+  field_of_study: "",
+  start_date: "",
+  end_date: "",
+  is_current: false,
+  description: "",
+};
 
 function EduModal({ initial, onClose, onSaved }) {
   const [form, setForm] = useState({
     ...EMPTY,
     ...(initial ?? {}),
-    school: initial?.school ?? initial?.institution ?? "",
+    university: initial?.university ?? "",
+    field_of_study: initial?.field_of_study ?? "",
+    start_date: initial?.start_date ?? "",
+    end_date: initial?.end_date ?? "",
+    is_current: initial?.is_current ?? false,
+    description: initial?.description ?? "",
   });
   const [saving, setSaving] = useState(false);
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
@@ -20,7 +33,9 @@ function EduModal({ initial, onClose, onSaved }) {
     e.preventDefault();
     setSaving(true);
     try {
-      initial?.id ? await api.education.update(initial.id, form) : await api.education.create(form);
+      initial?.id
+        ? await api.education.update(initial.id, form)
+        : await api.education.create(form);
       onSaved();
     } finally {
       setSaving(false);
@@ -30,7 +45,9 @@ function EduModal({ initial, onClose, onSaved }) {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
       <div className="bg-card border border-border rounded-xl w-full max-w-lg shadow-2xl">
         <div className="flex items-center justify-between px-6 py-4 border-b border-border">
-          <p className="font-semibold">{initial?.id ? "Edit Education" : "New Education"}</p>
+          <p className="font-semibold">
+            {initial?.id ? "Edit Education" : "New Education"}
+          </p>
           <button
             onClick={onClose}
             className="grid size-7 place-items-center rounded hover:bg-muted text-muted-foreground"
@@ -57,8 +74,8 @@ function EduModal({ initial, onClose, onSaved }) {
             </label>
             <input
               required
-              value={form.school}
-              onChange={(e) => set("school", e.target.value)}
+              value={form.university}
+              onChange={(e) => set("university", e.target.value)}
               placeholder="Imperial College London"
               className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 focus:ring-1 focus:ring-electric/30"
             />
@@ -69,21 +86,22 @@ function EduModal({ initial, onClose, onSaved }) {
                 Year
               </label>
               <input
-                value={form.year}
-                onChange={(e) => set("year", e.target.value)}
-                placeholder="2005"
+                type="date"
+                value={form.start_date?.slice(0, 10) ?? ""}
+                onChange={(e) => set("start_date", e.target.value)}
                 className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60"
               />
             </div>
             <div className="space-y-1.5">
               <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
-                Focus / Field
+                End Date
               </label>
               <input
-                value={form.focus}
-                onChange={(e) => set("focus", e.target.value)}
-                placeholder="MIMO, channel estimation…"
-                className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60"
+                type="date"
+                value={form.end_date?.slice(0, 10) ?? ""}
+                onChange={(e) => set("end_date", e.target.value)}
+                disabled={form.is_current}
+                className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 disabled:opacity-50"
               />
             </div>
           </div>
@@ -119,16 +137,24 @@ export default function AdminEducation() {
     (e) =>
       !search ||
       e.degree?.toLowerCase().includes(search.toLowerCase()) ||
-      (e.school ?? e.institution)?.toLowerCase().includes(search.toLowerCase()),
+      e.university?.toLowerCase().includes(search.toLowerCase()),
   );
-  const { page, setPage, totalPages, paginated } = usePagination(filtered, search);
+  const { page, setPage, totalPages, paginated } = usePagination(
+    filtered,
+    search,
+  );
 
   const refresh = async () => {
     const res = await api.education.list({ pageSize: 999 });
     setItems(res.data ?? []);
   };
   const del = async (id) => {
-    if (!(await confirmDelete("This education entry will be permanently deleted."))) return;
+    if (
+      !(await confirmDelete(
+        "This education entry will be permanently deleted.",
+      ))
+    )
+      return;
     await api.education.remove(id);
     setItems((p) => p.filter((e) => e.id !== id));
   };
@@ -138,7 +164,9 @@ export default function AdminEducation() {
       <div className="flex items-start justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold font-display">Education</h1>
-          <p className="text-sm text-muted-foreground mt-1">Degrees and academic credentials</p>
+          <p className="text-sm text-muted-foreground mt-1">
+            Degrees and academic credentials
+          </p>
         </div>
         <button
           onClick={() => setModal("create")}
@@ -193,9 +221,15 @@ export default function AdminEducation() {
                 </td>
                 <td className="px-4 py-3 font-medium">{item.degree}</td>
                 <td className="px-4 py-3 text-muted-foreground">
-                  {item.school ?? item.institution}
+                  {item.university}
                 </td>
-                <td className="px-4 py-3 text-muted-foreground">{item.year}</td>
+                <td className="px-4 py-3 text-muted-foreground">
+                  {item.end_date
+                    ? new Date(item.end_date).getFullYear()
+                    : item.is_current
+                      ? "Present"
+                      : ""}
+                </td>
                 <td className="px-4 py-3">
                   <div className="flex items-center justify-end gap-1">
                     <button
@@ -216,14 +250,22 @@ export default function AdminEducation() {
             ))}
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={5} className="text-center py-12 text-muted-foreground text-sm">
+                <td
+                  colSpan={5}
+                  className="text-center py-12 text-muted-foreground text-sm"
+                >
                   No education entries found
                 </td>
               </tr>
             )}
           </tbody>
         </table>
-        <Pagination page={page} totalPages={totalPages} total={filtered.length} setPage={setPage} />
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          total={filtered.length}
+          setPage={setPage}
+        />
       </div>
       {modal && (
         <EduModal

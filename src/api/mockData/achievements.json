@@ -1,13 +1,14 @@
 [
   {
-    "id": "ach-1",
+    "id": 1,
     "title": "Best Paper Award — NRSC 2014",
-    "description": "A milestone in academic research, supervision, or community contribution in communications engineering.",
-    "fullDescription": "Best Paper Award at the 31st National Radio Science Conference (NRSC) for work on carrier frequency offset correction in OFDM systems.",
+    "slug": "best-paper-award-nrsc-2014",
+    "excerpt": "A milestone in academic research, supervision, or community contribution in communications engineering.",
+    "content": "Best Paper Award at the 31st National Radio Science Conference (NRSC) for work on carrier frequency offset correction in OFDM systems.",
     "cover": "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?auto=format&fit=crop&w=1200&q=70",
     "date": "2014-04-01",
     "category": "Award",
-    "liveLink": null,
+    "live_link": null,
     "gallery": [
       "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?auto=format&fit=crop&w=1200&q=70",
       "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=70",
@@ -15,14 +16,15 @@
     ]
   },
   {
-    "id": "ach-2",
+    "id": 2,
     "title": "Supervisor — 6th Rank, UAVC (ICMTC 2024)",
-    "description": "A milestone in academic research, supervision, or community contribution in communications engineering.",
-    "fullDescription": "Supervised the team ranked 6th in the Unmanned Aerial Vehicles Competition (UAVC) at the 8th International Competition of the Military Technical College (ICMTC 2024), Cairo, Egypt.",
+    "slug": "supervisor-6th-rank-uavc-icmtc-2024",
+    "excerpt": "A milestone in academic research, supervision, or community contribution in communications engineering.",
+    "content": "Supervised the team ranked 6th in the Unmanned Aerial Vehicles Competition (UAVC) at the 8th International Competition of the Military Technical College (ICMTC 2024), Cairo, Egypt.",
     "cover": "https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1200&q=70",
     "date": "2024-01-01",
     "category": "Award",
-    "liveLink": null,
+    "live_link": null,
     "gallery": [
       "https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1200&q=70",
       "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=1200&q=70",
@@ -30,14 +32,15 @@
     ]
   },
   {
-    "id": "ach-3",
+    "id": 3,
     "title": "Supervisor — 10th Rank, ITC-EGYPT 2023",
-    "description": "A milestone in academic research, supervision, or community contribution in communications engineering.",
-    "fullDescription": "Supervised the team ranked 10th over 520 contestants at the International Telecommunications Conference ITC-EGYPT 2023, Air Defense College, Alexandria, Egypt.",
+    "slug": "supervisor-10th-rank-itc-egypt-2023",
+    "excerpt": "A milestone in academic research, supervision, or community contribution in communications engineering.",
+    "content": "Supervised the team ranked 10th over 520 contestants at the International Telecommunications Conference ITC-EGYPT 2023, Air Defense College, Alexandria, Egypt.",
     "cover": "https://images.unsplash.com/photo-1591115765373-5207764f72e7?auto=format&fit=crop&w=1200&q=70",
     "date": "2023-01-01",
     "category": "Award",
-    "liveLink": null,
+    "live_link": null,
     "gallery": [
       "https://images.unsplash.com/photo-1591115765373-5207764f72e7?auto=format&fit=crop&w=1200&q=70",
       "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=70",
@@ -45,14 +48,15 @@
     ]
   },
   {
-    "id": "ach-4",
+    "id": 4,
     "title": "Supervisor — 8th Rank, EgSA Satellite Project 2022",
-    "description": "A milestone in academic research, supervision, or community contribution in communications engineering.",
-    "fullDescription": "Supervised the team ranked 8th over 56 contestants in the 'Satellite Universities Project' at the Egyptian Space Agency (EgSA), Cairo, Egypt.",
+    "slug": "supervisor-8th-rank-egsa-satellite-project-2022",
+    "excerpt": "A milestone in academic research, supervision, or community contribution in communications engineering.",
+    "content": "Supervised the team ranked 8th over 56 contestants in the 'Satellite Universities Project' at the Egyptian Space Agency (EgSA), Cairo, Egypt.",
     "cover": "https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=1200&q=70",
     "date": "2022-01-01",
     "category": "Award",
-    "liveLink": null,
+    "live_link": null,
     "gallery": [
       "https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=1200&q=70",
       "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=70",

@@ -51,7 +51,14 @@ const ICON_OPTIONS = [
   { key: "layers", Icon: Layers },
 ];
 
-const EMPTY = { title: "", organization: "", description: "", icon: "" };
+const EMPTY = {
+  title: "",
+  description: "",
+  start_date: "",
+  end_date: "",
+  is_current: false,
+  icon: "",
+};
 
 function PositionModal({ initial, onClose, onSaved }) {
   const [form, setForm] = useState({ ...EMPTY, ...(initial ?? {}) });
@@ -84,22 +91,17 @@ function PositionModal({ initial, onClose, onSaved }) {
           </button>
         </div>
         <form onSubmit={submit} className="px-6 py-5 space-y-4">
-          {[
-            ["Title", "title", true],
-            ["Organization", "organization", true],
-          ].map(([label, k, req]) => (
-            <div key={k} className="space-y-1.5">
-              <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
-                {label}
-              </label>
-              <input
-                required={req}
-                value={form[k] ?? ""}
-                onChange={(e) => set(k, e.target.value)}
-                className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 focus:ring-1 focus:ring-electric/30"
-              />
-            </div>
-          ))}
+          <div className="space-y-1.5">
+            <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
+              Title
+            </label>
+            <input
+              required
+              value={form.title ?? ""}
+              onChange={(e) => set("title", e.target.value)}
+              className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 focus:ring-1 focus:ring-electric/30"
+            />
+          </div>
           <div className="space-y-1.5">
             <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
               Icon
@@ -165,7 +167,7 @@ export default function AdminPositions() {
     (p) =>
       !search ||
       p.title?.toLowerCase().includes(search.toLowerCase()) ||
-      p.organization?.toLowerCase().includes(search.toLowerCase()),
+      p.description?.toLowerCase().includes(search.toLowerCase()),
   );
   const { page, setPage, totalPages, paginated } = usePagination(
     filtered,
@@ -221,7 +223,7 @@ export default function AdminPositions() {
                 Title
               </th>
               <th className="px-4 py-3 text-left text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
-                Organization
+                Period
               </th>
               <th className="px-4 py-3 text-right text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
                 Actions
@@ -236,7 +238,14 @@ export default function AdminPositions() {
               >
                 <td className="px-4 py-3 font-medium">{item.title}</td>
                 <td className="px-4 py-3 text-muted-foreground">
-                  {item.organization}
+                  {item.start_date
+                    ? new Date(item.start_date).getFullYear()
+                    : ""}
+                  {item.is_current
+                    ? " — Present"
+                    : item.end_date
+                      ? ` — ${new Date(item.end_date).getFullYear()}`
+                      : ""}
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex items-center justify-end gap-1">
