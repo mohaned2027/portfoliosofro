@@ -3,7 +3,7 @@
  * app talks to the real backend (when MOCK_MODE in request.js is `false`).
  */
 
-export const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "";
+export const BASE_URL = "https://portfoliosofro.fudex-software.com/api";
 
 // ==========================================
 // Public (Portfolio) Endpoints
