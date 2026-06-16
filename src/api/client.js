@@ -17,7 +17,10 @@ import seedPositions from "./mockData/positions.json";
 import seedSettings from "./mockData/settings.json";
 
 import { MOCK_MODE, apiFetch, setAuthToken } from "@/api/request";
-import { DASHBOARD_ENDPOINTS as EP } from "@/api/endpoints";
+import {
+  DASHBOARD_ENDPOINTS as EP,
+  PORTFOLIO_ENDPOINTS as PUB,
+} from "@/api/endpoints";
 
 // ── Helpers (mock only) ───────────────────────────────────────────────────────
 const LATENCY = 350;
@@ -83,8 +86,17 @@ const EP_MAP = {
   experiences: EP.experiences,
   positions: EP.positions,
   courses: EP.courses,
+  lectures: EP.lectures,
   blogs: EP.blogs,
   education: EP.education,
+};
+
+// Public show endpoints (no auth required) for detail pages
+const PUB_SHOW = {
+  achievements: PUB.achievements?.show,
+  researches: PUB.researches?.show,
+  courses: PUB.courses?.show,
+  blogs: PUB.blogs?.show,
 };
 
 // ── Generic CRUD factory ─────────────────────────────────────────────────────
@@ -107,7 +119,11 @@ function crud(key) {
           totalPages: 1,
         };
       },
-      get: (id) => apiFetch(ep.show(id), "GET"),
+      get: (id) => {
+        const pubShow = PUB_SHOW[key];
+        const url = pubShow ? pubShow(id) : ep.show(id);
+        return apiFetch(url, "GET");
+      },
       create: (payload) => apiFetch(ep.store, "POST", payload),
       update: (id, payload) => apiFetch(ep.update(id), "PUT", payload),
       remove: (id) => apiFetch(ep.delete(id), "DELETE"),
@@ -189,7 +205,7 @@ export const api = {
       }
     : {
         get: () => apiFetch(EP.user.get, "GET"),
-        update: (payload) => apiFetch(EP.user.update, "POST", payload),
+        update: (payload) => apiFetch(EP.user.update, "PUT", payload),
       },
 
   about: MOCK_MODE
@@ -202,7 +218,7 @@ export const api = {
       }
     : {
         get: () => apiFetch(EP.about.get, "GET"),
-        update: (payload) => apiFetch(EP.about.update, "POST", payload),
+        update: (payload) => apiFetch(EP.about.update, "PUT", payload),
       },
 
   settings: MOCK_MODE
@@ -215,7 +231,7 @@ export const api = {
       }
     : {
         get: () => apiFetch(EP.settings.get, "GET"),
-        update: (payload) => apiFetch(EP.settings.update, "POST", payload),
+        update: (payload) => apiFetch(EP.settings.update, "PUT", payload),
       },
 
   education: crud("education"),
@@ -224,6 +240,7 @@ export const api = {
   researches: crud("researches"),
   positions: crud("positions"),
   courses: crud("courses"),
+  lectures: crud("lectures"),
   blogs: crud("blogs"),
 
   messages: MOCK_MODE
@@ -253,7 +270,7 @@ export const api = {
         },
         get: (id) => apiFetch(EP.messages.list + `/${id}`, "GET"),
         remove: (id) => apiFetch(EP.messages.delete(id), "DELETE"),
-        markRead: (id) => apiFetch(EP.messages.read(id), "POST"),
+        markRead: (id) => apiFetch(EP.messages.read(id), "PATCH"),
       },
 
   contact: MOCK_MODE
@@ -269,7 +286,6 @@ export const api = {
         },
       }
     : {
-        send: (payload) =>
-          apiFetch(EP.contactUs?.store ?? "/contact-us/store", "POST", payload),
+        send: (payload) => apiFetch(PUB.contactUs.store, "POST", payload),
       },
 };

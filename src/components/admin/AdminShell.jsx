@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   LayoutDashboard,
@@ -21,10 +21,13 @@ import {
   GraduationCap,
   Menu,
   X,
+  Check,
+  Trash2,
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { useTheme } from "@/context/ThemeContext";
 import { useSiteSettings } from "@/context/SiteSettingsContext";
+import { useNotifications } from "@/context/NotificationContext";
 import { toast } from "sonner";
 
 const items = [
@@ -106,6 +109,90 @@ function SidebarContent({ path, onNavigate, onLogout }) {
   );
 }
 
+function NotificationBell() {
+  const { notifications, unreadCount, markAsRead, markAllAsRead, clearAll } =
+    useNotifications();
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  return (
+    <div className="relative" ref={ref}>
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className="grid size-9 place-items-center rounded-md border border-border hover:border-electric/60 relative"
+      >
+        <Bell className="size-4" />
+        {unreadCount > 0 && (
+          <span className="absolute -top-1 -right-1 flex size-4 items-center justify-center rounded-full bg-electric text-[10px] font-bold text-electric-foreground">
+            {unreadCount > 9 ? "9+" : unreadCount}
+          </span>
+        )}
+      </button>
+
+      {open && (
+        <div className="absolute right-0 top-full mt-2 w-80 rounded-lg border border-border bg-popover shadow-xl z-50">
+          <div className="flex items-center justify-between border-b border-border px-4 py-2">
+            <p className="text-sm font-medium">Notifications</p>
+            <div className="flex gap-1">
+              {unreadCount > 0 && (
+                <button
+                  onClick={markAllAsRead}
+                  className="grid size-7 place-items-center rounded hover:bg-accent"
+                  title="Mark all as read"
+                >
+                  <Check className="size-3.5" />
+                </button>
+              )}
+              {notifications.length > 0 && (
+                <button
+                  onClick={clearAll}
+                  className="grid size-7 place-items-center rounded hover:bg-accent"
+                  title="Clear all"
+                >
+                  <Trash2 className="size-3.5" />
+                </button>
+              )}
+            </div>
+          </div>
+          <div className="max-h-72 overflow-y-auto">
+            {notifications.length === 0 ? (
+              <p className="px-4 py-6 text-center text-xs text-muted-foreground">
+                No notifications yet
+              </p>
+            ) : (
+              notifications.map((n) => (
+                <button
+                  key={n.id}
+                  onClick={() => markAsRead(n.id)}
+                  className={`w-full text-left px-4 py-3 border-b border-border/50 last:border-0 hover:bg-accent/50 transition ${
+                    !n.read ? "bg-electric/5" : ""
+                  }`}
+                >
+                  <p className="text-sm font-medium truncate">{n.title}</p>
+                  <p className="text-xs text-muted-foreground truncate mt-0.5">
+                    {n.message}
+                  </p>
+                  <p className="text-[10px] text-muted-foreground/60 mt-1">
+                    {new Date(n.created_at).toLocaleString()}
+                  </p>
+                </button>
+              ))
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function AdminShell({ children }) {
   const { logout, user } = useAuth();
   const { theme, toggle } = useTheme();
@@ -173,10 +260,7 @@ export function AdminShell({ children }) {
           </p>
 
           <div className="ml-auto flex items-center gap-2">
-            <button className="grid size-9 place-items-center rounded-md border border-border hover:border-electric/60 relative">
-              <Bell className="size-4" />
-              <span className="absolute top-1 right-1 size-1.5 rounded-full bg-electric" />
-            </button>
+            <NotificationBell />
             <button
               onClick={toggle}
               className="grid size-9 place-items-center rounded-md border border-border hover:border-electric/60"

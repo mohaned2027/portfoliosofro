@@ -1,6 +1,16 @@
-import { createContext, useContext } from "react";
+/**
+ * DataContext.jsx
+ *
+ * Data layer for public pages.
+ *
+ *  MOCK_MODE = true  (request.js) → data loaded directly from local JSON files
+ *  MOCK_MODE = false              → data fetched from real API (PORTFOLIO_ENDPOINTS)
+ */
+import { createContext, useContext, useState, useEffect } from "react";
+import { MOCK_MODE, apiFetch } from "@/api/request";
+import { PORTFOLIO_ENDPOINTS as EP } from "@/api/endpoints";
 
-// Load all data DIRECTLY from JSON files in the api/mockData folder
+// ── JSON seed data (imported at build time; used when MOCK_MODE = true) ──────
 import professorData from "@/api/mockData/professor.json";
 import aboutData from "@/api/mockData/about.json";
 import educationData from "@/api/mockData/education.json";
@@ -13,6 +23,53 @@ import messagesData from "@/api/mockData/messages.json";
 import settingsData from "@/api/mockData/settings.json";
 import positionsData from "@/api/mockData/positions.json";
 
+// ── Generic hooks ────────────────────────────────────────────────────────────
+
+/** Hook for a list resource (returns array). */
+function usePublicList(jsonData, apiUrl) {
+  const [data, setData] = useState(MOCK_MODE ? jsonData : []);
+
+  useEffect(() => {
+    if (MOCK_MODE) return;
+    let active = true;
+    apiFetch(apiUrl, "GET")
+      .then((res) => {
+        if (!active) return;
+        setData(
+          Array.isArray(res) ? res : Array.isArray(res?.data) ? res.data : [],
+        );
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  return data;
+}
+
+/** Hook for a single-object resource (returns object or null). */
+function usePublicObject(jsonData, apiUrl) {
+  const [data, setData] = useState(MOCK_MODE ? jsonData : null);
+
+  useEffect(() => {
+    if (MOCK_MODE) return;
+    let active = true;
+    apiFetch(apiUrl, "GET")
+      .then((res) => {
+        if (!active) return;
+        setData(res?.data ?? res ?? null);
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  return data;
+}
+
+// ── Contexts ─────────────────────────────────────────────────────────────────
 const ProfessorContext = createContext(null);
 const AboutContext = createContext(null);
 const EducationContext = createContext([]);
@@ -25,6 +82,7 @@ const MessagesContext = createContext([]);
 const SettingsContext = createContext(null);
 const PositionsContext = createContext([]);
 
+// ── Public hooks ─────────────────────────────────────────────────────────────
 export const useProfessor = () => useContext(ProfessorContext);
 export const useAbout = () => useContext(AboutContext);
 export const useEducation = () => useContext(EducationContext);
@@ -37,23 +95,36 @@ export const useMessages = () => useContext(MessagesContext);
 export const useSettings = () => useContext(SettingsContext);
 export const usePositions = () => useContext(PositionsContext);
 
+// ── Provider ─────────────────────────────────────────────────────────────────
 export const DataProvider = ({ children }) => {
+  const professor = usePublicObject(professorData, EP.profile.get);
+  const about = usePublicObject(aboutData, EP.about.get);
+  const settings = usePublicObject(settingsData, EP.settings.get);
+  const education = usePublicList(educationData, EP.education.list);
+  const experiences = usePublicList(experiencesData, EP.experiences.list);
+  const courses = usePublicList(coursesData, EP.courses.list);
+  const researches = usePublicList(researchesData, EP.researches.list);
+  const achievements = usePublicList(achievementsData, EP.achievements.list);
+  const blogs = usePublicList(blogsData, EP.blogs.list);
+  const messages = usePublicList(messagesData, "/messages");
+  const positions = usePublicList(positionsData, EP.positions.list);
+
   return (
-    <ProfessorContext.Provider value={professorData}>
-      <AboutContext.Provider value={aboutData}>
-        <EducationContext.Provider value={educationData}>
-          <ExperienceContext.Provider value={experiencesData}>
-            <CoursesContext.Provider value={coursesData}>
-              <ResearchesContext.Provider value={researchesData}>
-                <AchievementsContext.Provider value={achievementsData}>
-                  <BlogsContext.Provider value={blogsData}>
-                      <SettingsContext.Provider value={settingsData}>
-                          <PositionsContext.Provider value={positionsData}>
-                            <MessagesContext.Provider value={messagesData}>
-                                {children}
-                            </MessagesContext.Provider>
-                          </PositionsContext.Provider>
-                      </SettingsContext.Provider>
+    <ProfessorContext.Provider value={professor}>
+      <AboutContext.Provider value={about}>
+        <EducationContext.Provider value={education}>
+          <ExperienceContext.Provider value={experiences}>
+            <CoursesContext.Provider value={courses}>
+              <ResearchesContext.Provider value={researches}>
+                <AchievementsContext.Provider value={achievements}>
+                  <BlogsContext.Provider value={blogs}>
+                    <SettingsContext.Provider value={settings}>
+                      <PositionsContext.Provider value={positions}>
+                        <MessagesContext.Provider value={messages}>
+                          {children}
+                        </MessagesContext.Provider>
+                      </PositionsContext.Provider>
+                    </SettingsContext.Provider>
                   </BlogsContext.Provider>
                 </AchievementsContext.Provider>
               </ResearchesContext.Provider>

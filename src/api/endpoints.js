@@ -21,19 +21,26 @@ export const PORTFOLIO_ENDPOINTS = {
   settings: { get: `${BASE_URL}/setting` },
   achievements: {
     list: `${BASE_URL}/achievement`,
-    show: (id) => `${BASE_URL}/achievement/${id}`,
+    show: (id) => `${BASE_URL}/achievement/show/${id}`,
   },
   researches: {
     list: `${BASE_URL}/research`,
-    show: (id) => `${BASE_URL}/research/${id}`,
+    show: (id) => `${BASE_URL}/research/show/${id}`,
   },
   courses: {
     list: `${BASE_URL}/course`,
-    show: (id) => `${BASE_URL}/course/${id}`,
+    show: (id) => `${BASE_URL}/course/show/${id}`,
+  },
+  lectures: {
+    list: `${BASE_URL}/lecture`,
+    show: (id) => `${BASE_URL}/lecture/show/${id}`,
   },
   experiences: { list: `${BASE_URL}/experience` },
   positions: { list: `${BASE_URL}/position` },
-  blogs: { list: `${BASE_URL}/blog`, show: (id) => `${BASE_URL}/blog/${id}` },
+  blogs: {
+    list: `${BASE_URL}/blog`,
+    show: (id) => `${BASE_URL}/blog/show/${id}`,
+  },
   education: { list: `${BASE_URL}/education` },
 };
 
@@ -54,10 +61,12 @@ export const DASHBOARD_ENDPOINTS = {
   },
   about: {
     get: `${BASE_URL}/admin/about`,
+    store: `${BASE_URL}/admin/about/store`,
     update: `${BASE_URL}/admin/about/update`,
   },
   settings: {
     get: `${BASE_URL}/admin/setting`,
+    store: `${BASE_URL}/admin/setting/store`,
     update: `${BASE_URL}/admin/setting/update`,
   },
   achievements: crud("achievement"),
