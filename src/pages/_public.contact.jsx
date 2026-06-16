@@ -10,7 +10,7 @@ function ContactPage() {
     name: "",
     email: "",
     subject: "",
-    body: "",
+    message: "",
   });
   const [busy, setBusy] = useState(false);
   const submit = async (e) => {
@@ -23,7 +23,7 @@ function ContactPage() {
         name: "",
         email: "",
         subject: "",
-        body: "",
+        message: "",
       });
     } catch {
       toast.error("Failed to send. Try again.");
@@ -63,7 +63,7 @@ function ContactPage() {
             {
               Icon: Clock,
               label: "Office Hours",
-              value: professor.officeHours,
+              value: professor.office_hours,
             },
           ].map(({ Icon, label, value, href }) => (
             <a
@@ -92,7 +92,7 @@ function ContactPage() {
           </div>
           <div className="flex gap-2">
             <a
-              href={professor.socials.linkedin}
+              href={professor.social_links?.linkedin}
               target="_blank"
               rel="noreferrer"
               className="grid size-10 place-items-center rounded-md border border-border hover:border-electric/60"
@@ -100,7 +100,7 @@ function ContactPage() {
               <Linkedin className="size-4" />
             </a>
             <a
-              href={professor.socials.github}
+              href={professor.social_links?.github}
               target="_blank"
               rel="noreferrer"
               className="grid size-10 place-items-center rounded-md border border-border hover:border-electric/60"
@@ -108,7 +108,7 @@ function ContactPage() {
               <Github className="size-4" />
             </a>
             <a
-              href={professor.socials.twitter}
+              href={professor.social_links?.twitter}
               target="_blank"
               rel="noreferrer"
               className="grid size-10 place-items-center rounded-md border border-border hover:border-electric/60"
@@ -177,11 +177,11 @@ function ContactPage() {
             <textarea
               required
               rows={6}
-              value={form.body}
+              value={form.message}
               onChange={(e) =>
                 setForm({
                   ...form,
-                  body: e.target.value,
+                  message: e.target.value,
                 })
               }
               className={field}

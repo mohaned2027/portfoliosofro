@@ -1,72 +1,92 @@
 [
   {
-    "id": "pos-1",
+    "id": 1,
     "title": "Head of ECE Department",
-    "organization": "IAET, Egyptian Aviation Academy (EAA)",
+    "slug": "head-of-ece-department",
     "description": "Strategic leadership of the Electronics & Communications Engineering department.",
-    "icon": "crown"
+    "start_date": "2021-01-01",
+    "end_date": null,
+    "is_current": true
   },
   {
-    "id": "pos-2",
+    "id": 2,
     "title": "Associate Professor",
-    "organization": "ECE Department, IAET, EAA",
+    "slug": "associate-professor",
     "description": "Teaching and research in communications and signal processing.",
-    "icon": "academic"
+    "start_date": "2025-01-01",
+    "end_date": null,
+    "is_current": true
   },
   {
-    "id": "pos-3",
+    "id": 3,
     "title": "Head of the Advanced Communication LAB",
-    "organization": "ECE Department, IAET, EAA",
+    "slug": "head-of-advanced-communication-lab",
     "description": "Directing the advanced communications research and teaching laboratory.",
-    "icon": "radio"
+    "start_date": "2020-01-01",
+    "end_date": null,
+    "is_current": true
   },
   {
-    "id": "pos-4",
+    "id": 4,
     "title": "Journal Reviewer",
-    "organization": "Annals of Telecommunications, JCM, Telecom. & Radio Engineering, J. Laser Science",
+    "slug": "journal-reviewer",
     "description": "Peer review for international communications journals.",
-    "icon": "editor"
+    "start_date": "2018-01-01",
+    "end_date": null,
+    "is_current": true
   },
   {
-    "id": "pos-5",
+    "id": 5,
     "title": "TPC Member",
-    "organization": "IEEE NILES & IEEE JAC-ECC",
+    "slug": "tpc-member",
     "description": "Technical program committee member for flagship IEEE conferences.",
-    "icon": "calendar"
+    "start_date": "2020-01-01",
+    "end_date": null,
+    "is_current": true
   },
   {
-    "id": "pos-6",
+    "id": 6,
     "title": "UAVC Judge Board Member",
-    "organization": "International Competition of the Military Technical College (ICMTC 2022–2024)",
+    "slug": "uavc-judge-board-member",
     "description": "Judging unmanned aerial vehicle competitions.",
-    "icon": "shield"
+    "start_date": "2022-01-01",
+    "end_date": null,
+    "is_current": true
   },
   {
-    "id": "pos-7",
+    "id": 7,
     "title": "Counselor, IEEE IAET Student Branch",
-    "organization": "IAET, EAA",
+    "slug": "counselor-ieee-iaet-student-branch",
     "description": "Mentoring and counseling the IEEE student branch.",
-    "icon": "users"
+    "start_date": "2019-01-01",
+    "end_date": null,
+    "is_current": true
   },
   {
-    "id": "pos-8",
+    "id": 8,
     "title": "Session Chairman",
-    "organization": "IAET Scientific Conference (ISC-21)",
+    "slug": "session-chairman",
     "description": "Chaired the Electrical Communications session.",
-    "icon": "mic"
+    "start_date": "2021-01-01",
+    "end_date": "2021-12-31",
+    "is_current": false
   },
   {
-    "id": "pos-9",
+    "id": 9,
     "title": "Member of the Board",
-    "organization": "Egyptian Aviation Academy (EAA)",
+    "slug": "member-of-the-board",
     "description": "Institutional governance and academic oversight.",
-    "icon": "building"
+    "start_date": "2021-01-01",
+    "end_date": null,
+    "is_current": true
   },
   {
-    "id": "pos-10",
+    "id": 10,
     "title": "Quality Assurance Unit Member",
-    "organization": "ECE Department, IAET, EAA",
+    "slug": "quality-assurance-unit-member",
     "description": "Ensuring academic quality and accreditation standards.",
-    "icon": "scroll"
+    "start_date": "2021-01-01",
+    "end_date": null,
+    "is_current": true
   }
 ]

@@ -96,8 +96,20 @@ const PUB_SHOW = {
   achievements: PUB.achievements?.show,
   researches: PUB.researches?.show,
   courses: PUB.courses?.show,
+  lectures: PUB.lectures?.show,
   blogs: PUB.blogs?.show,
 };
+
+/** Extract the first array value from a response object (e.g. { achievements: [...], count }) */
+function extractArray(res) {
+  if (Array.isArray(res)) return res;
+  if (res && typeof res === "object") {
+    for (const v of Object.values(res)) {
+      if (Array.isArray(v)) return v;
+    }
+  }
+  return [];
+}
 
 // ── Generic CRUD factory ─────────────────────────────────────────────────────
 function crud(key) {
@@ -106,11 +118,7 @@ function crud(key) {
     return {
       list: async (_q) => {
         const res = await apiFetch(ep.list, "GET");
-        const data = Array.isArray(res)
-          ? res
-          : Array.isArray(res?.data)
-            ? res.data
-            : [];
+        const data = extractArray(res);
         return {
           data,
           total: data.length,
@@ -185,13 +193,20 @@ export const api = {
             email,
             password,
           });
+          // res is already unwrapped: { token, user }
           if (res?.token) setAuthToken(res.token);
-          return res;
+          return { token: res.token, user: res.user };
         },
         forgotPassword: (email) =>
           apiFetch(EP.auth.forgotPassword, "POST", { email }),
-        resetPassword: (token, password) =>
-          apiFetch(EP.auth.resetPassword, "POST", { token, password }),
+        verifyOtp: (email, otp) =>
+          apiFetch(EP.auth.verifyOtp, "POST", { email, otp }),
+        resetPassword: (email, password, password_confirmation) =>
+          apiFetch(EP.auth.resetPassword, "POST", {
+            email,
+            password,
+            password_confirmation,
+          }),
         profile: () => apiFetch(EP.user.get, "GET"),
       },
 
@@ -248,18 +263,14 @@ export const api = {
         ...crud("messages"),
         markRead: async (mid) => {
           const m = store.messages.find((x) => x.id === mid);
-          if (m) m.read = true;
+          if (m) m.read_at = new Date().toISOString();
           return delay(m);
         },
       }
     : {
         list: async (_q) => {
           const res = await apiFetch(EP.messages.list, "GET");
-          const data = Array.isArray(res)
-            ? res
-            : Array.isArray(res?.data)
-              ? res.data
-              : [];
+          const data = extractArray(res);
           return {
             data,
             total: data.length,

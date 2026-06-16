@@ -22,10 +22,14 @@ export default function AdminResearches() {
   const filtered = items.filter(
     (r) => !search || r.title?.toLowerCase().includes(search.toLowerCase()),
   );
-  const { page, setPage, totalPages, paginated } = usePagination(filtered, search);
+  const { page, setPage, totalPages, paginated } = usePagination(
+    filtered,
+    search,
+  );
 
   const del = async (id) => {
-    if (!(await confirmDelete("This research will be permanently deleted."))) return;
+    if (!(await confirmDelete("This research will be permanently deleted.")))
+      return;
     await api.researches.remove(id);
     setItems((p) => p.filter((r) => r.id !== id));
   };
@@ -35,7 +39,9 @@ export default function AdminResearches() {
       <div className="flex items-start justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold font-display">Researches</h1>
-          <p className="text-sm text-muted-foreground mt-1">Papers, preprints and publications</p>
+          <p className="text-sm text-muted-foreground mt-1">
+            Papers, preprints and publications
+          </p>
         </div>
         <button
           onClick={() => nav("/admin/researches/new")}
@@ -98,13 +104,15 @@ export default function AdminResearches() {
                     </div>
                   )}
                 </td>
-                <td className="px-4 py-3 font-medium max-w-[280px] truncate">{item.title}</td>
-                <td className="px-4 py-3 text-muted-foreground">{item.year}</td>
+                <td className="px-4 py-3 font-medium max-w-[280px] truncate">
+                  {item.title}
+                </td>
+                <td className="px-4 py-3 text-muted-foreground">
+                  {item.date ? new Date(item.date).toLocaleDateString() : ""}
+                </td>
                 <td className="px-4 py-3">
-                  <span
-                    className={`text-[11px] font-mono px-2 py-0.5 rounded capitalize ${STATUS_CHIP[item.status] ?? STATUS_CHIP.draft}`}
-                  >
-                    {item.status}
+                  <span className="text-[11px] font-mono px-2 py-0.5 rounded capitalize bg-electric/10 text-electric">
+                    {item.category ?? "—"}
                   </span>
                 </td>
                 <td className="px-4 py-3">
@@ -127,14 +135,22 @@ export default function AdminResearches() {
             ))}
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={5} className="text-center py-12 text-muted-foreground text-sm">
+                <td
+                  colSpan={5}
+                  className="text-center py-12 text-muted-foreground text-sm"
+                >
                   No research papers found
                 </td>
               </tr>
             )}
           </tbody>
         </table>
-        <Pagination page={page} totalPages={totalPages} total={filtered.length} setPage={setPage} />
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          total={filtered.length}
+          setPage={setPage}
+        />
       </div>
     </div>
   );

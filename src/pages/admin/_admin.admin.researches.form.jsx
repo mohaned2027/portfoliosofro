@@ -69,7 +69,9 @@ function CoverDropzone({ value, onChange }) {
           <div className="grid size-11 place-items-center rounded-full bg-electric/10 text-electric">
             <UploadCloud className="size-5" />
           </div>
-          <p className="text-sm font-medium">Drag &amp; drop or click to browse</p>
+          <p className="text-sm font-medium">
+            Drag &amp; drop or click to browse
+          </p>
           <p className="text-xs text-muted-foreground flex items-center gap-1">
             <ImageIcon className="size-3" /> PNG · JPG · WEBP
           </p>
@@ -79,19 +81,14 @@ function CoverDropzone({ value, onChange }) {
   );
 }
 
-const STATUSES = ["published", "in-review", "draft"];
-
 const EMPTY = {
   title: "",
-  abstract: "",
-  authors: "",
-  keywords: "",
-  year: new Date().getFullYear(),
-  status: "published",
+  excerpt: "",
+  content: "",
+  date: "",
+  category: "",
+  live_link: "",
   cover: "",
-  doi: "",
-  pdfUrl: "",
-  journal: "",
 };
 
 export default function ResearchForm() {
@@ -114,8 +111,6 @@ export default function ResearchForm() {
       setForm({
         ...EMPTY,
         ...item,
-        authors: Array.isArray(item.authors) ? item.authors.join(", ") : (item.authors ?? ""),
-        keywords: Array.isArray(item.keywords) ? item.keywords.join(", ") : (item.keywords ?? ""),
       });
       setLoaded(true);
     }
@@ -127,17 +122,7 @@ export default function ResearchForm() {
     e.preventDefault();
     setSaving(true);
     try {
-      const payload = {
-        ...form,
-        authors: form.authors
-          .split(",")
-          .map((s) => s.trim())
-          .filter(Boolean),
-        keywords: form.keywords
-          .split(",")
-          .map((s) => s.trim())
-          .filter(Boolean),
-      };
+      const payload = { ...form };
       if (isEdit) {
         await api.researches.update(id, payload);
       } else {
@@ -151,7 +136,9 @@ export default function ResearchForm() {
 
   if (!loaded)
     return (
-      <div className="flex items-center justify-center py-32 text-muted-foreground">Loading…</div>
+      <div className="flex items-center justify-center py-32 text-muted-foreground">
+        Loading…
+      </div>
     );
 
   return (
@@ -169,7 +156,9 @@ export default function ResearchForm() {
           <h1 className="text-3xl font-bold font-display">
             {isEdit ? "Edit Research" : "New Research"}
           </h1>
-          <p className="text-sm text-muted-foreground mt-0.5">Fill in the details below</p>
+          <p className="text-sm text-muted-foreground mt-0.5">
+            Fill in the details below
+          </p>
         </div>
         <button
           type="submit"
@@ -210,85 +199,51 @@ export default function ResearchForm() {
           </Field>
 
           <div className="grid grid-cols-2 gap-4">
-            <Field label="Year">
+            <Field label="Date">
               <input
-                type="number"
-                min="1990"
-                max="2099"
-                value={form.year}
-                onChange={(e) => set("year", e.target.value)}
+                type="date"
+                value={form.date?.slice(0, 10) ?? ""}
+                onChange={(e) => set("date", e.target.value)}
                 className={INPUT}
               />
             </Field>
-            <Field label="Status">
-              <select
-                value={form.status}
-                onChange={(e) => set("status", e.target.value)}
+            <Field label="Category">
+              <input
+                value={form.category ?? ""}
+                onChange={(e) => set("category", e.target.value)}
+                placeholder="Wireless Communications, DSP…"
                 className={INPUT}
-              >
-                {STATUSES.map((s) => (
-                  <option key={s} value={s}>
-                    {s}
-                  </option>
-                ))}
-              </select>
+              />
             </Field>
           </div>
 
-          <Field label="Journal / Conference">
-            <input
-              value={form.journal ?? ""}
-              onChange={(e) => set("journal", e.target.value)}
-              placeholder="IEEE Transactions on Wireless…"
-              className={INPUT}
-            />
-          </Field>
-
-          <Field label="Abstract">
+          <Field label="Excerpt (Short Description)">
             <textarea
-              rows={5}
-              value={form.abstract}
-              onChange={(e) => set("abstract", e.target.value)}
+              rows={3}
+              value={form.excerpt}
+              onChange={(e) => set("excerpt", e.target.value)}
               className={TEXTAREA}
             />
           </Field>
 
-          <Field label="Authors (comma-separated)">
-            <input
-              value={form.authors}
-              onChange={(e) => set("authors", e.target.value)}
-              placeholder="K. Mansour, A. Hassan…"
-              className={INPUT}
+          <Field label="Content (Full Description)">
+            <textarea
+              rows={6}
+              value={form.content}
+              onChange={(e) => set("content", e.target.value)}
+              className={TEXTAREA}
             />
           </Field>
 
-          <Field label="Keywords (comma-separated)">
+          <Field label="Live Link (optional)">
             <input
-              value={form.keywords}
-              onChange={(e) => set("keywords", e.target.value)}
-              placeholder="MIMO, 6G, Beamforming…"
+              type="url"
+              value={form.live_link ?? ""}
+              onChange={(e) => set("live_link", e.target.value)}
+              placeholder="https://…"
               className={INPUT}
             />
           </Field>
-
-          <div className="grid grid-cols-2 gap-4">
-            <Field label="DOI / Link">
-              <input
-                value={form.doi ?? ""}
-                onChange={(e) => set("doi", e.target.value)}
-                placeholder="https://doi.org/…"
-                className={INPUT}
-              />
-            </Field>
-            <Field label="PDF URL">
-              <input
-                value={form.pdfUrl ?? ""}
-                onChange={(e) => set("pdfUrl", e.target.value)}
-                placeholder="https://…"
-                className={INPUT}
-              />
-            </Field>
-          </div>
         </div>
       </div>
     </form>

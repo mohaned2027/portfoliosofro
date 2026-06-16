@@ -37,10 +37,10 @@ function ExperiencesPage() {
               <div className={`pl-12 md:pl-0 ${i % 2 ? "md:pr-12 md:text-right" : "md:pl-12"}`}>
                 <div className="rounded-xl border border-border bg-card p-5 hover:border-electric/50 transition">
                   <p className="font-mono text-xs uppercase tracking-widest text-electric">
-                    {e.from} — {e.to}
+                    {e.start_date ? new Date(e.start_date).getFullYear() : ""} — {e.is_current ? "Present" : e.end_date ? new Date(e.end_date).getFullYear() : ""}
                   </p>
-                  <h3 className="mt-1 font-display text-lg font-bold">{e.position}</h3>
-                  <p className="text-sm text-muted-foreground">{e.organization}</p>
+                  <h3 className="mt-1 font-display text-lg font-bold">{e.title}</h3>
+                  <p className="text-sm text-muted-foreground">{e.company}</p>
                   <p className="mt-2 text-sm">{e.description}</p>
                 </div>
               </div>

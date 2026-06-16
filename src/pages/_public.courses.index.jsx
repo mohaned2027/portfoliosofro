@@ -23,7 +23,11 @@ function CoursesPage() {
       />
       <section className="container-academic py-10">
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-          <SearchInput value={search} onChange={setSearch} placeholder="Search courses…" />
+          <SearchInput
+            value={search}
+            onChange={setSearch}
+            placeholder="Search courses…"
+          />
           <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
             {data?.total ?? 0} courses
           </p>
@@ -39,9 +43,9 @@ function CoursesPage() {
                 key={c.id}
                 to={`/courses/${c.id}`}
                 cover={c.cover}
-                eyebrow={`${c.lectures.length} Lectures`}
+                eyebrow={c.category}
                 title={c.title}
-                meta={c.description}
+                meta={c.excerpt}
               />
             ))}
           </div>

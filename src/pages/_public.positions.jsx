@@ -45,7 +45,6 @@ function PositionsPage() {
                 </span>
                 <div>
                   <h3 className="font-display font-semibold">{p.title}</h3>
-                  <p className="text-sm text-electric font-mono">{p.organization}</p>
                   <p className="mt-2 text-sm text-muted-foreground">{p.description}</p>
                 </div>
               </Card>

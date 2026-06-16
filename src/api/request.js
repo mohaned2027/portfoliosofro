@@ -45,7 +45,8 @@ const mockDataMap = {
   "/admin/positions": positionsData,
 };
 
-const simulateDelay = () => new Promise((r) => setTimeout(r, Math.random() * 400 + 250));
+const simulateDelay = () =>
+  new Promise((r) => setTimeout(r, Math.random() * 400 + 250));
 
 // ============================================================
 // AUTH HELPERS
@@ -98,11 +99,16 @@ export const apiFetch = async (endpoint, method = "GET", body = null) => {
     }
     // Auth: forgot-password
     if (endpoint.includes("/auth/forgot-password")) {
-      return { success: true, message: "OTP sent to your email", email: body?.email };
+      return {
+        success: true,
+        message: "OTP sent to your email",
+        email: body?.email,
+      };
     }
     // Auth: verify-otp (accept 123456)
     if (endpoint.includes("/auth/verify-otp")) {
-      if (body?.otp === "123456") return { success: true, token: "reset_token_" + Date.now() };
+      if (body?.otp === "123456")
+        return { success: true, token: "reset_token_" + Date.now() };
       throw new Error("Invalid OTP code");
     }
     // Auth: reset-password
@@ -125,36 +131,53 @@ export const apiFetch = async (endpoint, method = "GET", body = null) => {
     }
 
     // Writes are echoed back
-    return { success: true, message: "Operation successful (mock)", data: body };
+    return {
+      success: true,
+      message: "Operation successful (mock)",
+      data: body,
+    };
   }
 
   // ---------- REAL ----------
-  const fullUrl = endpoint.startsWith("http") ? endpoint : `${BASE_URL}${endpoint}`;
+  const fullUrl = endpoint.startsWith("http")
+    ? endpoint
+    : `${BASE_URL}${endpoint}`;
   const headers = { Accept: "application/json" };
   const token = getAuthToken();
   if (token) headers["Authorization"] = `Bearer ${token}`;
-  if (body && !(body instanceof FormData)) headers["Content-Type"] = "application/json";
+  if (body && !(body instanceof FormData))
+    headers["Content-Type"] = "application/json";
 
   const res = await fetch(fullUrl, {
     method,
     headers,
-    body: body ? (body instanceof FormData ? body : JSON.stringify(body)) : null,
+    body: body
+      ? body instanceof FormData
+        ? body
+        : JSON.stringify(body)
+      : null,
   });
   const ct = res.headers.get("content-type") || "";
-  const data = ct.includes("application/json") ? await res.json() : await res.text();
+  const json = ct.includes("application/json")
+    ? await res.json()
+    : await res.text();
   if (res.status === 401) {
     if (!endpoint.includes("/auth/login")) removeAuthToken();
-    const err = new Error(data?.message || "Unauthorized");
+    const err = new Error(json?.message || "Unauthorized");
     err.status = 401;
     throw err;
   }
   if (!res.ok) {
-    const err = new Error(data?.message || "Request failed");
+    const err = new Error(json?.message || "Request failed");
     err.status = res.status;
-    err.data = data;
+    err.data = json;
     throw err;
   }
-  return data;
+  // Unwrap standard backend envelope { status, message, data }
+  if (json && typeof json === "object" && "data" in json) {
+    return json.data;
+  }
+  return json;
 };
 
 export const apiGet = (e) => apiFetch(e, "GET");

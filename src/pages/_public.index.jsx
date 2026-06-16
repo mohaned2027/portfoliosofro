@@ -74,7 +74,7 @@ function HomePage() {
   const experience = useExperience();
 
   const startYears = (experience ?? [])
-    .map((e) => parseInt(e.from, 10))
+    .map((e) => e.start_date ? new Date(e.start_date).getFullYear() : NaN)
     .filter((y) => !Number.isNaN(y));
   const yearsExperience = startYears.length
     ? new Date().getFullYear() - Math.min(...startYears)
@@ -88,7 +88,7 @@ function HomePage() {
     );
   }
 
-  const typewriterTitles = experience?.map((e) => e.position) ?? [];
+  const typewriterTitles = experience?.map((e) => e.title) ?? [];
   const heroSubtitle =
     professor.title ?? `${professor.department} · ${professor.university}`;
 
@@ -287,10 +287,10 @@ function HomePage() {
                 key={r.id}
                 to={`/researches/${r.id}`}
                 cover={r.cover}
-                eyebrow={String(r.year)}
+                eyebrow={r.date ? new Date(r.date).toLocaleDateString() : ""}
                 title={r.title}
-                meta={r.abstract}
-                footer={r.journal}
+                meta={r.excerpt}
+                footer={r.category}
               />
             ))}
           </div>
@@ -342,9 +342,9 @@ function HomePage() {
                 key={c.id}
                 to={`/courses/${c.id}`}
                 cover={c.cover}
-                eyebrow={`${c.lectures?.length || 0} Lectures`}
+                eyebrow={c.category}
                 title={c.title}
-                meta={c.description}
+                meta={c.excerpt}
               />
             ))}
           </div>

@@ -71,14 +71,14 @@ function ImageDropField({ label, value, onChange, contain }) {
 
 function SiteIdentityCard() {
   const { settings, updateSettings } = useSiteSettings();
-  const [form, setForm] = useState({ doctorName: "", icon: "", favicon: "" });
+  const [form, setForm] = useState({ doctor_name: "", icon: "", favicon: "" });
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     if (settings)
       setForm({
-        doctorName: settings.doctorName ?? "",
+        doctor_name: settings.doctor_name ?? "",
         icon: settings.icon ?? "",
         favicon: settings.favicon ?? "",
       });
@@ -114,8 +114,8 @@ function SiteIdentityCard() {
             Doctor Name
           </label>
           <input
-            value={form.doctorName}
-            onChange={(e) => set("doctorName", e.target.value)}
+            value={form.doctor_name}
+            onChange={(e) => set("doctor_name", e.target.value)}
             placeholder="e.g. Dr. Mohamed Sobhy Elbakry"
             className={INPUT}
           />

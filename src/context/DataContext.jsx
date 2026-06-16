@@ -25,6 +25,17 @@ import positionsData from "@/api/mockData/positions.json";
 
 // ── Generic hooks ────────────────────────────────────────────────────────────
 
+/** Extract the first array value from a response object */
+function extractArray(res) {
+  if (Array.isArray(res)) return res;
+  if (res && typeof res === "object") {
+    for (const v of Object.values(res)) {
+      if (Array.isArray(v)) return v;
+    }
+  }
+  return [];
+}
+
 /** Hook for a list resource (returns array). */
 function usePublicList(jsonData, apiUrl) {
   const [data, setData] = useState(MOCK_MODE ? jsonData : []);
@@ -35,9 +46,8 @@ function usePublicList(jsonData, apiUrl) {
     apiFetch(apiUrl, "GET")
       .then((res) => {
         if (!active) return;
-        setData(
-          Array.isArray(res) ? res : Array.isArray(res?.data) ? res.data : [],
-        );
+        // Backend returns unwrapped { achievements: [...], count } or similar
+        setData(extractArray(res));
       })
       .catch(() => {});
     return () => {
@@ -58,7 +68,8 @@ function usePublicObject(jsonData, apiUrl) {
     apiFetch(apiUrl, "GET")
       .then((res) => {
         if (!active) return;
-        setData(res?.data ?? res ?? null);
+        // apiFetch already unwraps the { status, message, data } envelope
+        setData(res ?? null);
       })
       .catch(() => {});
     return () => {

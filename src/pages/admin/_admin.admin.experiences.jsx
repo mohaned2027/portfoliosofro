@@ -6,15 +6,23 @@ import { api } from "@/api/client";
 import { confirmDelete } from "@/lib/confirm";
 import { Pagination, usePagination } from "@/components/admin/Pagination";
 
-const EMPTY = { position: "", organization: "", from: "", to: "", description: "" };
+const EMPTY = {
+  title: "",
+  company: "",
+  start_date: "",
+  end_date: "",
+  is_current: false,
+  description: "",
+};
 
 function ExpModal({ initial, onClose, onSaved }) {
   const [form, setForm] = useState({
     ...EMPTY,
-    position: initial?.position ?? initial?.title ?? "",
-    organization: initial?.organization ?? initial?.company ?? "",
-    from: initial?.from ?? initial?.startDate ?? "",
-    to: initial?.to ?? initial?.endDate ?? "",
+    title: initial?.title ?? "",
+    company: initial?.company ?? "",
+    start_date: initial?.start_date ?? "",
+    end_date: initial?.end_date ?? "",
+    is_current: initial?.is_current ?? false,
     description: initial?.description ?? "",
     ...(initial?.id ? { id: initial.id } : {}),
   });
@@ -36,7 +44,9 @@ function ExpModal({ initial, onClose, onSaved }) {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
       <div className="bg-card border border-border rounded-xl w-full max-w-lg shadow-2xl">
         <div className="flex items-center justify-between px-6 py-4 border-b border-border">
-          <p className="font-semibold">{initial?.id ? "Edit Experience" : "New Experience"}</p>
+          <p className="font-semibold">
+            {initial?.id ? "Edit Experience" : "New Experience"}
+          </p>
           <button
             onClick={onClose}
             className="grid size-7 place-items-center rounded hover:bg-muted text-muted-foreground"
@@ -51,8 +61,8 @@ function ExpModal({ initial, onClose, onSaved }) {
             </label>
             <input
               required
-              value={form.position}
-              onChange={(e) => set("position", e.target.value)}
+              value={form.title}
+              onChange={(e) => set("title", e.target.value)}
               className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 focus:ring-1 focus:ring-electric/30"
             />
           </div>
@@ -62,8 +72,8 @@ function ExpModal({ initial, onClose, onSaved }) {
             </label>
             <input
               required
-              value={form.organization}
-              onChange={(e) => set("organization", e.target.value)}
+              value={form.company}
+              onChange={(e) => set("company", e.target.value)}
               className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 focus:ring-1 focus:ring-electric/30"
             />
           </div>
@@ -73,9 +83,9 @@ function ExpModal({ initial, onClose, onSaved }) {
                 From
               </label>
               <input
-                value={form.from}
-                onChange={(e) => set("from", e.target.value)}
-                placeholder="2018"
+                type="date"
+                value={form.start_date?.slice(0, 10) ?? ""}
+                onChange={(e) => set("start_date", e.target.value)}
                 className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60"
               />
             </div>
@@ -84,10 +94,11 @@ function ExpModal({ initial, onClose, onSaved }) {
                 To
               </label>
               <input
-                value={form.to}
-                onChange={(e) => set("to", e.target.value)}
-                placeholder="Present"
-                className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60"
+                type="date"
+                value={form.end_date?.slice(0, 10) ?? ""}
+                onChange={(e) => set("end_date", e.target.value)}
+                disabled={form.is_current}
+                className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:border-electric/60 disabled:opacity-50"
               />
             </div>
           </div>
@@ -133,17 +144,25 @@ export default function AdminExperiences() {
   const filtered = items.filter(
     (e) =>
       !search ||
-      (e.position ?? e.title)?.toLowerCase().includes(search.toLowerCase()) ||
-      (e.organization ?? e.company)?.toLowerCase().includes(search.toLowerCase()),
+      e.title?.toLowerCase().includes(search.toLowerCase()) ||
+      e.company?.toLowerCase().includes(search.toLowerCase()),
   );
-  const { page, setPage, totalPages, paginated } = usePagination(filtered, search);
+  const { page, setPage, totalPages, paginated } = usePagination(
+    filtered,
+    search,
+  );
 
   const refresh = async () => {
     const res = await api.experiences.list({ pageSize: 999 });
     setItems(res.data ?? []);
   };
   const del = async (id) => {
-    if (!(await confirmDelete("This experience entry will be permanently deleted."))) return;
+    if (
+      !(await confirmDelete(
+        "This experience entry will be permanently deleted.",
+      ))
+    )
+      return;
     await api.experiences.remove(id);
     setItems((p) => p.filter((e) => e.id !== id));
   };
@@ -153,7 +172,9 @@ export default function AdminExperiences() {
       <div className="flex items-start justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold font-display">Experience</h1>
-          <p className="text-sm text-muted-foreground mt-1">Work and research history</p>
+          <p className="text-sm text-muted-foreground mt-1">
+            Work and research history
+          </p>
         </div>
         <button
           onClick={() => setModal("create")}
@@ -206,13 +227,19 @@ export default function AdminExperiences() {
                     <Briefcase className="size-4" />
                   </div>
                 </td>
-                <td className="px-4 py-3 font-medium">{item.position ?? item.title}</td>
+                <td className="px-4 py-3 font-medium">{item.title}</td>
                 <td className="px-4 py-3 text-muted-foreground">
-                  {item.organization ?? item.company}
+                  {item.company}
                 </td>
                 <td className="px-4 py-3 text-muted-foreground text-xs">
-                  {item.from ?? item.startDate}
-                  {(item.to ?? item.endDate) ? ` — ${item.to ?? item.endDate}` : " — Present"}
+                  {item.start_date
+                    ? new Date(item.start_date).getFullYear()
+                    : ""}
+                  {item.is_current
+                    ? " — Present"
+                    : item.end_date
+                      ? ` — ${new Date(item.end_date).getFullYear()}`
+                      : ""}
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex items-center justify-end gap-1">
@@ -234,14 +261,22 @@ export default function AdminExperiences() {
             ))}
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={5} className="text-center py-12 text-muted-foreground text-sm">
+                <td
+                  colSpan={5}
+                  className="text-center py-12 text-muted-foreground text-sm"
+                >
                   No experience entries found
                 </td>
               </tr>
             )}
           </tbody>
         </table>
-        <Pagination page={page} totalPages={totalPages} total={filtered.length} setPage={setPage} />
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          total={filtered.length}
+          setPage={setPage}
+        />
       </div>
       {modal && (
         <ExpModal

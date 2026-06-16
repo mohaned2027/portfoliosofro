@@ -1,4 +1,12 @@
-import { Award, BookOpen, Edit3, MessageSquare, Video, FileText, Activity } from "lucide-react";
+import {
+  Award,
+  BookOpen,
+  Edit3,
+  MessageSquare,
+  Video,
+  FileText,
+  Activity,
+} from "lucide-react";
 import {
   useAdminAchievements,
   useAdminResearches,
@@ -60,8 +68,11 @@ export default function DashboardHome() {
   const blogs = useAdminBlogs();
   const messages = useAdminMessages();
 
-  const lecturesCount = (courses || []).reduce((s, c) => s + (c.lectures?.length || 0), 0);
-  const unread = (messages || []).filter((m) => !m.read).length;
+  const lecturesCount = (courses || []).reduce(
+    (s, c) => s + (c.lectures?.length || 0),
+    0,
+  );
+  const unread = (messages || []).filter((m) => !m.read_at).length;
 
   const stats = [
     { label: "Achievements", value: achievements?.length ?? 0, icon: Award },
@@ -71,7 +82,10 @@ export default function DashboardHome() {
     { label: "Blogs", value: blogs?.length ?? 0, icon: Edit3 },
     {
       label: "Messages",
-      value: unread > 0 ? `${messages?.length ?? 0} (${unread})` : String(messages?.length ?? 0),
+      value:
+        unread > 0
+          ? `${messages?.length ?? 0} (${unread})`
+          : String(messages?.length ?? 0),
       icon: MessageSquare,
     },
   ];
@@ -85,8 +99,9 @@ export default function DashboardHome() {
 
   const pubsByYear = Object.entries(
     (researches || []).reduce((acc, r) => {
-      if (r.year == null) return acc;
-      acc[r.year] = (acc[r.year] || 0) + 1;
+      const year = r.date ? new Date(r.date).getFullYear() : null;
+      if (year == null) return acc;
+      acc[year] = (acc[year] || 0) + 1;
       return acc;
     }, {}),
   )
@@ -98,7 +113,7 @@ export default function DashboardHome() {
       id: `r-${r.id}`,
       action: "Research published",
       target: r.title,
-      date: `${r.year}-01-01`,
+      date: r.date,
     })),
     ...(blogs || []).map((b) => ({
       id: `b-${b.id}`,
@@ -146,8 +161,14 @@ export default function DashboardHome() {
             </span>
           </div>
           <ResponsiveContainer width="100%" height={220}>
-            <LineChart data={pubsByYear} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+            <LineChart
+              data={pubsByYear}
+              margin={{ top: 5, right: 10, left: -20, bottom: 0 }}
+            >
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="rgba(255,255,255,0.05)"
+              />
               <XAxis
                 dataKey="year"
                 tick={{ fontSize: 11, fill: "var(--color-muted-foreground)" }}
@@ -221,9 +242,13 @@ export default function DashboardHome() {
               <span className="mt-1.5 size-2 rounded-full bg-electric shrink-0" />
               <div className="flex-1 min-w-0">
                 <p className="font-medium">{act.action}</p>
-                <p className="text-xs text-muted-foreground truncate">{act.target}</p>
+                <p className="text-xs text-muted-foreground truncate">
+                  {act.target}
+                </p>
               </div>
-              <span className="text-xs text-muted-foreground shrink-0 pl-4">{act.date}</span>
+              <span className="text-xs text-muted-foreground shrink-0 pl-4">
+                {act.date}
+              </span>
             </div>
           ))}
         </div>

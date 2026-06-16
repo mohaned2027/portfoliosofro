@@ -1,5 +1,6 @@
 {
-  "doctorName": "Dr. Mohamed",
+  "id": 1,
+  "doctor_name": "Dr. Mohamed Sobhy Elbakry",
   "icon": "/professor.jpg",
   "favicon": "/favicon.ico"
 }
