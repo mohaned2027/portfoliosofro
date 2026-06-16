@@ -1,0 +1,154 @@
+<?php
+
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AchievementController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\Password\ForgetPasswordController;
+use App\Http\Controllers\Auth\Password\OtpController;
+use App\Http\Controllers\Auth\Password\ResetPasswordController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\EducationController;
+use App\Http\Controllers\ExperienceController;
+use App\Http\Controllers\LectureController;
+use App\Http\Controllers\PositionController;
+use App\Http\Controllers\ResearchController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Public API Routes
+|--------------------------------------------------------------------------
+*/
+
+// Auth
+Route::post('/auth/login', [LoginController::class, 'login']);
+Route::post('/auth/forgot-password', [ForgetPasswordController::class, 'send']);
+Route::post('/auth/verify-otp', [OtpController::class, 'verify']);
+Route::post('/auth/reset-password', [ResetPasswordController::class, 'reset']);
+
+// Contact
+Route::post('/contact-us/store', [ContactUsController::class, 'store']);
+
+// Public content
+Route::get('/user/data', [UserController::class, 'getUserData']);
+Route::get('/about', [AboutController::class, 'index']);
+Route::get('/setting', [SettingController::class, 'index']);
+Route::get('/achievement', [AchievementController::class, 'index']);
+Route::get('/achievement/show/{id}', [AchievementController::class, 'show']);
+Route::get('/research', [ResearchController::class, 'index']);
+Route::get('/research/show/{id}', [ResearchController::class, 'show']);
+Route::get('/course', [CourseController::class, 'index']);
+Route::get('/course/show/{id}', [CourseController::class, 'show']);
+Route::get('/lecture', [LectureController::class, 'index']);
+Route::get('/lecture/show/{id}', [LectureController::class, 'show']);
+Route::get('/experience', [ExperienceController::class, 'index']);
+Route::get('/position', [PositionController::class, 'index']);
+Route::get('/blog', [BlogController::class, 'index']);
+Route::get('/blog/show/{id}', [BlogController::class, 'show']);
+Route::get('/education', [EducationController::class, 'index']);
+
+/*
+|--------------------------------------------------------------------------
+| Admin API Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
+
+    Route::get('/user', [UserController::class, 'index']);
+    Route::put('/user/update', [UserController::class, 'update']);
+    Route::delete('/auth/logout', [LoginController::class, 'logout']);
+
+    // Achievements
+    Route::controller(AchievementController::class)->prefix('achievement')->group(function () {
+        Route::get('/', 'index');
+        Route::post('/store', 'store');
+        Route::get('/show/{id}', 'show');
+        Route::put('/update/{id}', 'update');
+        Route::delete('/delete/{id}', 'destroy');
+    });
+
+    // Researches
+    Route::controller(ResearchController::class)->prefix('research')->group(function () {
+        Route::get('/', 'index');
+        Route::post('/store', 'store');
+        Route::get('/show/{id}', 'show');
+        Route::put('/update/{id}', 'update');
+        Route::delete('/delete/{id}', 'destroy');
+    });
+
+    // Courses
+    Route::controller(CourseController::class)->prefix('course')->group(function () {
+        Route::get('/', 'index');
+        Route::post('/store', 'store');
+        Route::get('/show/{id}', 'show');
+        Route::put('/update/{id}', 'update');
+        Route::delete('/delete/{id}', 'destroy');
+    });
+
+    // Lectures
+    Route::controller(LectureController::class)->prefix('lecture')->group(function () {
+        Route::get('/', 'index');
+        Route::post('/store', 'store');
+        Route::get('/show/{id}', 'show');
+        Route::put('/update/{id}', 'update');
+        Route::delete('/delete/{id}', 'destroy');
+    });
+
+    // Experiences
+    Route::controller(ExperienceController::class)->prefix('experience')->group(function () {
+        Route::get('/', 'index');
+        Route::post('/store', 'store');
+        Route::put('/update/{id}', 'update');
+        Route::delete('/delete/{id}', 'destroy');
+    });
+
+    // Positions
+    Route::controller(PositionController::class)->prefix('position')->group(function () {
+        Route::get('/', 'index');
+        Route::post('/store', 'store');
+        Route::put('/update/{id}', 'update');
+        Route::delete('/delete/{id}', 'destroy');
+    });
+
+    // Blog
+    Route::controller(BlogController::class)->prefix('blog')->group(function () {
+        Route::get('/', 'index');
+        Route::post('/store', 'store');
+        Route::put('/update/{id}', 'update');
+        Route::delete('/delete/{id}', 'destroy');
+    });
+
+    // Education
+    Route::controller(EducationController::class)->prefix('education')->group(function () {
+        Route::get('/', 'index');
+        Route::post('/store', 'store');
+        Route::put('/update/{id}', 'update');
+        Route::delete('/delete/{id}', 'destroy');
+    });
+
+    // About
+    Route::controller(AboutController::class)->prefix('about')->group(function () {
+        Route::get('/', 'index');
+        Route::post('/store', 'store');
+        Route::put('/update', 'update');
+    });
+
+    // Settings
+    Route::controller(SettingController::class)->prefix('setting')->group(function () {
+        Route::get('/', 'index');
+        Route::post('/store', 'store');
+        Route::put('/update', 'update');
+    });
+
+    // Contact Us
+    Route::controller(ContactUsController::class)->prefix('contact-us')->group(function () {
+        Route::get('/', 'index');
+        Route::patch('/read/{id}', 'markRead');
+        Route::delete('/delete/{id}', 'destroy');
+    });
+});
